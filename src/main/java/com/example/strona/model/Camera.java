@@ -1,5 +1,7 @@
 package com.example.strona.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.UUID;
 
 public class Camera {
@@ -9,11 +11,14 @@ public class Camera {
     private final String CameraType;
     private final int CameraResolution;
 
-    public Camera(UUID cameraID, String cameraModel, String cameraType, int cameraResolution) {
-        CameraID = cameraID;
-        CameraModel = cameraModel;
-        CameraType = cameraType;
-        CameraResolution = cameraResolution;
+    public Camera(@JsonProperty("id") UUID cameraID,
+                  @JsonProperty("model") String cameraModel,
+                  @JsonProperty("type") String cameraType,
+                  @JsonProperty("resolution") int cameraResolution) {
+        this.CameraID = cameraID;
+        this.CameraModel = cameraModel;
+        this.CameraResolution = cameraResolution;
+        this.CameraType = cameraType;
     }
 
     public String getCameraModel() {

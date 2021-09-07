@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class CameraService {
 
@@ -18,5 +21,9 @@ public class CameraService {
 
     public int addCamera(Camera camera){
         return cameraData.insertCameras(camera);
+    }
+
+    public ArrayList<Camera> getAllCamera(){
+        return cameraData.selectAllCamera();
     }
 }
