@@ -2,16 +2,25 @@ package com.example.strona.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.UUID;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "cameras")
 public class Camera {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer CameraID;
 
-    private final UUID CameraID;
-    private final String CameraModel;
-    private final String CameraType;
-    private final int CameraResolution;
+    @Column(nullable = false, unique = true, name = "camera_model")
+    private  String CameraModel;
 
-    public Camera(@JsonProperty("id") UUID cameraID,
+    @Column(nullable = false, name = "camera_type")
+    private String CameraType;
+
+    @Column(nullable = false, name = "resolution")
+    private int CameraResolution;
+
+    public Camera(@JsonProperty("id") Integer cameraID,
                   @JsonProperty("model") String cameraModel,
                   @JsonProperty("type") String cameraType,
                   @JsonProperty("resolution") int cameraResolution) {
@@ -19,6 +28,10 @@ public class Camera {
         this.CameraModel = cameraModel;
         this.CameraResolution = cameraResolution;
         this.CameraType = cameraType;
+    }
+
+    public Camera() {
+
     }
 
     public String getCameraModel() {
@@ -33,7 +46,23 @@ public class Camera {
         return CameraResolution;
     }
 
-    public UUID getCameraID() {
+    public Integer getCameraID() {
         return CameraID;
+    }
+
+    public void setCameraID(Integer cameraID) {
+        CameraID = cameraID;
+    }
+
+    public void setCameraModel(String cameraModel) {
+        CameraModel = cameraModel;
+    }
+
+    public void setCameraType(String cameraType) {
+        CameraType = cameraType;
+    }
+
+    public void setCameraResolution(int cameraResolution) {
+        CameraResolution = cameraResolution;
     }
 }

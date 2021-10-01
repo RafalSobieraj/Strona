@@ -13,7 +13,7 @@ public class CameraDatabase implements CameraData{
     private static ArrayList<Camera> DB = new ArrayList<>();
 
     @Override
-    public int insertCameras(UUID CameraID, Camera camera) {
+    public int insertCameras(Integer CameraID, Camera camera) {
         DB.add(new Camera(CameraID, camera.getCameraModel(), camera.getCameraType(), camera.getCameraResolution()));
         return 1;
     }

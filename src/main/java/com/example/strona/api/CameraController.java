@@ -2,12 +2,10 @@ package com.example.strona.api;
 
 import com.example.strona.model.Camera;
 import com.example.strona.service.CameraService;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RequestMapping("api/v1/person")
 @RestController
