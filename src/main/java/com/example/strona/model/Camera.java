@@ -20,10 +20,10 @@ public class Camera {
     @Column(nullable = false, name = "resolution")
     private int CameraResolution;
 
-    public Camera(@JsonProperty("id") Integer cameraID,
-                  @JsonProperty("model") String cameraModel,
-                  @JsonProperty("type") String cameraType,
-                  @JsonProperty("resolution") int cameraResolution) {
+    public Camera(Integer cameraID,
+                  String cameraModel,
+                  String cameraType,
+                  int cameraResolution) {
         this.CameraID = cameraID;
         this.CameraModel = cameraModel;
         this.CameraResolution = cameraResolution;
