@@ -1,4 +1,4 @@
-package com.example.strona.model;
+package com.example.strona.model.camera;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
