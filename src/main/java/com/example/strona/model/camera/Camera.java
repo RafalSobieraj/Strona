@@ -65,4 +65,14 @@ public class Camera {
     public void setCameraResolution(int cameraResolution) {
         CameraResolution = cameraResolution;
     }
+
+    @Override
+    public String toString() {
+        return "Camera{" +
+                "CameraID=" + CameraID +
+                ", CameraModel='" + CameraModel + '\'' +
+                ", CameraType='" + CameraType + '\'' +
+                ", CameraResolution=" + CameraResolution +
+                '}';
+    }
 }
