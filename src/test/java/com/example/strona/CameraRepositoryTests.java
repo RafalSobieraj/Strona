@@ -4,7 +4,6 @@ import com.example.strona.model.camera.Camera;
 import com.example.strona.model.camera.CameraRepository;
 
 import org.assertj.core.api.Assertions;
-import org.h2.engine.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -23,9 +22,9 @@ public class CameraRepositoryTests {
     @Test
     public void addNewCamera(){
         Camera camera = new Camera();
-        camera.setCameraModel("Test Camera");
-        camera.setCameraType("Analog");
-        camera.setCameraResolution(4);
+        camera.setCameraModel("Test Camera2");
+        camera.setCameraType("Hybryd");
+        camera.setCameraResolution(3);
 
         Camera savedCamera = repository.save(camera);
 
@@ -46,7 +45,7 @@ public class CameraRepositoryTests {
 
     @Test
     public void testUpdate(){
-        Integer cameraId = 4;
+        Integer cameraId = 5;
         Optional<Camera> optionalCamera = repository.findById(cameraId);
         Camera camera = optionalCamera.get();
         camera.setCameraResolution(2);
