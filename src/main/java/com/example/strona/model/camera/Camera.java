@@ -18,6 +18,8 @@ public class Camera {
     @Column(nullable = false, name = "resolution")
     private int CameraResolution;
 
+    private boolean enabled;
+
     public Camera(Integer cameraID,
                   String cameraModel,
                   String cameraType,
@@ -26,6 +28,14 @@ public class Camera {
         this.CameraModel = cameraModel;
         this.CameraResolution = cameraResolution;
         this.CameraType = cameraType;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Camera() {

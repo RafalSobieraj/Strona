@@ -22,4 +22,10 @@ public class CameraController {
        return "cameras";
    }
 
+   @GetMapping("/cameras/new")
+    public String cameraForm(Model model){
+        model.addAttribute("camera", new Camera());
+        return "camera_form";
+    }
+
 }

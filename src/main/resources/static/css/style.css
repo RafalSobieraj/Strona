@@ -12,3 +12,12 @@ body {
     font-family: "Comic Sans MS", serif;
     color: darkred;
 }
+.saveForm {
+    font-size: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+
+}
+input[type=checkbox]{
+    transform: scale(0.5);
+}
