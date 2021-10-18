@@ -17,6 +17,9 @@
             Add new camera
           </a>
       </div>
+      <div th:if="@{message}" class="alert alert-success text-center">
+        [[${message}]]
+      </div>
     <div>
         <table class="table table-bordered">
             <thead class="thead-dark">
@@ -25,19 +28,21 @@
                     <th>Camera</th>
                     <th>Type</th>
                     <th>Resolution</th>
+                    <th>Enabled</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <th:block th:each="camera : ${cameraList}">
                     <tr>
-                        <td>[[${camera.cameraID}]]</td>
+                        <td>[[${camera.id}]]</td>
                         <td>[[${camera.cameraModel}]]</td>
                         <td>[[${camera.cameraType}]]</td>
                         <td>[[${camera.cameraResolution}]]</td>
+                        <td>[[${camera.enabled}]]</td>
                         <td>
-                            <a class="h4 mr-3" th:href="@{'/cameras/edit' + ${camera.cameraID}}">Edit</a>
-                            <a class="h4" th:href="@{'/cameras/delete' + ${camera.cameraID}}">Delete</a>
+                            <a class="h4 mr-3" th:href="@{'/cameras/edit/' + ${camera.id}}">Edit</a>
+                            <a class="h4" th:href="@{'/cameras/delete/' + ${camera.id}}">Delete</a>
                         </td>
                     </tr>
                 </th:block>

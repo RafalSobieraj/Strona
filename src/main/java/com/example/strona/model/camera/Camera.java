@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Camera {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer CameraID;
+    private Integer id;
 
     @Column(nullable = false, unique = true, name = "camera_model")
     private  String CameraModel;
@@ -18,13 +18,24 @@ public class Camera {
     @Column(nullable = false, name = "resolution")
     private int CameraResolution;
 
+    @Column(nullable = true)
+    private String Image;
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
     private boolean enabled;
 
-    public Camera(Integer cameraID,
+    public Camera(Integer id,
                   String cameraModel,
                   String cameraType,
                   int cameraResolution) {
-        this.CameraID = cameraID;
+        this.id = id;
         this.CameraModel = cameraModel;
         this.CameraResolution = cameraResolution;
         this.CameraType = cameraType;
@@ -54,13 +65,14 @@ public class Camera {
         return CameraResolution;
     }
 
-    public Integer getCameraID() {
-        return CameraID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCameraID(Integer cameraID) {
-        CameraID = cameraID;
+    public void setId(Integer id) {
+        this.id = id;
     }
+
 
     public void setCameraModel(String cameraModel) {
         CameraModel = cameraModel;
@@ -77,7 +89,7 @@ public class Camera {
     @Override
     public String toString() {
         return "Camera{" +
-                "CameraID=" + CameraID +
+                "CameraID=" + id +
                 ", CameraModel='" + CameraModel + '\'' +
                 ", CameraType='" + CameraType + '\'' +
                 ", CameraResolution=" + CameraResolution +

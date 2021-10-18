@@ -29,7 +29,7 @@ public class CameraRepositoryTests {
         Camera savedCamera = repository.save(camera);
 
         Assertions.assertThat(savedCamera).isNotNull();
-        Assertions.assertThat(savedCamera.getCameraID()).isGreaterThan(0);
+        Assertions.assertThat(savedCamera.getId()).isGreaterThan(0);
     }
 
     @Test
