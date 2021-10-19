@@ -16,7 +16,7 @@
       [[${title}]]
     </h2>
   </div>
-  <form class="saveForm" th:action="@{/cameras/save}" method="post" th:object="${camera}">
+  <form class="saveForm" th:action="@{/cameras/save}" method="post" th:object="${camera}", enctype="multipart/form-data">
     <input type="hidden" th:field="*{id}">
     <div class="border border-secondary rounded p-3">
       <div class="form-group row">

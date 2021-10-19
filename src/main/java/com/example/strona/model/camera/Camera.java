@@ -21,13 +21,7 @@ public class Camera {
     @Column(nullable = true)
     private String Image;
 
-    public String getImage() {
-        return Image;
-    }
-
-    public void setImage(String image) {
-        Image = image;
-    }
+    
 
     private boolean enabled;
 
@@ -84,6 +78,21 @@ public class Camera {
 
     public void setCameraResolution(int cameraResolution) {
         CameraResolution = cameraResolution;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    @Transient
+    public String getImagePath(){
+        if(Image == null || id == null) return null;
+
+        return "/images/" + id + "/" + Image;
     }
 
     @Override

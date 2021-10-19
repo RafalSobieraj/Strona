@@ -17,8 +17,8 @@ public class CameraService {
         return (List<Camera>) repository.findAll();
     }
 
-    public void save(Camera camera) {
-        repository.save(camera);
+    public Camera save(Camera camera) {
+       return repository.save(camera);
     }
 
     public Camera get(Integer id) throws NotFoundException{

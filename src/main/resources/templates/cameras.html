@@ -25,6 +25,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
+                    <th>Image</th>
                     <th>Camera</th>
                     <th>Type</th>
                     <th>Resolution</th>
@@ -36,6 +37,9 @@
                 <th:block th:each="camera : ${cameraList}">
                     <tr>
                         <td>[[${camera.id}]]</td>
+                        <td>
+                          <img th:src="@{${camera.imagePath}}" style="width: 100px;" />
+                        </td>
                         <td>[[${camera.cameraModel}]]</td>
                         <td>[[${camera.cameraType}]]</td>
                         <td>[[${camera.cameraResolution}]]</td>
