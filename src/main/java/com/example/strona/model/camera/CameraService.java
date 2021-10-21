@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 
 import javassist.NotFoundException;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,5 +39,27 @@ public class CameraService {
             throw new NotFoundException("Could not find and objects with ID " + id);
         }
         repository.deleteById(id);
+    }
+
+    public void cleanDirectory(Path path) throws IOException {
+        
+        try {
+            Files.list(path).forEach(file -> {
+                if(!Files.isDirectory(file)) {
+                    try {
+                        Files.delete(file);
+                    }catch(IOException ex) {    
+                        try {
+                            throw new IOException("Could not delete file: " + file);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+        }catch(IOException e) {
+            throw new IOException("Could not list directory: " + path);
+        
+        }
     }
 }

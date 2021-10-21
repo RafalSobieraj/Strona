@@ -82,9 +82,12 @@ public class CameraController {
         }
 
     @GetMapping("/cameras/delete/{id}")
-    public String deleteCamera(@PathVariable("id") Integer id, RedirectAttributes re){
+    public String deleteCamera(@PathVariable("id") Integer id, RedirectAttributes re, Camera camera) throws IOException{
         try{
             cameraService.delete(id);
+            Path imageUploadDir = Paths.get("./images/" + camera.getId() + "/");
+            cameraService.cleanDirectory(imageUploadDir);
+            Files.delete(imageUploadDir);
             re.addFlashAttribute("message", "Camera was deleted successfully.");
         } catch(NotFoundException e){
             re.addFlashAttribute("message", e.getMessage());
