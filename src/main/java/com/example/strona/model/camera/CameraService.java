@@ -5,11 +5,15 @@ import org.springframework.stereotype.Service;
 
 import javassist.NotFoundException;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
+
+import javax.imageio.ImageIO;
 
 @Service
 public class CameraService {
@@ -41,24 +45,28 @@ public class CameraService {
     }
 
     public void cleanDirectory(Path path) throws IOException {
-        
-        try {
-            Files.list(path).forEach(file -> {
-                if(!Files.isDirectory(file)) {
-                    try {
-                        Files.delete(file);
-                    }catch(IOException ex) {    
-                        try {
-                            throw new IOException("Could not delete file: " + file);
-                        } catch (IOException e) {
-                            e.printStackTrace();
+        File filepath = path.toFile();
+        if(filepath.listFiles() != null) {
+                try {
+                    Files.list(path).forEach(file -> {
+                        if(!Files.isDirectory(file)) {
+                            try {
+                                Files.delete(file);
+                            }catch(IOException ex) {    
+                                try {
+                                    throw new IOException("Could not delete file: " + file);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
-                    }
-                }
-            });
-        }catch(IOException e) {
-            throw new IOException("Could not list directory: " + path);
+                    });
+            }catch(IOException e) {
+                throw new IOException("Could not list directory: " + path);
         
+            }
         }
+        else
+            path.toFile().delete();
     }
 }

@@ -87,7 +87,6 @@ public class CameraController {
             cameraService.delete(id);
             Path imageUploadDir = Paths.get("./images/" + camera.getId() + "/");
             cameraService.cleanDirectory(imageUploadDir);
-            Files.delete(imageUploadDir);
             re.addFlashAttribute("message", "Camera was deleted successfully.");
         } catch(NotFoundException e){
             re.addFlashAttribute("message", e.getMessage());
