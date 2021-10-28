@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import javassist.NotFoundException;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,7 +12,6 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
 
-import javax.imageio.ImageIO;
 
 @Service
 public class CameraService {
@@ -52,6 +50,7 @@ public class CameraService {
                         if(!Files.isDirectory(file)) {
                             try {
                                 Files.delete(file);
+                                path.toFile().delete();
                             }catch(IOException ex) {    
                                 try {
                                     throw new IOException("Could not delete file: " + file);
