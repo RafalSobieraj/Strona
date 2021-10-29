@@ -54,20 +54,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**").anyRequest();
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/", "/cameras").permitAll()
+            .antMatchers("/cameras/edit/**", "/cameras/delete/**").hasAuthority("ADMIN")
             .anyRequest().authenticated()
             .and()
             .formLogin()
                 .permitAll()
-                .loginPage("/adminLogin")
-                .passwordParameter("motdepass")
             .and()
             .logout().permitAll()
             .and()
