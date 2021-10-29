@@ -20,14 +20,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
-    boolean isAuthenticated() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || AnonymousAuthenticationToken.class.
-          isAssignableFrom(authentication.getClass())) {
-            return false;
-        }
-        return authentication.isAuthenticated();
-    }
     
     @Bean
     public UserDetailsService userDetailsService(){
@@ -56,11 +48,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+            .antMatchers("/").permitAll()
             .antMatchers("/cameras/edit/**", "/cameras/delete/**").hasAuthority("ADMIN")
             .anyRequest().authenticated()
             .and()
             .formLogin()
                 .permitAll()
+                .defaultSuccessUrl("/admin")
             .and()
             .logout().permitAll()
             .and()

@@ -11,10 +11,7 @@ public class MainController {
 
     @GetMapping("/admin")
     public String adminPanel(){
-        if(webSecurityConfig.isAuthenticated()){
-            return "admin";
-        }
-        return "adminLogin";
+        return "admin";
     }
 
     @GetMapping("")
@@ -25,10 +22,5 @@ public class MainController {
     @GetMapping("/403")
     public String error403(){
         return "403";
-    }
-    
-    @GetMapping("/adminLogin")
-    public String adminLoginPage(){
-        return "adminLogin";
     }
 }
