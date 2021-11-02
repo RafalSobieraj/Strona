@@ -9,11 +9,6 @@ public class MainController {
 
     @Autowired private WebSecurityConfig webSecurityConfig;
 
-    @GetMapping("/admin")
-    public String adminPanel(){
-        return "admin";
-    }
-
     @GetMapping("")
     public String homePage(){
         return "index";
@@ -22,5 +17,9 @@ public class MainController {
     @GetMapping("/403")
     public String error403(){
         return "403";
+    }
+    @GetMapping("/adminLogin")
+    public String adminLoginPage(){
+        return "adminLogin";
     }
 }

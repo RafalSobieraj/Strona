@@ -48,13 +48,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/").permitAll()
+            .antMatchers("/css/**", "/webjars/**").permitAll()
+            .antMatchers("/", "/cameras").permitAll()
             .antMatchers("/cameras/edit/**", "/cameras/delete/**").hasAuthority("ADMIN")
             .anyRequest().authenticated()
             .and()
             .formLogin()
                 .permitAll()
-                .defaultSuccessUrl("/admin")
+                .loginPage("/adminLogin")
+                .loginProcessingUrl("/doLogin")
+                .defaultSuccessUrl("/cameras")
             .and()
             .logout().permitAll()
             .and()

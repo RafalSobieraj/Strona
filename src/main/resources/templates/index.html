@@ -7,6 +7,14 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
+    <div class="adminLogout" sec:authorize="isAuthenticated()">
+        Hello <b><span sec:authentication="name">Username</span></b>
+        &nbsp;
+        <span sec:authentication="principal.authorities">Roles</span>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
 <header>
     <h5 class="test2">Konfiguracja</h5>
 </header>
@@ -14,7 +22,7 @@
 
     <h1 class="test">WITAMY W KONFIGURATORZE KAMER IP ORAZ ANALOG</h1>
     <p>Tutaj znajdziesz najlepsze połączenie kamery z rejestratorem i nie tylko</p>
-    <h2><a th:href="@{/admin}">Go to Admin Panel</a></h2>
+    <h2><a th:href="@{/adminLogin}">Go to Admin Login</a></h2>
 </div>
 </body>
 </html>
