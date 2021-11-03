@@ -18,11 +18,14 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
+import com.example.strona.model.Utils.DirectoryDeleteUtil;
+
 
 @Controller
 public class CameraController {
 
    @Autowired private CameraService cameraService;
+   @Autowired private DirectoryDeleteUtil directoryDeleteUtil;
 
    @GetMapping("/cameras")
    public String getCameraList(Model model){
@@ -49,7 +52,7 @@ public class CameraController {
         camera.setImage(fileName);
         Camera savedImage = cameraService.save(camera);
 
-        String uploadDir = "./images/" + savedImage.getId();
+        String uploadDir = "./images/" + "cameras/" + savedImage.getId();
 
         Path uploadPath = Paths.get(uploadDir);
 
@@ -85,8 +88,8 @@ public class CameraController {
     public String deleteCamera(@PathVariable("id") Integer id, RedirectAttributes re, Camera camera) throws IOException{
         try{
             cameraService.delete(id);
-            Path imageUploadDir = Paths.get("./images/" + camera.getId() + "/");
-            cameraService.cleanDirectory(imageUploadDir);
+            Path imageUploadDir = Paths.get("./images/" + "cameras/" + camera.getId() + "/");
+            directoryDeleteUtil.cleanDirectory(imageUploadDir);
             re.addFlashAttribute("message", "Camera was deleted successfully.");
         } catch(NotFoundException e){
             re.addFlashAttribute("message", e.getMessage());

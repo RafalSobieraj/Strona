@@ -1,34 +1,30 @@
-package com.example.strona.model.camera;
-
+package com.example.strona.model.Recorder;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javassist.NotFoundException;
-
 
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
-public class CameraService {
+public class RecorderService {
 
-    @Autowired private CameraRepository repository;
+    @Autowired private RecorderRepository repository;
 
-    public List<Camera> listCameras(){
-        return (List<Camera>) repository.findAll();
+    public List<Recorder> listRecorders(){
+        return (List<Recorder>) repository.findAll();
     }
 
-    public Camera save(Camera camera) {
-       return repository.save(camera);
+    public Recorder save(Recorder recorder) {
+        return repository.save(recorder);
     }
 
-    public Camera get(Integer id) throws NotFoundException{
-        Optional<Camera> result = repository.findById(id);
+    public Recorder get(Integer id) throws NotFoundException {
+        Optional<Recorder> result = repository.findById(id);
         if(result.isPresent()){
             return result.get();
         }
-        throw new NotFoundException("Could not find any cameras with ID " + id);
+        throw new NotFoundException("Could not find any recorders with ID " + id);
     }
 
     public void delete(Integer id) throws NotFoundException{

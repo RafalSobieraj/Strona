@@ -7,17 +7,22 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
-    <div class="adminLogout" sec:authorize="isAuthenticated()">
-        Hello <b><span sec:authentication="name">Username</span></b>
-        &nbsp;
-        <span sec:authentication="principal.authorities">Roles</span>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Logout"/>
-        </form>
-    </div>
-<header>
-    <h5 class="test2">Konfiguracja</h5>
-</header>
+<div>
+    <ul>
+        <div class="adminLogout" sec:authorize="isAuthenticated()">
+            Hello <b><span sec:authentication="name">Username</span></b>
+            &nbsp;
+            <span sec:authentication="principal.authorities">Roles</span>
+            <form th:action="@{/logout}" method="post" style="text-align: center">
+                <input type="submit" value="Logout"/>
+            </form>
+        </div>
+        <li><a class="active" th:href="@{/}">Konfiguracja</a></li>
+        <li><a th:href="@{/cameras}">Cameras</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+</div>
 <div class="container-fluid text-center">
 
     <h1 class="test">WITAMY W KONFIGURATORZE KAMER IP ORAZ ANALOG</h1>

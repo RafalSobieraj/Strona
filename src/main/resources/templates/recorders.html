@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
     <title>Camera List</title>
@@ -14,8 +14,8 @@
   <body>
       <div><h2 class="container-fluid text-center">List of cameras</h2></div>
       <div sec:authorize="hasAuthority('ADMIN')" class="container-fluid text-center">
-          <a class="h4" th:href="@{/cameras/new}">
-            Add new camera
+          <a class="h4" th:href="@{/recorders/new}">
+            Add new recorder
           </a>
       </div>
       <div sec:authorize="hasAuthority('ADMIN')" th:if="@{message}">
@@ -29,24 +29,30 @@
                 <tr>
                     <th>ID</th>
                     <th>Image</th>
-                    <th>Camera</th>
+                    <th>Recorder</th>
                     <th>Type</th>
-                    <th>Resolution</th>
+                    <th>Disk Count</th>
+                    <th>Storage Limit</th>
+                    <th>Number Of Canals</th>
+                    <th>Bandwidth</th>
                     <th>Enabled</th>
                     <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <th:block th:each="camera : ${cameraList}">
+                <th:block th:each="recorder : ${recorderList}">
                     <tr>
-                        <td>[[${camera.id}]]</td>
+                        <td>[[${recorder.id}]]</td>
                         <td>
-                          <img th:src="@{${camera.imagePath}}" style="width: 100px;" />
+                          <img th:src="@{${recorder.imagePath}}" style="width: 100px;" />
                         </td>
-                        <td>[[${camera.cameraModel}]]</td>
-                        <td>[[${camera.cameraType}]]</td>
-                        <td>[[${camera.cameraResolution}]]</td>
-                        <td>[[${camera.enabled}]]</td>
+                        <td>[[${recorder.recorderModel}]]</td>
+                        <td>[[${recorder.recorderType}]]</td>
+                        <td>[[${recorder.diskCount}]]</td>
+                        <td>[[${recorder.storageLimit}]]</td>
+                        <td>[[${recorder.canalNumbers}]]</td>
+                        <td>[[${recorder.bandwidth}]]</td>
+                        <td>[[${recorder.enabled}]]</td>
                         <td sec:authorize="hasAuthority('ADMIN')">
                             <a class="h4 mr-3" th:href="@{'/cameras/edit/' + ${camera.id}}">Edit</a>
                             <a class="h4" th:href="@{'/cameras/delete/' + ${camera.id}}">Delete</a>

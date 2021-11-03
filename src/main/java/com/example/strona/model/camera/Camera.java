@@ -21,8 +21,6 @@ public class Camera {
     @Column(nullable = true)
     private String Image;
 
-    
-
     private boolean enabled;
 
     public Camera(Integer id,
@@ -92,7 +90,7 @@ public class Camera {
     public String getImagePath(){
         if(Image == null || id == null) return null;
 
-        return "/images/" + id + "/" + Image;
+        return "/images/cameras/" + id + "/" + Image;
     }
 
     @Override
