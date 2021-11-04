@@ -50,8 +50,9 @@ public class CameraController {
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         camera.setImage(fileName);
-        Camera savedImage = cameraService.save(camera);
 
+        Camera savedImage = cameraService.save(camera);
+    
         String uploadDir = "./images/" + "cameras/" + savedImage.getId();
 
         Path uploadPath = Paths.get(uploadDir);

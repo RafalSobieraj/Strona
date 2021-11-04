@@ -11,6 +11,7 @@ import java.util.List;
 import com.example.strona.model.Utils.DirectoryDeleteUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +20,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javassist.NotFoundException;
 
+@Controller
 public class RecorderController {
 
     @Autowired private RecorderService recorderService;
-   private DirectoryDeleteUtil directoryDeleteUtil;
+    @Autowired private DirectoryDeleteUtil directoryDeleteUtil;
 
    @GetMapping("/recorders")
    public String getRecorderList(Model model){
@@ -47,6 +49,7 @@ public class RecorderController {
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         recorder.setImage(fileName);
+
         Recorder savedImage = recorderService.save(recorder);
 
         String uploadDir = "./images/" + "recorders/" + savedImage.getId();
@@ -74,7 +77,7 @@ public class RecorderController {
                 Recorder recorder = recorderService.get(id);
                 model.addAttribute("recorder", recorder);
                 model.addAttribute("title", "Edit recorder (ID: " + id + ")");
-                return "camera_form";
+                return "recorder_form";
             } catch(NotFoundException e){
                 re.addFlashAttribute("message", e.getMessage());
                 return "redirect:/recorders";

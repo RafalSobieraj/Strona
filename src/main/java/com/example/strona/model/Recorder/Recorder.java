@@ -5,14 +5,12 @@ import javax.persistence.*;
 @Entity
 @Table(name="recorders")
 public class Recorder {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, unique = true, name = "recorder_model")
     private  String RecorderModel;
-
 
     @Column(nullable = false, name = "recorder_type")
     private String RecorderType;
@@ -82,11 +80,11 @@ public class Recorder {
         RecorderType = recorderType;
     }
 
-    public int getRecorderResolution() {
+    public int getCanalNumbers() {
         return CanalNumbers;
     }
 
-    public void setRecorderResolution(int canalNumbers) {
+    public void setCanalNumbers(int canalNumbers) {
         CanalNumbers = canalNumbers;
     }
 
@@ -120,5 +118,19 @@ public class Recorder {
 
     public void setImage(String image) {
         Image = image;
+    }
+
+    @Transient
+    public String getImagePath(){
+        if(Image == null || id == null) return null;
+
+        return "/images/" + "recorders/" + id + "/" + Image;
+    }
+
+    @Override
+    public String toString() {
+        return "Recorder [Bandwidth=" + Bandwidth + ", CanalNumbers=" + CanalNumbers + ", DiskCount=" + DiskCount
+                + ", Enabled=" + Enabled + ", Image=" + Image + ", RecorderModel=" + RecorderModel + ", RecorderType="
+                + RecorderType + ", StorageLimit=" + StorageLimit + ", id=" + id + "]";
     }
 }

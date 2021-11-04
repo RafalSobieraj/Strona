@@ -1,14 +1,10 @@
 package com.example.strona.model.camera;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javassist.NotFoundException;
-
-
 import java.util.List;
 import java.util.Optional;
-
 
 @Service
 public class CameraService {
@@ -20,7 +16,7 @@ public class CameraService {
     }
 
     public Camera save(Camera camera) {
-       return repository.save(camera);
+        return repository.save(camera);
     }
 
     public Camera get(Integer id) throws NotFoundException{

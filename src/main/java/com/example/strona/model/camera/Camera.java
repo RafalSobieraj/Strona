@@ -9,7 +9,7 @@ public class Camera {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true, name = "camera_model")
+    @Column(nullable = false, name = "camera_model")
     private  String CameraModel;
 
     @Column(nullable = false, name = "camera_type")
@@ -90,7 +90,7 @@ public class Camera {
     public String getImagePath(){
         if(Image == null || id == null) return null;
 
-        return "/images/cameras/" + id + "/" + Image;
+        return "/images/" + "cameras/" + id + "/" + Image;
     }
 
     @Override
