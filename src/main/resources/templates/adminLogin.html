@@ -7,7 +7,28 @@
     <title>Admin Settings Login Page</title>
 </head>
 <body>
-    <form th:action="@{/doLogin}" method="post" style="max-width: 400px; margin: 0 auto; color: white;">
+<div class="container">
+    <ul>
+        <a target="_self" th:href="@{/}">
+            <img class="logo" th:src="@{/css/logo.png}">
+        </a>
+        <div class="adminLogout" sec:authorize="isAuthenticated()">
+            Hello <b><span sec:authentication="name">Username</span></b>
+            &nbsp;
+            <span sec:authentication="principal.authorities">Roles</span>
+        </div>
+        <div>
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="right: 0px; top: 2px; position: absolute; font-size: 15px">
+                <input type="submit" value="Logout" style="font-size: 20px"/>
+            </form>
+        </div>
+        <li><a th:href="@{/}" style="font-size: 34px">Konfiguracja</a></li>
+        <li><a th:href="@{/cameras}" style="font-size: 34px">Kamery</a></li>
+        <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory</a></li>
+        <li><a th:href="@{/}" style="font-size: 34px">Switche POE</a></li>
+    </ul>
+</div>
+    <form th:action="@{/doLogin}" method="post" style="max-width: 400px; margin: 40px auto; color: white;">
         <h1>Admin Settings Login</h1>
         <p>
             Username: <input type="text" name="username" required>

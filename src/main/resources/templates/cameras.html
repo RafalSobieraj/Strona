@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
-    <title>Camera List</title>
+    <title>Lista kamer</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,20 +14,23 @@
   <body>
   <div class="container">
       <ul>
+          <a target="_self" th:href="@{/}">
+                <img class="logo" th:src="@{/css/logo.png}">
+          </a>
           <div class="adminLogout" sec:authorize="isAuthenticated()">
               Hello <b><span sec:authentication="name">Username</span></b>
               &nbsp;
               <span sec:authentication="principal.authorities">Roles</span>
           </div>
           <div>
-              <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="right: 0px; position: absolute">
-                  <input type="submit" value="Logout"/>
+              <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="right: 0px; top: 2px; position: absolute; font-size: 15px">
+                  <input type="submit" value="Logout" style="font-size: 20px"/>
               </form>
           </div>
-          <li><a class="active" th:href="@{/}">Konfiguracja</a></li>
-          <li><a th:href="@{/cameras}">Cameras</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a th:href="@{/}" style="font-size: 34px">Konfiguracja</a></li>
+          <li><a th:href="@{/cameras}" style="font-size: 34px">Kamery</a></li>
+          <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory</a></li>
+          <li><a th:href="@{/}" style="font-size: 34px">Switche POE</a></li>
       </ul>
   </div>
       <div><h2 class="container-fluid text-center" style="color: white;">List of cameras</h2></div>
@@ -41,28 +44,28 @@
           [[${message}]]
         </h3>
       </div>
-    <div style="max-width: 65%; margin: 0 auto;">
+    <div style="max-width: 65%; margin: 0 auto; background-color: white;">
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
                     <th>ID</th>
                     <th>Image</th>
-                    <th>Camera</th>
+                    <th >Camera</th>
                     <th>Type</th>
-                    <th>Resolution</th>
+                    <th style="max-width: 50px">Resolution</th>
                     <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="description">
                 <th:block th:each="camera : ${cameraList}">
                     <tr>
                         <td>[[${camera.id}]]</td>
                         <td>
-                          <img th:src="@{${camera.imagePath}}" style="width: 100px;" />
+                          <img th:src="@{${camera.imagePath}}" style="width: 100px; position: relative; top: -13px" />
                         </td>
-                        <td>[[${camera.cameraModel}]]</td>
-                        <td>[[${camera.cameraType}]]</td>
-                        <td>[[${camera.cameraResolution}]]</td>
+                        <td style="position: relative; left: 60px">[[${camera.cameraModel}]]</td>
+                        <td style="position: relative; left: 20px">[[${camera.cameraType}]]</td>
+                        <td style="position: relative; left: -5px;">[[${camera.cameraResolution}]]</td>
                         <td sec:authorize="hasAuthority('ADMIN')">
                             <a class="h4 mr-3" th:href="@{'/cameras/edit/' + ${camera.id}}">Edit</a>
                             <a class="h4" th:href="@{'/cameras/delete/' + ${camera.id}}">Delete</a>
