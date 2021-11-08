@@ -1,5 +1,6 @@
 package com.example.strona.model.Recorder;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -59,6 +60,7 @@ public class RecorderController {
         if(!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
         }
+        else uploadPath.toFile().delete();
 
         try (InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = uploadPath.resolve(fileName);

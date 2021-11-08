@@ -23,9 +23,7 @@ input[type=checkbox]{
     transform: scale(0.5);
 }
 .adminLogout{
-    position: absolute;
     font-size: 20px;
-    color: white;
     right: 80px;
     top: 3px;
 }
@@ -57,7 +55,7 @@ li a:hover{
 .logo {
     width: 178px;
     position: absolute;
-    left: 350px;
+    left: 200px;
     top: 3px
 }
 .logo:hover{
@@ -67,6 +65,13 @@ li a:hover{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     position: relative;
     top: 15px;
-    left: 50px;
+    left: 30px;
     font-size: 30px;
+}
+.decriptionRecorder{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    position: relative;
+    top: 15px;
+    left: 10px;
+    font-size: 25px;
 }
