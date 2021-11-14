@@ -55,9 +55,9 @@ public class CameraController {
         Camera savedImage = cameraService.save(camera);
     
         String uploadDir = "./images/" + "cameras/" + savedImage.getId();
-        String basePath = "./images/" + "cameras/";
-        String relativeCamera = new File(basePath).toURI().relativize(new File(uploadDir).toURI()).getPath();
+        String relativeCamera = new File("").toURI().relativize(new File(uploadDir).toURI()).getPath();
 
+        System.out.println(relativeCamera);
         Path uploadPath = Paths.get(relativeCamera);
 
         if(!Files.exists(uploadPath)){
@@ -68,6 +68,9 @@ public class CameraController {
         try (InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            File file = new File("77-785.jpg");
+            String absolute = file.getAbsolutePath();
+            System.out.println(absolute);
         }catch (IOException e){
             throw new IOException("Could not save file: " + fileName);
         }
