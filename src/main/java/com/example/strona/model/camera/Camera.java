@@ -90,7 +90,7 @@ public class Camera {
     public String getImagePath(){
         if(Image == null || id == null) return null;
 
-        return Image;
+        return "app/" + Image;
     }
 
     @Override
