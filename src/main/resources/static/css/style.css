@@ -55,7 +55,7 @@ li a:hover{
 .logo {
     width: 178px;
     position: absolute;
-    left: 200px;
+    left: 350px;
     top: 3px
 }
 .logo:hover{
@@ -65,7 +65,7 @@ li a:hover{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     position: relative;
     top: 15px;
-    left: 30px;
+    left: 35px;
     font-size: 30px;
 }
 .decriptionRecorder{
