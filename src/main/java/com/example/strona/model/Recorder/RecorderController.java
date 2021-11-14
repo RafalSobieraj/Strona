@@ -1,5 +1,6 @@
 package com.example.strona.model.Recorder;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -53,8 +54,10 @@ public class RecorderController {
         Recorder savedImage = recorderService.save(recorder);
 
         String uploadDir = "./images/" + "recorders/" + savedImage.getId();
+        String basePath = "./images/" + "recorders/";
+        String relativeRecorder = new File(basePath).toURI().relativize(new File(uploadDir).toURI()).getPath();
 
-        Path uploadPath = Paths.get(uploadDir);
+        Path uploadPath = Paths.get(relativeRecorder);
 
         if(!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);

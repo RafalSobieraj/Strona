@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javassist.NotFoundException;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -54,12 +55,15 @@ public class CameraController {
         Camera savedImage = cameraService.save(camera);
     
         String uploadDir = "./images/" + "cameras/" + savedImage.getId();
+        String relativeCamera = new File("").toURI().relativize(new File(uploadDir).toURI()).getPath();
 
-        Path uploadPath = Paths.get(uploadDir);
+        System.out.println(relativeCamera);
+        Path uploadPath = Paths.get(relativeCamera);
 
         if(!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
         }
+        else uploadPath.toFile().delete();
 
         try (InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = uploadPath.resolve(fileName);
