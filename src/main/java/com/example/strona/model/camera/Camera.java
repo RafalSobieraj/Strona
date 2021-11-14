@@ -90,7 +90,7 @@ public class Camera {
     public String getImagePath(){
         if(Image == null || id == null) return null;
 
-        return "/images/" + "cameras/" + id + "/" + Image;
+        return "/app/" + "images/" + "cameras/" + id + "/" + Image;
     }
 
     @Override
