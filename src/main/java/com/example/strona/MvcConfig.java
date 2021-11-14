@@ -28,6 +28,6 @@ public class MvcConfig implements WebMvcConfigurer{
          
         if (dirName.startsWith("../")) dirName = dirName.replace("../", "");
 
-        registry.addResourceHandler("/app/**");
+        registry.addResourceHandler("/app/");
     }
 }
