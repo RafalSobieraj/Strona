@@ -61,17 +61,15 @@ li a:hover{
 .logo:hover{
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
-.description{
+.description td{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    position: relative;
-    top: 15px;
-    left: 35px;
+    text-align: center;
+    vertical-align: middle;
     font-size: 30px;
 }
-.decriptionRecorder{
+.decriptionRecorder td{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    position: relative;
-    top: 15px;
-    left: 10px;
+    text-align: center;
+    vertical-align: middle;
     font-size: 25px;
 }

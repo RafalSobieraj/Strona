@@ -61,11 +61,11 @@
                     <tr>
                         <td>[[${camera.id}]]</td>
                         <td>
-                          <img th:src="@{${camera.imagePath}}" style="width: 100px; position: relative; top: -13px; left: 32px" />
+                          <img th:src="@{${camera.imagePath}}" style="width: 100px;"/>
                         </td>
-                        <td style="position: relative; left: 60px">[[${camera.cameraModel}]]</td>
-                        <td style="position: relative; left: 20px">[[${camera.cameraType}]]</td>
-                        <td style="position: relative; left: -5px;">[[${camera.cameraResolution}]]</td>
+                        <td>[[${camera.cameraModel}]]</td>
+                        <td>[[${camera.cameraType}]]</td>
+                        <td>[[${camera.cameraResolution}]]</td>
                         <td sec:authorize="hasAuthority('ADMIN')">
                             <a class="h4 mr-3" th:href="@{'/cameras/edit/' + ${camera.id}}">Edit</a>
                             <a class="h4" th:href="@{'/cameras/delete/' + ${camera.id}}">Delete</a>
