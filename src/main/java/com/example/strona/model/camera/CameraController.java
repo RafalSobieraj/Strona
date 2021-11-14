@@ -54,7 +54,7 @@ public class CameraController {
 
         Camera savedImage = cameraService.save(camera);
     
-        String uploadDir = "./app/" + "images/" + "cameras/" + savedImage.getId();
+        String uploadDir = "./images/" + "cameras/" + savedImage.getId();
         String relativeCamera = new File("").toURI().relativize(new File(uploadDir).toURI()).getPath();
 
         System.out.println(relativeCamera);
@@ -94,7 +94,7 @@ public class CameraController {
     public String deleteCamera(@PathVariable("id") Integer id, RedirectAttributes re, Camera camera) throws IOException{
         try{
             cameraService.delete(id);
-            Path imageUploadDir = Paths.get("./app/" + "images/" + "cameras/" + camera.getId() + "/");
+            Path imageUploadDir = Paths.get("./images/" + "cameras/" + camera.getId() + "/");
             directoryDeleteUtil.cleanDirectory(imageUploadDir);
             re.addFlashAttribute("message", "Camera was deleted successfully.");
         } catch(NotFoundException e){
