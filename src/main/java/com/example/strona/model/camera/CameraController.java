@@ -68,7 +68,6 @@ public class CameraController {
         try (InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println(filePath.toFile().getAbsolutePath());
         }catch (IOException e){
             throw new IOException("Could not save file: " + fileName);
         }
