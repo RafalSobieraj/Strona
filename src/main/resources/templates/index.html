@@ -33,7 +33,11 @@
     <h1 class="test">WITAMY W KONFIGURATORZE KAMER IP ORAZ ANALOG</h1>
     <p style="color: white;">Tutaj znajdziesz najlepsze połączenie kamery z rejestratorem i nie tylko</p>
     <h2><a th:href="@{/adminLogin}">Go to Admin Login</a></h2>
-    <select data-placeholder="Select camera model"></select>
+    <div class="form-group blu-margin">
+        <select class="form-control" id="cameraDropdown">
+        <th:option th:each="camera : ${cameraList}" th:value="${camera.id}" th:text="${camera.cameraModel}"></th:option>
+        </select>
+    </div>
 </div>
 </body>
 </html>

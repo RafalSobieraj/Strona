@@ -27,6 +27,7 @@ public class CameraController {
 
    @Autowired private CameraService cameraService;
    @Autowired private DirectoryDeleteUtil directoryDeleteUtil;
+   @Autowired private CameraRepository repository;
 
    @GetMapping("/cameras")
    public String getCameraList(Model model){
@@ -34,6 +35,15 @@ public class CameraController {
        model.addAttribute("cameraList", cameraList);
 
        return "cameras";
+   }
+
+   @RequestMapping(method = RequestMethod.GET)
+   public String selectCameras(Model model){
+       Camera camera = new Camera();
+       model.addAttribute("camera", camera);
+       List<Camera> cameras = (List<Camera>) repository.findAll();
+       model.addAttribute("cameras", cameras);
+       return "configuration";
    }
 
    @GetMapping("/cameras/new")

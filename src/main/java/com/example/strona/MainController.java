@@ -18,4 +18,8 @@ public class MainController {
     public String adminLoginPage(){
         return "adminLogin";
     }
+    @GetMapping("/configuration")
+    public String configuration(){
+        return "configuration";
+    }
 }
