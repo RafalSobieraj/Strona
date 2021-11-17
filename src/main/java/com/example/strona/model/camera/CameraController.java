@@ -37,13 +37,13 @@ public class CameraController {
        return "cameras";
    }
 
-   @RequestMapping(method = RequestMethod.GET)
+   @ModelAttribute("cameras")
    public String selectCameras(Model model){
        Camera camera = new Camera();
        model.addAttribute("camera", camera);
        List<Camera> cameras = (List<Camera>) repository.findAll();
        model.addAttribute("cameras", cameras);
-       return "configuration";
+       return "cameras";
    }
 
    @GetMapping("/cameras/new")
