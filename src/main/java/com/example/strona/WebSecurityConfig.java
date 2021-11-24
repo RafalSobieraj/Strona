@@ -1,6 +1,6 @@
 package com.example.strona;
 
-import com.example.strona.model.User.UserDetailsServiceImpl;
+import com.example.strona.model.user.UserDetailsServiceImpl;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     }
 
     @Bean
-    public  DaoAuthenticationProvider authenticationProvider(){
+    public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         authenticationProvider.setUserDetailsService(userDetailsService());
@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/images/**", "/js/**", "/css/**", "/webjars/**").permitAll()
-            .antMatchers("/", "/cameras", "/recorders").permitAll()
+            .antMatchers("/", "/cameras", "/recorders", "/configuration").permitAll()
             .antMatchers("/cameras/edit/**", "/cameras/delete/**").hasAuthority("ADMIN")
             .anyRequest().authenticated()
             .and()

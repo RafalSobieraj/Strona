@@ -1,4 +1,4 @@
-package com.example.strona.model.Recorder;
+package com.example.strona.model.recorder;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-import com.example.strona.model.Utils.DirectoryDeleteUtil;
+import com.example.strona.model.utils.DirectoryDeleteUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

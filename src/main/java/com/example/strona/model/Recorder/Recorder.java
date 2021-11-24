@@ -1,4 +1,4 @@
-package com.example.strona.model.Recorder;
+package com.example.strona.model.recorder;
 
 import javax.persistence.*;
 

@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-import com.example.strona.model.Utils.DirectoryDeleteUtil;
+import com.example.strona.model.utils.DirectoryDeleteUtil;
 
 
 @Controller
@@ -27,22 +27,12 @@ public class CameraController {
 
    @Autowired private CameraService cameraService;
    @Autowired private DirectoryDeleteUtil directoryDeleteUtil;
-   @Autowired private CameraRepository repository;
 
    @GetMapping("/cameras")
    public String getCameraList(Model model){
        List<Camera> cameraList = cameraService.listCameras();
        model.addAttribute("cameraList", cameraList);
 
-       return "cameras";
-   }
-
-   @ModelAttribute("cameras")
-   public String selectCameras(Model model){
-       Camera camera = new Camera();
-       model.addAttribute("camera", camera);
-       List<Camera> cameras = (List<Camera>) repository.findAll();
-       model.addAttribute("cameras", cameras);
        return "cameras";
    }
 

@@ -1,4 +1,4 @@
-package com.example.strona.model.Recorder;
+package com.example.strona.model.recorder;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

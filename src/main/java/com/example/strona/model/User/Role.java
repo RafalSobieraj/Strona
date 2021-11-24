@@ -1,4 +1,4 @@
-package com.example.strona.model.User;
+package com.example.strona.model.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

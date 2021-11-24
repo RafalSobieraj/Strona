@@ -1,4 +1,4 @@
-package com.example.strona.model.User;
+package com.example.strona.model.user;
 
 import java.util.ArrayList;
 import java.util.Collection;
