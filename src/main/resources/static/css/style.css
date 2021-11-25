@@ -73,3 +73,17 @@ li a:hover{
     vertical-align: middle;
     font-size: 25px;
 }
+.dropdown select{
+    width: 400px;
+}
+
+.dropdown td{
+    position: center;
+    background-color: white;
+}
+.dropdown{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
