@@ -54,8 +54,7 @@ public class RecorderController {
         Recorder savedImage = recorderService.save(recorder);
 
         String uploadDir = "./images/" + "recorders/" + savedImage.getId();
-        String basePath = "./images/" + "recorders/";
-        String relativeRecorder = new File(basePath).toURI().relativize(new File(uploadDir).toURI()).getPath();
+        String relativeRecorder = new File("").toURI().relativize(new File(uploadDir).toURI()).getPath();
 
         Path uploadPath = Paths.get(relativeRecorder);
 

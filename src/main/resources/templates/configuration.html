@@ -30,9 +30,10 @@
             <li><a th:href="@{/}" style="font-size: 34px">Switche POE</a></li>
         </ul>
     </div>
-    <div class="container" style="background-color: white">
+    <div class="dropdown" style="background-color: white">
+    <div>
     <form th:action="@{/configuration}" th:object="${cameraArray}" method="post">
-    <table class="dropdown">
+    <table>
         <tr>
             <td>
             <select name="cameras" id="cameraDropdown" class="form-control">
@@ -42,7 +43,18 @@
             </td>
         </tr>
     </table>
-    </form>
+            <table class="recorderTable">
+                <tr>
+                    <td>
+                        <select name="recorders" id="recorderDropdown" class="form-control">
+                            <option value="0">Select recorder:</option>
+                            <option th:each="recorders : ${recorderList}" th:text="${recorders.recorderModel}">Option</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
     </div>
 </body>
 </html>

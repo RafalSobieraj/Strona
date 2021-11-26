@@ -75,15 +75,27 @@ li a:hover{
 }
 .dropdown select{
     width: 400px;
+    padding: 20px;
+    border: 5px solid blue;
+    background-color: #4b4ba0;
+    color: white;
 }
 
 .dropdown td{
-    position: center;
-    background-color: white;
+    background-color: blue;
+    position: relative;
+    left: 11%;
 }
 .dropdown{
     position: absolute;
+    width: 600px;
+    padding: 50px;
+    border: 5px solid red;
     top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.recorderTable{
+    position: relative;
+    top: 10px;
 }
