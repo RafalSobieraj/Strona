@@ -88,6 +88,8 @@ li a:hover{
 }
 .dropdown{
     position: absolute;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
     width: 600px;
     padding: 50px;
     border: 5px solid red;
