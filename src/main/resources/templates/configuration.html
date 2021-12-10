@@ -6,6 +6,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.2/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function cancelForm(){
+            window.location = "[[@{/}]]"
+        }
+    </script>
     <title>Document</title>
 </head>
 <body>
@@ -32,7 +40,7 @@
     </div>
     <div class="dropdown" style="background-color: white">
     <div>
-    <form th:action="@{/configuration}" th:object="${cameraArray}" method="post">
+    <form th:action="@{/configuration/result}" method="post">
     <table>
         <tr>
             <td>
@@ -43,7 +51,7 @@
             </td>
         </tr>
     </table>
-            <table class="recorderTable">
+        <table class="recorderTable">
                 <tr>
                     <td>
                         <select name="recorders" id="recorderDropdown" class="form-control">
@@ -52,8 +60,22 @@
                         </select>
                     </td>
                 </tr>
-            </table>
-        </form>
+        </table>
+        <table class="switchTable">
+            <tr>
+                <td>
+                    <select name="switches" id="switchDropdown" class="form-control">
+                        <option value="0">Select switch POE:</option>
+                        <option th:each="switches : ${switchList}" th:text="${switches.switchModel}">Option</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div class="text-center" style="position: relative; top: 35px">
+            <button type="submit" class="btn btn-primaty m-2" style="background-color: blue; color:red;">Konfiguracja</button>
+            <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Powrót</button>
+        </div>
+    </form>
     </div>
     </div>
 </body>

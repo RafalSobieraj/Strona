@@ -8,6 +8,8 @@ import com.example.strona.model.camera.CameraRepository;
 
 import com.example.strona.model.recorder.Recorder;
 import com.example.strona.model.recorder.RecorderRepository;
+import com.example.strona.model.switchPOE.SwitchPOE;
+import com.example.strona.model.switchPOE.SwitchPOERepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ public class ConfigurationController {
     private CameraRepository cameraRepository;
     @Autowired
     private RecorderRepository recorderRepository;
+    @Autowired
+    private SwitchPOERepository switchPOERepository;
 
 
     @GetMapping("/configuration")
@@ -30,6 +34,16 @@ public class ConfigurationController {
         List<Recorder> recorderList = (List<Recorder>) recorderRepository.findAll();
         model.addAttribute("recorderList", recorderList);
         model.addAttribute("recorders", new Recorder());
+        List<SwitchPOE> switchList = (List<SwitchPOE>) switchPOERepository.findAll();
+        model.addAttribute("switchList", switchList);
+        model.addAttribute("switches", new SwitchPOE());
         return "configuration";
+    }
+
+    @PostMapping("/configuration/result")
+    public String configurationResult(Model model, @ModelAttribute(name = "camera") Camera camera,
+                                      @ModelAttribute(name = "recorder") Recorder recorder,
+                                      @ModelAttribute(name = "switchPOE") SwitchPOE switchPOE){
+        return "configuration_result";
     }
 }

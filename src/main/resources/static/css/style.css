@@ -93,13 +93,18 @@ li a:hover{
     width: 600px;
     padding: 50px;
     border: 5px solid red;
-    top: 25%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 .recorderTable{
     position: relative;
     top: 10px;
+}
+.switchTable{
+    position: relative;
+    top: 20px;
+    color: black;
 }
 a{
     text-decoration: none;
