@@ -26,10 +26,8 @@
                 Hello <b><span sec:authentication="name">Username</span></b>
                 &nbsp;
                 <span sec:authentication="principal.authorities">Roles</span>
-            </div>
-            <div>
-                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="right: 360px; top: 2px; position: absolute; font-size: 15px">
-                    <input type="submit" value="Logout" style="font-size: 20px"/>
+                <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                    <input class="logoutButton" type="submit" value="Logout"/>
                 </form>
             </div>
             <li><a th:href="@{/configuration}" style="font-size: 34px">Konfiguracja</a></li>

@@ -24,8 +24,14 @@ input[type=checkbox]{
 }
 .adminLogout{
     font-size: 20px;
-    right: 80px;
+    right: 50px;
     top: 3px;
+}
+.logoutbutton{
+    right: 200px; 
+    top: 5px; 
+    position: absolute; 
+    font-size: 20px
 }
 ul{
     list-style-type: none;
@@ -53,10 +59,10 @@ li a:hover{
     color: white;
 }
 .logo {
-    width: 178px;
-    position: absolute;
-    left: 350px;
-    top: 3px
+    max-width: 20%;
+    max-height: 20%;
+    object-fit: contain;
+    
 }
 .logo:hover{
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
@@ -115,4 +121,8 @@ a:visited{
 }
 a:hover{
     text-decoration: none;
+}
+.container{
+    background-color: white;
+    border: 5px solid red;
 }

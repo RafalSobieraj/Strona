@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .permitAll()
                 .loginPage("/adminLogin")
                 .loginProcessingUrl("/doLogin")
-                .defaultSuccessUrl("/cameras")
+                .defaultSuccessUrl("/")
             .and()
             .logout()
                 .permitAll()
