@@ -60,7 +60,7 @@
             <tbody class="decriptionRecorder">
                 <th:block th:each="recorder : ${recorderList}">
                     <tr>
-                        <td>[[${recorder.id}]]</td>
+                        <td style="background-color: yellow;">[[${recorder.id}]]</td>
                         <td>
                           <img th:src="@{${recorder.imagePath}}" style="width: 120px;"/>
                         </td>
