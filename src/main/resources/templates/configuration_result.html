@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <head>
+        <title>Konfigurator Kamer</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.2/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    </head>
+    <body>
+    <div class="container">
+        <ul>
+            <a target="_self" th:href="@{/}">
+                <img class="logo" th:src="@{/css/logo.png}">
+            </a>
+            <div class="adminLogout" sec:authorize="isAuthenticated()">
+                Hello <b><span sec:authentication="name">Username</span></b>
+                &nbsp;
+                <span sec:authentication="principal.authorities">Roles</span>
+                <form class="logoutButton" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                    <input type="submit" value="Logout"/>
+                </form>
+            </div>
+            <li><a th:href="@{/configuration}" style="font-size: 34px; color: blue;">Konfiguracja</a></li>
+            <li><a th:href="@{/cameras}" style="font-size: 34px">Kamery</a></li>
+            <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory</a></li>
+            <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE</a></li>
+        </ul>
+    </div>
 <body>
-
+    <form method="post" th:object="${recorder}" enctype="multipart/form-data">
+    <div class="container-fluid text-center">
+        <h1 class="test">[[${option1}]]</h1>
+        <p th:text="${recorder.canalNumbers}"></p>
+    </div>
+    </form>
 </body>
 </html>

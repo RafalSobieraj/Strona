@@ -43,7 +43,13 @@ public class ConfigurationController {
     @PostMapping("/configuration/result")
     public String configurationResult(Model model, @ModelAttribute(name = "camera") Camera camera,
                                       @ModelAttribute(name = "recorder") Recorder recorder,
-                                      @ModelAttribute(name = "switchPOE") SwitchPOE switchPOE){
+                                      @ModelAttribute(name = "switchPOE") SwitchPOE switchPOE)
+    {
+        if(recorder.getCanalNumbers() == 16)
+            model.addAttribute("option1", "You have selected model with canals: ");
+        else
+            model.addAttribute("option1", "You have selected model with canals: ");
+                                    
         return "configuration_result";
     }
 }

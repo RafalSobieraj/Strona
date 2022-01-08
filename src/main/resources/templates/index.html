@@ -20,17 +20,17 @@
                 <input type="submit" value="Logout"/>
             </form>
         </div>
-        <li><a th:href="@{/configuration}" style="font-size: 34px">Konfiguracja</a></li>
+        <li><a th:href="@{/configuration}" style="font-size: 34px; color: blue;">Konfiguracja</a></li>
         <li><a th:href="@{/cameras}" style="font-size: 34px">Kamery</a></li>
         <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory</a></li>
         <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE</a></li>
     </ul>
 </div>
-<div class="container-fluid text-center">
-
-    <h1 class="test">WITAMY W KONFIGURATORZE KAMER IP ORAZ ANALOG</h1>
-    <p style="color: white;">Tutaj znajdziesz najlepsze połączenie kamery z rejestratorem i nie tylko</p>
-    <h2><a th:href="@{/adminLogin}">Go to Admin Login</a></h2>
-</div>
+    <h1 class="mainText" style="text-align: center;">Witamy w Konfiguratorze Kamer, Rejestratorów i Switchy POE</h1>
+    <div class="container" style="max-width: fit-content;">
+        <img th:src="@{/css/kamera.png}" style="position: absolute; width: 30%; top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);">
+    </div>
 </body>
 </html>

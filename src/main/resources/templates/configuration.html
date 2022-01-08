@@ -30,19 +30,20 @@
                     <input class="logoutButton" type="submit" value="Logout"/>
                 </form>
             </div>
-            <li><a th:href="@{/configuration}" style="font-size: 34px">Konfiguracja</a></li>
+            <li><a th:href="@{/configuration}" style="font-size: 34px; color: blue">Konfiguracja</a></li>
             <li><a th:href="@{/cameras}" style="font-size: 34px">Kamery</a></li>
             <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory</a></li>
             <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE</a></li>
         </ul>
     </div>
-    <div class="dropdown" style="background-color: white">
+<div class="dropdown" style="background-color: white">
     <div>
-    <form th:action="@{/configuration/result}" method="post">
+    <form th:action="@{/configuration/result}" method="post" enctype="multipart/form-data">
+    <div class="container-fluid" style="position: relative; padding-top: 150px;">
     <table>
         <tr>
             <td>
-            <select name="cameras" id="cameraDropdown" class="form-control">
+            <select name="selectCamera" id="cameraDropdown" class="form-control">
                 <option value="0">Select camera:</option>
                 <option th:each="cameras : ${cameraList}" th:text="${cameras.cameraModel}">Option</option>
             </select>
@@ -52,7 +53,7 @@
         <table class="recorderTable">
                 <tr>
                     <td>
-                        <select name="recorders" id="recorderDropdown" class="form-control">
+                        <select name="selectRecorder" id="recorderDropdown" class="form-control">
                             <option value="0">Select recorder:</option>
                             <option th:each="recorders : ${recorderList}" th:text="${recorders.recorderModel}">Option</option>
                         </select>
@@ -62,19 +63,22 @@
         <table class="switchTable">
             <tr>
                 <td>
-                    <select name="switches" id="switchDropdown" class="form-control">
+                    <select name="selectSwitch" id="switchDropdown" class="form-control">
                         <option value="0">Select switch POE:</option>
                         <option th:each="switches : ${switchList}" th:text="${switches.switchModel}">Option</option>
                     </select>
                 </td>
             </tr>
         </table>
-        <div class="text-center" style="position: relative; top: 35px">
+        <div class="text-center" style="top: 50%;
+        position: relative;
+        margin: 0 auto;">
             <button type="submit" class="btn btn-primaty m-2" style="background-color: blue; color:red;">Konfiguracja</button>
             <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Powrót</button>
         </div>
+    </div>
     </form>
     </div>
-    </div>
+</div>
 </body>
 </html>
