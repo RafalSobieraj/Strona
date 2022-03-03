@@ -1,4 +1,4 @@
-package com.example.strona.model.user;
+package com.example.strona.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,6 @@
 package com.example.strona;
 
-import com.example.strona.model.user.UserDetailsServiceImpl;
+import com.example.strona.model.User.UserDetailsServiceImpl;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

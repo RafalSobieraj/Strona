@@ -1,4 +1,4 @@
-package com.example.strona.model.recorder;
+package com.example.strona.model.Recorder;
 
 import org.springframework.data.repository.CrudRepository;
 

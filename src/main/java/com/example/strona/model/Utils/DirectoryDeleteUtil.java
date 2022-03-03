@@ -1,4 +1,4 @@
-package com.example.strona.model.utils;
+package com.example.strona.model.Utils;
 
 import java.io.File;
 import java.io.IOException;

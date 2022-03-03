@@ -1,4 +1,4 @@
-package com.example.strona.model.user;
+package com.example.strona.model.User;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

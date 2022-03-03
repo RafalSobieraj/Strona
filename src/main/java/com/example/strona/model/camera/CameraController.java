@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-import com.example.strona.model.utils.DirectoryDeleteUtil;
+import com.example.strona.model.Utils.DirectoryDeleteUtil;
 
 
 @Controller

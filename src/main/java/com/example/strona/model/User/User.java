@@ -1,4 +1,4 @@
-package com.example.strona.model.user;
+package com.example.strona.model.User;
 
 import java.util.HashSet;
 import java.util.Set;

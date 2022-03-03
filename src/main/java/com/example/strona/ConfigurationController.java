@@ -6,8 +6,8 @@ import com.example.strona.model.camera.Camera;
 import com.example.strona.model.camera.CameraRepository;
 
 
-import com.example.strona.model.recorder.Recorder;
-import com.example.strona.model.recorder.RecorderRepository;
+import com.example.strona.model.Recorder.Recorder;
+import com.example.strona.model.Recorder.RecorderRepository;
 import com.example.strona.model.switchPOE.SwitchPOE;
 import com.example.strona.model.switchPOE.SwitchPOERepository;
 import org.springframework.beans.factory.annotation.Autowired;
