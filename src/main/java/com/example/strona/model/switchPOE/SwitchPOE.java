@@ -37,6 +37,7 @@ public class SwitchPOE{
 
     public SwitchPOE(Integer id, String switchModel, String switchInterface, int portSpeed, int switchBand,
             String image, String link) {
+        super();
         this.id = id;
         SwitchModel = switchModel;
         SwitchInterface = switchInterface;
@@ -47,6 +48,7 @@ public class SwitchPOE{
     }
 
     public SwitchPOE() {
+        super();
     }
 
     public String getLink() {

@@ -27,6 +27,7 @@ public class Camera {
                   String cameraModel,
                   String cameraType,
                   int cameraResolution) {
+        super();
         this.id = id;
         this.CameraModel = cameraModel;
         this.CameraResolution = cameraResolution;
@@ -42,7 +43,7 @@ public class Camera {
     }
 
     public Camera() {
-
+        super();
     }
 
     public String getCameraModel() {

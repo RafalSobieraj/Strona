@@ -33,6 +33,7 @@ public class Recorder {
     private boolean Enabled;
 
     public Recorder(boolean enabled ,Integer id, String recorderModel, String recorderType, int canalNumbers, int diskCount, int storageLimit, int bandwidth, String image) {
+        super();
         this.id = id;
         RecorderModel = recorderModel;
         RecorderType = recorderType;
@@ -53,7 +54,7 @@ public class Recorder {
     }
 
     public Recorder() {
-
+        super();
     }
 
     public Integer getId() {
