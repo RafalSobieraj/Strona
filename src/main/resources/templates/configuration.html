@@ -37,15 +37,10 @@
             <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE</a></li>
         </ul>
     </div>
-    <div th:if="@{message}">
-        <h3 class="alert alert-success text-center">
-          [[${message}]]
-        </h3>
-      </div>
 <div class="dropdown" style="background-color: white">
     <div>
     <form th:action="@{/configuration/result}" th:object="${Recorder}" method="post" enctype="multipart/form-data">
-    <div class="container-fluid" style="position: relative; padding-top: 90px">
+    <div class="container-fluid" style="position: relative; padding-top: 90px;">
     <table>
         <tr>
             <td>

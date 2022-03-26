@@ -1,6 +1,5 @@
 package com.example.strona;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.strona.model.camera.Camera;
@@ -48,7 +47,7 @@ public class ConfigurationController {
     @PostMapping("/configuration/result")
     public String configurationResult(@ModelAttribute(name ="Recorder") Recorder recorder,
      Model model, RedirectAttributes re) throws NotFoundException
-    {
+    {   
         model.addAttribute("data", recorder);
         model.addAttribute("option1", "Wybrałeś następującą liczbę kanałów: ");
         return "configuration_result";
