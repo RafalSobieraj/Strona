@@ -57,7 +57,6 @@ public class RecorderController {
         String relativeRecorder = new File("").toURI().relativize(new File(uploadDir).toURI()).getPath();
 
         Path uploadPath = Paths.get(relativeRecorder);
-
         if(!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
         }

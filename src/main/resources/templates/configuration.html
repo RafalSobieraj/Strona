@@ -39,9 +39,9 @@
     </div>
 <div class="dropdown" style="background-color: white">
     <div>
-    <form th:action="@{/configuration/result}" th:object="${Recorder}" method="post" enctype="multipart/form-data">
+    <form th:action="@{/configuration/result}" th:object="${recorder}" method="post" enctype="multipart/form-data">
     <div class="container-fluid" style="position: relative; padding-top: 90px;">
-    <table>
+   <!-- <table>
         <tr>
             <td>
             <select name="selectCamera" id="cameraDropdown" class="form-control">
@@ -50,7 +50,7 @@
             </select>
             </td>
         </tr>
-    </table>
+    </table> -->
         <table class="recorderTable">
                 <tr>
                     <td>
@@ -61,7 +61,7 @@
                     </td>
                 </tr>
         </table>
-        <table class="switchTable">
+   <!--     <table class="switchTable">
             <tr>
                 <td>
                     <select name="selectSwitch" id="switchDropdown" class="form-control">
@@ -70,7 +70,7 @@
                     </select>
                 </td>
             </tr>
-        </table>
+        </table> -->
         <div class="text-center" style="top: 50%;
         position: relative;
         margin: 0 auto;">

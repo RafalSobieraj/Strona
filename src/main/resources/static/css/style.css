@@ -64,8 +64,8 @@ li a:hover{
 }
 .logo {
     position: absolute;
-    max-width: 15%;
-    max-height: 15%;
+    max-width: 12%;
+    max-height: 12%;
     object-fit: contain;
     flex: 1;  
     display: flex;
@@ -92,7 +92,6 @@ li a:hover{
 .dropdown select{
     width: 400px;
     padding: 20px;
-    border: 5px solid blue;
     background-color: #4b4ba0;
     color: white;
     object-fit: contain;
@@ -115,7 +114,7 @@ li a:hover{
     align-items: center;
 }
 
-.dropdown tbody{
+.dropdown select{
     top: 50%;
     height: 50%;
     position: relative;
@@ -126,6 +125,7 @@ li a:hover{
     justify-content: center;
     align-items: center;
 }
+
 .dropdown{
     position: absolute;
     text-align: center;

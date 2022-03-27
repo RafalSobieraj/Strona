@@ -1,6 +1,7 @@
 package com.example.strona;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import com.example.strona.model.camera.Camera;
 import com.example.strona.model.camera.CameraRepository;
@@ -8,6 +9,7 @@ import com.example.strona.model.camera.CameraRepository;
 
 import com.example.strona.model.Recorder.Recorder;
 import com.example.strona.model.Recorder.RecorderRepository;
+import com.example.strona.model.Recorder.RecorderService;
 import com.example.strona.model.switchPOE.SwitchPOE;
 import com.example.strona.model.switchPOE.SwitchPOERepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,28 +29,33 @@ public class ConfigurationController {
     private RecorderRepository recorderRepository;
     @Autowired
     private SwitchPOERepository switchPOERepository;
+    private RecorderService recorderService;
 
+    List<Camera> cameraList;
+    List<Recorder> recorderList;
+    List<SwitchPOE> switchList;
+
+    @ModelAttribute
+    public void getObjects(Model model){
+     //   cameraList = (List<Camera>) cameraRepository.findAll();
+        recorderList = (List<Recorder>) recorderRepository.findAll();
+     //   switchList = (List<SwitchPOE>) switchPOERepository.findAll();
+    }
 
 
     @GetMapping("/configuration")
     public String getCameraArray(Model model) {
-        List<Camera> cameraList = (List<Camera>) cameraRepository.findAll();
-        model.addAttribute("cameraList", cameraList);
-        model.addAttribute("cameras", new Camera());
-        List<Recorder> recorderList = (List<Recorder>) recorderRepository.findAll();
-        model.addAttribute("recorderList", recorderList);
-        model.addAttribute("recorders", new Recorder());
-        List<SwitchPOE> switchList = (List<SwitchPOE>) switchPOERepository.findAll();
-        model.addAttribute("switchList", switchList);
-        model.addAttribute("switches", new SwitchPOE());
+     //   model.addAttribute("cameraList", cameraList);
+        model.addAttribute("recorderList", recorderList);   
+     //   model.addAttribute("switchList", switchList);
         return "configuration";
     }
 
     @PostMapping("/configuration/result")
-    public String configurationResult(@ModelAttribute(name ="Recorder") Recorder recorder,
-     Model model, RedirectAttributes re) throws NotFoundException
+    public String configurationResult(@ModelAttribute(name = "recorder") Recorder recorder,
+     Model model) throws NotFoundException
     {   
-        model.addAttribute("data", recorder);
+        model.addAttribute("data", recorder.toString());
         model.addAttribute("option1", "Wybrałeś następującą liczbę kanałów: ");
         return "configuration_result";
     }

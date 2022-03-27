@@ -28,8 +28,9 @@
         </ul>
     </div>
 <body>
+    <form th:action="@{/configuration/result}" th:object=${recorder}></form>
    <div class="col-sm-8" style="color: white;position: absolute; text-align: center;">
-      <a th:text="${data}">Recorder</a>
+      <a th:text="${recorder.selectRecorder}">Recorder</a>
     </div>
 </body>
 </html>
