@@ -11,6 +11,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript">
+        function myFunction() {
+            var x = document.getElementById("recorderDropdown").value;
+            document.getElementById("demo").innerHTML = x;
+        }
+
         function cancelForm(){
             window.location = "[[@{/}]]"
         }
@@ -39,9 +44,9 @@
     </div>
 <div class="dropdown" style="background-color: white">
     <div>
-    <form th:action="@{/configuration/result}" th:object="${recorder}" method="post" enctype="multipart/form-data">
+    <form th:object="${recorder}" class="form-horizontal" th:action="@{/configuration/result}" method="post">
     <div class="container-fluid" style="position: relative; padding-top: 90px;">
-   <!-- <table>
+   <table>
         <tr>
             <td>
             <select name="selectCamera" id="cameraDropdown" class="form-control">
@@ -50,18 +55,18 @@
             </select>
             </td>
         </tr>
-    </table> -->
+    </table>
         <table class="recorderTable">
                 <tr>
                     <td>
-                        <select name="selectRecorder" id="recorderDropdown" class="form-control">
+                        <select name="recorderDropdown" id="recorderDropdown" class="form-control">
                             <option value="0">Select recorder:</option>
-                            <option th:each="recorders : ${recorderList}" th:value="${recorders.id}" th:text="${recorders}">Option</option>
+                            <option th:each="recorder : ${recorderList}" th:value="${recorder.id}" th:text="${recorder}">Option</option>
                         </select>
                     </td>
                 </tr>
         </table>
-   <!--     <table class="switchTable">
+       <table class="switchTable">
             <tr>
                 <td>
                     <select name="selectSwitch" id="switchDropdown" class="form-control">
@@ -70,7 +75,7 @@
                     </select>
                 </td>
             </tr>
-        </table> -->
+        </table>
         <div class="text-center" style="top: 50%;
         position: relative;
         margin: 0 auto;">
