@@ -10,7 +10,7 @@
 <div class="container">
     <ul>
         <a target="_self" th:href="@{/}">
-            <img class="logo" th:src="@{/css/logo.png}">
+            <img class="logo" th:src="@{pictures/logo.png}">
         </a>
         <div class="adminLogout" sec:authorize="isAuthenticated()">
             Hello <b><span sec:authentication="name">Username</span></b>
@@ -26,11 +26,14 @@
         <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE</a></li>
     </ul>
 </div>
-    <h1 class="mainText" style="text-align: center;">Witamy w Konfiguratorze Kamer, Rejestratorów i Switchy POE</h1>
-    <div class="container" style="max-width: fit-content;">
-        <img th:src="@{/css/kamera.png}" style="position: absolute; width: 30%; top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);">
-    </div>
+    <h1 class="mainText">Witamy w Konfiguratorze Kamer, Rejestratorów i Switchy POE</h1>
+        <img th:src="@{pictures/kamera.png}" style="width: 30%;
+        display: flex;
+    justify-content: center; 
+    margin-right: auto;
+    margin-left: auto; 
+    flex: 1; 
+    align-items: center; 
+    object-fit: contain;">
 </body>
 </html>

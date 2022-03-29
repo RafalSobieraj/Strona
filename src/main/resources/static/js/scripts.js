@@ -1,19 +1,24 @@
 $(document).ready(function(){
     $('#fileImage').change(function(){
-     showImageThumbnail(this);
+     showThumbnail(this);
    });
 });
 
     function cancelFormCameras(){
-        window.location = "[[@{/cameras}]]"
+        window.location = "/cameras"
     }
 
     function cancelFormRecorders(){
-        window.location = "[[@{/recorders}]]"
+        window.location = "/recorders"
     }
 
-    function showImageThumbnail(fileInput){
-        file = fileInput.files[0];
+    function cancelFormSwitches(){
+        window.location = "/switches"
+    }
+
+
+    function showThumbnail(input){
+        file = input.files[0];
         reader = new FileReader();
 
         reader.onload = function(e){

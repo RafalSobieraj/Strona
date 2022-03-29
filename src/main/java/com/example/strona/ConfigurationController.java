@@ -2,10 +2,6 @@ package com.example.strona;
 
 import java.util.List;
 
-import javax.naming.Binding;
-
-import java.util.ArrayList;
-
 import com.example.strona.model.camera.Camera;
 import com.example.strona.model.camera.CameraRepository;
 
@@ -18,8 +14,6 @@ import com.example.strona.model.switchPOE.SwitchPOERepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javassist.NotFoundException;
@@ -57,14 +51,22 @@ public class ConfigurationController {
 
     @PostMapping("/configuration/result")
     public String configurationResult(@Validated @ModelAttribute("recorderDropdown") Recorder recorder,
-     Model model) throws NotFoundException
+    @Validated @ModelAttribute("cameraDropdown") Camera camera,
+    @Validated @ModelAttribute("switchDropdown") SwitchPOE switchPOE,
+    Model model)
     {   
+        if(recorder.getId() == null || camera.getId() == null || switchPOE.getId() == null)
+            model.addAttribute("error", "BŁĄD! WYBRANO NIEPRAWIDŁOWĄ WARTOŚĆ!");
+        else{
+            model.addAttribute("option2", camera.toString());
+            model.addAttribute("option3", switchPOE.toString());
 
-
-        if(recorder.getBandwidth() == 18)
-            model.addAttribute("option1", "Wybrałeś odpowiednią liczbę kanałów.");
-        else
-            model.addAttribute("option1", "Wybrałeś zbyt małą liczbę kanałów.");
+            if(recorder.getBandwidth() == 16)
+            model.addAttribute("option1", recorder.toString());
+            else
+            model.addAttribute("option1", "Wybrałeś inną liczbę kanałów.");
+        }
         return "configuration_result";
+        
     }
 }

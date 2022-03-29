@@ -10,7 +10,7 @@
 <div class="container">
     <ul>
         <a target="_self" th:href="@{/}">
-            <img class="logo" th:src="@{/css/logo.png}">
+            <img class="logo" th:src="@{pictures/logo.png}">
         </a>
         <div class="adminLogout" sec:authorize="isAuthenticated()">
             Hello <b><span sec:authentication="name">Username</span></b>
