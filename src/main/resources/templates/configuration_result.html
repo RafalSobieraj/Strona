@@ -36,9 +36,38 @@
     <h1 th:text="${error}" style="color: red; font-size: 70px;"></h1>
 
    <div class="configResult">
-      <h1 style="color: white; text-align: center; font-size: 30px;" th:text="${option1}"></h1>
-      <h1 style="color: white; text-align: center; font-size: 30px;" th:text="${option2}"></h1>
-      <h1 style="color: white; text-align: center; font-size: 30px;" th:text="${option3}"></h1>
+        <div>
+            <img th:src="@{${option1.imagePath}}" alt="Camera image" style="width: 250px; display: flex;
+            justify-content: center; 
+            margin-right: auto;
+            margin-left: auto; 
+            flex: 1; 
+            align-items: center; 
+            object-fit: contain;"/>
+            <h2 style="color: white; text-align: center; font-size: 30px;" th:text="${option1}"></h2>
+        </div>
+        <div>
+            <img th:src="@{${option2.imagePath}}" alt="Camera image" style="width: 250px; display: flex;
+            justify-content: center; 
+            margin-right: auto;
+            margin-left: auto; 
+            flex: 1; 
+            align-items: center; 
+            object-fit: contain;"/>
+            <h2 style="color: white; text-align: center; font-size: 30px;" th:text="${option2}"></h2>
+        </div>
+    <div>
+        <img th:src="@{${option3.imagePath}}" alt="Camera image" style="width: 250px; display: flex;
+        justify-content: center; 
+        margin-right: auto;
+        margin-left: auto; 
+        flex: 1; 
+        align-items: center; 
+        object-fit: contain;"/>
+        <h2 style="color: white; text-align: center; font-size: 30px;" th:text="${option3}"></h2> 
+    </div>    
     </div>
+
+    <h3 th:text="${list}" style="color: green;"></h3>
 </body>
 </html>

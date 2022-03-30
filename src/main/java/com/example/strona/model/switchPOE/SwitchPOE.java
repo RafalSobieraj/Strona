@@ -116,8 +116,7 @@ public class SwitchPOE{
 
     @Override
     public String toString() {
-        return "SwitchPOE [Image=" + Image + ", PortSpeed=" + PortSpeed + ", SwitchBand=" + SwitchBand
-                + ", SwitchInterface=" + SwitchInterface + ", SwitchModel=" + SwitchModel + ", id=" + id + "]";
+        return SwitchModel + ", INTERFEJS = " + SwitchInterface + ", SZYBKOŚĆ = " + PortSpeed + "Mb/s" + ", PASMO = " + SwitchBand + "Gb/s";
     }
     
 }

@@ -59,7 +59,7 @@
             <td>
             <select name="cameraDropdown" id="cameraDropdown" class="form-control">
                 <option value="0">Select camera:</option>
-                <option th:each="cameras : ${cameraList}" th:value="${cameras.id}" th:text="${cameras.cameraModel}">Option</option>
+                <option th:each="cameras : ${cameraList}" th:value="${cameras.id}" th:text="${cameras}">Option</option>
             </select>
             </td>
         </tr>
@@ -79,7 +79,7 @@
                 <td>
                     <select name="switchDropdown" id="switchDropdown" class="form-control">
                         <option value="0">Select switch POE:</option>
-                        <option th:each="switches : ${switchList}" th:value="${switches.id}" th:text="${switches.switchModel}">Option</option>
+                        <option th:each="switches : ${switchList}" th:value="${switches.id}" th:text="${switches}">Option</option>
                     </select>
                 </td>
             </tr>

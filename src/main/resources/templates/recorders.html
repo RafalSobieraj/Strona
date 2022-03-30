@@ -64,7 +64,9 @@
                         <td>
                           <img th:src="@{${recorder.imagePath}}" style="width: 120px;"/>
                         </td>
-                        <td >[[${recorder.recorderModel}]]</td>
+                        <td>
+                          <a target="_blank" th:href="@{${recorder.link}}">[[${recorder.recorderModel}]]</a>
+                        </td>
                         <td>[[${recorder.recorderType}]]</td>
                         <td>[[${recorder.diskCount}]] HDD</td>
                         <td>[[${recorder.storageLimit}]] TB</td>

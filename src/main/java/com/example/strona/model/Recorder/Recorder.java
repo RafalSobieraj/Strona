@@ -30,9 +30,11 @@ public class Recorder {
     @Column(nullable = true)
     private String Image;
 
-    private boolean Enabled;
+    @Column(nullable = true, name = "url")
+    private String Link;
 
-    public Recorder(boolean enabled ,Integer id, String recorderModel, String recorderType, int canalNumbers, int diskCount, int storageLimit, int bandwidth, String image) {
+
+    public Recorder(String link, Integer id, String recorderModel, String recorderType, int canalNumbers, int diskCount, int storageLimit, int bandwidth, String image) {
         super();
         this.id = id;
         RecorderModel = recorderModel;
@@ -42,21 +44,21 @@ public class Recorder {
         StorageLimit = storageLimit;
         Bandwidth = bandwidth;
         Image = image;
-        setEnabled(enabled);
-    }
-
-    public boolean isEnabled() {
-        return Enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.Enabled = enabled;
+        Link = link;
     }
 
     public Recorder() {
         super();
     }
 
+    public String getLink() {
+        return Link;
+    }
+
+    public void setLink(String link) {
+        Link = link;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -130,8 +132,6 @@ public class Recorder {
 
     @Override
     public String toString() {
-        return "Recorder [Bandwidth=" + Bandwidth + ", CanalNumbers=" + CanalNumbers + ", DiskCount=" + DiskCount
-                + ", Enabled=" + Enabled + ", Image=" + Image + ", RecorderModel=" + RecorderModel + ", RecorderType="
-                + RecorderType + ", StorageLimit=" + StorageLimit + ", id=" + id + "]";
+        return RecorderModel + ", PRZEPUSTOWOŚĆ = " + Bandwidth + "Mbit" + ", TYP = " + RecorderType + ", KANAŁY = " + CanalNumbers;
     }
 }

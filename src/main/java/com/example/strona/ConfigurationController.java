@@ -1,6 +1,9 @@
 package com.example.strona;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.example.strona.model.camera.Camera;
 import com.example.strona.model.camera.CameraRepository;
@@ -42,7 +45,7 @@ public class ConfigurationController {
 
 
     @GetMapping("/configuration")
-    public String getCameraArray(Model model) {
+    public String getCameraArray(Model model, Camera camera) {
         model.addAttribute("cameraList", cameraList);
         model.addAttribute("recorderList", recorderList);   
         model.addAttribute("switchList", switchList);
@@ -55,16 +58,20 @@ public class ConfigurationController {
     @Validated @ModelAttribute("switchDropdown") SwitchPOE switchPOE,
     Model model)
     {   
+
         if(recorder.getId() == null || camera.getId() == null || switchPOE.getId() == null)
             model.addAttribute("error", "BŁĄD! WYBRANO NIEPRAWIDŁOWĄ WARTOŚĆ!");
         else{
-            model.addAttribute("option2", camera.toString());
-            model.addAttribute("option3", switchPOE.toString());
+            List<Camera> result = cameraList.stream().filter(x -> Objects.equals(x.getCameraResolution(), 4))
+            .collect(Collectors.toList());
 
-            if(recorder.getBandwidth() == 16)
-            model.addAttribute("option1", recorder.toString());
-            else
-            model.addAttribute("option1", "Wybrałeś inną liczbę kanałów.");
+            model.addAttribute("list", result);
+
+            model.addAttribute("option2", camera);
+            model.addAttribute("option3", switchPOE);
+
+            model.addAttribute("option1", recorder);
+        
         }
         return "configuration_result";
         

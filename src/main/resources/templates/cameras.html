@@ -61,9 +61,11 @@
                         <td>
                           <img th:src="@{${camera.imagePath}}" alt="Camera image" style="width: 100px;"/>
                         </td>
-                        <td>[[${camera.cameraModel}]]</td>
+                        <td>
+                          <a target="_blank" th:href="@{${camera.link}}">[[${camera.cameraModel}]]</a>
+                        </td>
                         <td>[[${camera.cameraType}]]</td>
-                        <td>[[${camera.cameraResolution}]] px</td>
+                        <td>[[${camera.cameraResolution}]] MPx</td>
                         <td sec:authorize="hasAuthority('ADMIN')">
                             <a class="h4 mr-3" th:href="@{'/cameras/edit/' + ${camera.id}}">Edit</a>
                             <a class="h4" th:href="@{'/cameras/delete/' + ${camera.id}}">Delete</a>

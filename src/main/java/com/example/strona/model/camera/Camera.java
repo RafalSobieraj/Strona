@@ -21,29 +21,33 @@ public class Camera {
     @Column(nullable = true)
     private String Image;
 
-    private boolean enabled;
+    @Column(nullable = true, name = "url")
+    private String Link;
+
 
     public Camera(Integer id,
                   String cameraModel,
                   String cameraType,
-                  int cameraResolution) {
+                  int cameraResolution, String link) {
         super();
         this.id = id;
         this.CameraModel = cameraModel;
         this.CameraResolution = cameraResolution;
         this.CameraType = cameraType;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+        this.Link = link;
     }
 
     public Camera() {
         super();
+    }
+
+    public String getLink() {
+        return Link;
+    }
+
+
+    public void setLink(String link) {
+        Link = link;
     }
 
     public String getCameraModel() {
@@ -96,11 +100,6 @@ public class Camera {
 
     @Override
     public String toString() {
-        return "Camera{" +
-                "CameraID=" + id +
-                ", CameraModel='" + CameraModel + '\'' +
-                ", CameraType='" + CameraType + '\'' +
-                ", CameraResolution=" + CameraResolution +
-                '}';
+        return CameraModel + ", ROZDZIELCZOŚĆ = " + CameraResolution + " MPx" + ", TYP = " + CameraType;
     }
 }
