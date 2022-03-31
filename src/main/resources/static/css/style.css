@@ -115,6 +115,10 @@ li a:hover{
     align-items: center;
 }
 
+h2{
+    mix-blend-mode: darken;
+}
+
 .dropdown select{
     top: 50%;
     height: 50%;
@@ -167,6 +171,20 @@ a:hover{
     border: 4px solid black;
 }
 .configResult{
+    margin: 5px;
+    max-width: 65%;
+    background-color: white;
+    display: flex;
+    justify-content: center; 
+    margin-right: auto;
+    margin-left: auto; 
+    flex: 1; 
+    align-items: center; 
+    object-fit: contain;
+    border: 4px solid red;
+}
+.configResult img{
+    width: 250px; 
     display: flex;
     justify-content: center; 
     margin-right: auto;

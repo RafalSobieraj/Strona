@@ -9,6 +9,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
         <script type="text/javascript">
         </script>
     </head>
@@ -35,39 +36,113 @@
 <body>
     <h1 th:text="${error}" style="color: red; font-size: 70px;"></h1>
 
-   <div class="configResult">
-        <div>
-            <img th:src="@{${option1.imagePath}}" alt="Camera image" style="width: 250px; display: flex;
-            justify-content: center; 
-            margin-right: auto;
-            margin-left: auto; 
-            flex: 1; 
-            align-items: center; 
-            object-fit: contain;"/>
-            <h2 style="color: white; text-align: center; font-size: 30px;" th:text="${option1}"></h2>
+   <h1 style="color: white; text-align: center;">WYBRANO NASTĘPUJĄCE ELEMENTY:</h1>
+        <div class="configResult">
+            <h3 style= "vertical-align: text-top;">Rejestrator</h3>
+            <img th:src="@{${option1.imagePath}}" alt="Camera image" />
+            <h2 style="text-align: center; font-size: 30px;" th:text="${option1}"></h2>
         </div>
-        <div>
-            <img th:src="@{${option2.imagePath}}" alt="Camera image" style="width: 250px; display: flex;
-            justify-content: center; 
-            margin-right: auto;
-            margin-left: auto; 
-            flex: 1; 
-            align-items: center; 
-            object-fit: contain;"/>
-            <h2 style="color: white; text-align: center; font-size: 30px;" th:text="${option2}"></h2>
+        <div class="configResult">
+            <img th:src="@{${option2.imagePath}}" alt="Camera image"/>
+            <h2 style="text-align: center; font-size: 30px;" th:text="${option2}"></h2>
         </div>
-    <div>
-        <img th:src="@{${option3.imagePath}}" alt="Camera image" style="width: 250px; display: flex;
-        justify-content: center; 
-        margin-right: auto;
-        margin-left: auto; 
-        flex: 1; 
-        align-items: center; 
-        object-fit: contain;"/>
-        <h2 style="color: white; text-align: center; font-size: 30px;" th:text="${option3}"></h2> 
+        <div class="configResult">
+        <img th:src="@{${option3.imagePath}}" alt="Camera image"/>
+        <h2 style="text-align: center; font-size: 30px;" th:text="${option3}"></h2> 
     </div>    
-    </div>
+    
 
-    <h3 th:text="${list}" style="color: green;"></h3>
+    <div style="max-width: 65%; margin: 0 auto; background-color: white">
+    <table class="table table-bordered">
+        <thead style="text-align: center; vertical-align: middle; background-color: red;">
+            <tr>
+                    <th>ID</th>
+                    <th>Zdjęcie</th>
+                    <th>Rejestrator</th>
+                    <th>Typ Rejestratora</th>
+                    <th>Ilość dysków twardych</th>
+                    <th>Limit pojemności</th>
+                    <th>Liczba kanałów</th>
+                    <th>Przepustowość łącza</th>
+            </tr>
+        </thead>
+        <tbody class="decriptionRecorder">
+            <th:block th:each="recorder : ${listRecorder}">
+                <tr>
+                    <td style="background-color: yellow;">[[${recorder.id}]]</td>
+                    <td>
+                      <img th:src="@{${recorder.imagePath}}" style="width: 120px;"/>
+                    </td>
+                    <td>
+                      <a target="_blank" th:href="@{${recorder.link}}">[[${recorder.recorderModel}]]</a>
+                    </td>
+                    <td>[[${recorder.recorderType}]]</td>
+                    <td>[[${recorder.diskCount}]] HDD</td>
+                    <td>[[${recorder.storageLimit}]] TB</td>
+                    <td>[[${recorder.canalNumbers}]]</td>
+                    <td>[[${recorder.bandwidth}]] Mbit</td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</div>
+<div style="max-width: 65%; margin: 0 auto; background-color: white;">
+    <table class="table table-bordered">
+        <thead style="text-align: center; vertical-align: middle; background-color: red;">
+            <tr>
+                <th>ID</th>
+                <th>Zdjęcie</th>
+                <th>Kamera</th>
+                <th>Typ Kamery</th>
+                <th>Rozdzielczość</th>
+            </tr>
+        </thead>
+        <tbody class="description">
+            <th:block th:each="camera : ${listCamera}">
+                <tr>
+                    <td style="background-color: yellow;">[[${camera.id}]]</td>
+                    <td>
+                      <img th:src="@{${camera.imagePath}}" alt="Camera image" style="width: 100px;"/>
+                    </td>
+                    <td>
+                      <a target="_blank" th:href="@{${camera.link}}">[[${camera.cameraModel}]]</a>
+                    </td>
+                    <td>[[${camera.cameraType}]]</td>
+                    <td>[[${camera.cameraResolution}]] MPx</td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</div>
+<div style="max-width: 65%; margin: 0 auto; background-color: white;">
+    <table class="table table-bordered">
+        <thead style="text-align: center; vertical-align: middle; background-color: red;">
+            <tr>
+                <th>ID</th>
+                <th>Zdjęcie</th>
+                <th>Switch POE</th>
+                <th>Interfejs</th>
+                <th>Szybkość portu</th>
+                <th>Pasmo</th>
+            </tr>
+        </thead>
+        <tbody class="description">
+            <th:block th:each="switchPOE : ${listSwitch}">
+                <tr>
+                    <td style="background-color: yellow;">[[${switchPOE.id}]]</td>
+                    <td>
+                      <img th:src="@{${switchPOE.imagePath}}" alt="Switch POE image" style="width: 100px;"/>
+                    </td>
+                    <td>
+                        <a target="_blank" th:href="@{${switchPOE.link}}">[[${switchPOE.switchModel}]]</a>
+                    </td>
+                    <td>[[${switchPOE.switchInterface}]]</td>
+                    <td>[[${switchPOE.portSpeed}]] Mb/s</td>
+                    <td>[[${switchPOE.switchBand}]] Gb/s</td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

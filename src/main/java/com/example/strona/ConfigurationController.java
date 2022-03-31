@@ -62,10 +62,18 @@ public class ConfigurationController {
         if(recorder.getId() == null || camera.getId() == null || switchPOE.getId() == null)
             model.addAttribute("error", "BŁĄD! WYBRANO NIEPRAWIDŁOWĄ WARTOŚĆ!");
         else{
-            List<Camera> result = cameraList.stream().filter(x -> Objects.equals(x.getCameraResolution(), 4))
+            List<Camera> resultCamera = cameraList.stream().filter(x -> Objects.equals(x.getCameraResolution(), 4))
             .collect(Collectors.toList());
 
-            model.addAttribute("list", result);
+            List<Recorder> resultRecorder = recorderList.stream().filter(x -> Objects.equals(x.getStorageLimit(), 6))
+            .collect(Collectors.toList());
+
+            List<SwitchPOE> resultSwitch = switchList.stream().filter(x -> Objects.equals(x.getPortSpeed(), 100))
+            .collect(Collectors.toList());
+
+            model.addAttribute("listRecorder", resultRecorder);
+            model.addAttribute("listCamera", resultCamera);
+            model.addAttribute("listSwitch", resultSwitch);
 
             model.addAttribute("option2", camera);
             model.addAttribute("option3", switchPOE);
