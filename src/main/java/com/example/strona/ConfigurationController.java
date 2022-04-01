@@ -1,8 +1,8 @@
 package com.example.strona;
 
+import java.beans.PropertyDescriptor;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.example.strona.model.camera.Camera;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import javassist.NotFoundException;
+import org.yaml.snakeyaml.introspector.PropertyUtils;
 
 @Controller
 public class ConfigurationController {
@@ -30,7 +30,6 @@ public class ConfigurationController {
     private RecorderRepository recorderRepository;
     @Autowired
     private SwitchPOERepository switchPOERepository;
-
 
     List<Camera> cameraList;
     List<Recorder> recorderList;
@@ -57,7 +56,7 @@ public class ConfigurationController {
     @Validated @ModelAttribute("cameraDropdown") Camera camera,
     @Validated @ModelAttribute("switchDropdown") SwitchPOE switchPOE,
     Model model)
-    {   
+    {  
 
         if(recorder.getId() == null || camera.getId() == null || switchPOE.getId() == null)
             model.addAttribute("error", "BŁĄD! WYBRANO NIEPRAWIDŁOWĄ WARTOŚĆ!");
@@ -71,6 +70,12 @@ public class ConfigurationController {
             List<SwitchPOE> resultSwitch = switchList.stream().filter(x -> Objects.equals(x.getPortSpeed(), 100))
             .collect(Collectors.toList());
 
+            if(recorder.getRecorderType().equals("Analog") == camera.getCameraType().equals("IP") || recorder.getRecorderType().equals("IP") == camera.getCameraType().equals("Analog"))
+                model.addAttribute("conclusion", "Wybrana konfiguracja nie jest prawidłowa, ponieważ typ kamery nie jest taki sam jak" +
+                " typ rejestratora.  Proszę wybrać poprawny typ urządzeń lub wybrać inną opcję z listy poniżej.");
+                
+
+            
             model.addAttribute("listRecorder", resultRecorder);
             model.addAttribute("listCamera", resultCamera);
             model.addAttribute("listSwitch", resultSwitch);
