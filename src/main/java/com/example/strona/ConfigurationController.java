@@ -1,6 +1,5 @@
 package com.example.strona;
 
-import java.beans.PropertyDescriptor;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.introspector.PropertyUtils;
 
 @Controller
 public class ConfigurationController {
@@ -70,11 +68,15 @@ public class ConfigurationController {
             List<SwitchPOE> resultSwitch = switchList.stream().filter(x -> Objects.equals(x.getPortSpeed(), 100))
             .collect(Collectors.toList());
 
-            if(recorder.getRecorderType().equals("Analog") == camera.getCameraType().equals("IP") || recorder.getRecorderType().equals("IP") == camera.getCameraType().equals("Analog"))
+            if(recorder.getRecorderType().equals("Hybryda"))
+                model.addAttribute("conclusion", "");
+
+            else if(recorder.getRecorderType().equals("Analog") == camera.getCameraType().equals("IP") || recorder.getRecorderType().equals("IP") == camera.getCameraType().equals("Analog"))
                 model.addAttribute("conclusion", "Wybrana konfiguracja nie jest prawidłowa, ponieważ typ kamery nie jest taki sam jak" +
                 " typ rejestratora.  Proszę wybrać poprawny typ urządzeń lub wybrać inną opcję z listy poniżej.");
-                
 
+            else
+                model.addAttribute("conclusion", "Wybrana kamera bardzo dobrze łączy się z danym rejestratorem i switchem.");
             
             model.addAttribute("listRecorder", resultRecorder);
             model.addAttribute("listCamera", resultCamera);
@@ -84,7 +86,7 @@ public class ConfigurationController {
             model.addAttribute("option3", switchPOE);
 
             model.addAttribute("option1", recorder);
-        
+            
         }
         return "configuration_result";
         

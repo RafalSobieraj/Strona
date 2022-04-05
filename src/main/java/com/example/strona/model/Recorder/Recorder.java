@@ -132,6 +132,6 @@ public class Recorder {
 
     @Override
     public String toString() {
-        return RecorderModel + ", PRZEPUSTOWOŚĆ = " + Bandwidth + "Mbit" + ", TYP = " + RecorderType + ", KANAŁY = " + CanalNumbers;
+        return RecorderModel + ", PRZEPUSTOWOŚĆ = " + Bandwidth + "Mbit" + '\n' + ", TYP = " + RecorderType + '\n' + ", KANAŁY = " + CanalNumbers;
     }
 }
