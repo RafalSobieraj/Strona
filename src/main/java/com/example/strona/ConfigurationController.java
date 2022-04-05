@@ -68,10 +68,7 @@ public class ConfigurationController {
             List<SwitchPOE> resultSwitch = switchList.stream().filter(x -> Objects.equals(x.getPortSpeed(), 100))
             .collect(Collectors.toList());
 
-            if(recorder.getRecorderType().equals("Hybryda"))
-                model.addAttribute("conclusion", "");
-
-            else if(recorder.getRecorderType().equals("Analog") == camera.getCameraType().equals("IP") || recorder.getRecorderType().equals("IP") == camera.getCameraType().equals("Analog"))
+            if((recorder.getRecorderType().equals("Analog") && camera.getCameraType().equals("IP")) || (recorder.getRecorderType().equals("IP") && camera.getCameraType().equals("Analog")))
                 model.addAttribute("conclusion", "Wybrana konfiguracja nie jest prawidłowa, ponieważ typ kamery nie jest taki sam jak" +
                 " typ rejestratora.  Proszę wybrać poprawny typ urządzeń lub wybrać inną opcję z listy poniżej.");
 
