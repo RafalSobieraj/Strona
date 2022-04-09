@@ -16,6 +16,9 @@ $(document).ready(function(){
         window.location = "/switches"
     }
 
+    function cancelForm(){
+        window.location = "[[@{/}]]"
+    }
 
     function showThumbnail(input){
         file = input.files[0];
