@@ -9,9 +9,13 @@ body {
     text-align: center;
     
 }
-.headerTop{
+.header{
     background-color: lightgrey;
     
+}
+.headerTop{
+    background-color: aqua;
+    height: 90px;
 }
 
 .test2 {
@@ -45,10 +49,9 @@ input[type=checkbox]{
 ul{
     list-style-type: none;
     margin: 0;
-    padding: 10px;
+    padding-right: 10px;
     overflow: hidden;
     font-size: 25px;
-    background-color:white;
     text-align: right;
     
 }
@@ -71,18 +74,19 @@ li a:hover{
 .logo {
     position: absolute;
     max-width: 15%;
-    max-height: 15%;
+    max-height: 88px;
+    min-height: 5%;
     object-fit: contain;
     flex: 1;  
     top: 2px;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     
     
 }
 .logo:hover{
-    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    box-shadow: 0 0 2px 1px grey;
 }
 .description td{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -125,17 +129,6 @@ h2{
     mix-blend-mode: darken;
 }
 
-.dropdown select{
-    top: 50%;
-    height: 50%;
-    position: relative;
-    margin: 0 auto;
-    object-fit: contain;
-    flex: 1;  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 /* fallback */
 @font-face {
     font-family: 'Material Icons';
