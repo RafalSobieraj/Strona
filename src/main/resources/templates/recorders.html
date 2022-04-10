@@ -12,25 +12,35 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
   <body>
-  <div class="container">
-      <ul>
-          <a target="_self" th:href="@{/}">
-              <img class="logo" th:src="@{pictures/logo.png}">
+    <div class="headerTop">
+      <a target="_self" th:href="@{/}">
+      <img class="logo" th:src="@{pictures/logo.png}">
+  </a>
+      <div class="adminLogout" sec:authorize="isAuthenticated()">
+          <ul>
+      Hello <b><span sec:authentication="name">Username</span></b>
+      &nbsp;
+      <span sec:authentication="principal.authorities">Roles</span>
+      <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+          <input class="logoutButton" type="submit" value="Logout"/>
+      </form>
+  </ul>
+      </div>
+</div>
+<div>
+  <ul class="header">       
+      <li><a class="configurationButton" th:href="@{/configuration}">Konfiguracja<p class="material-icons">
+          build
+      </p></a></li>
+      <li><a>
+          <a th:href="@{/cameras}" style="font-size: 34px">Kamery  <p class="material-icons">list</p>
           </a>
-          <div class="adminLogout" sec:authorize="isAuthenticated()">
-              Hello <b><span sec:authentication="name">Username</span></b>
-              &nbsp;
-            <span sec:authentication="principal.authorities">Roles</span>
-            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                <input class="logoutButton" type="submit" value="Logout"/>
-            </form>
-          </div>
-          <li><a th:href="@{/configuration}" style="font-size: 34px; color: blue;">Konfiguracja</a></li>
-          <li><a th:href="@{/cameras}" style="font-size: 34px">Kamery</a></li>
-          <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory</a></li>
-          <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE</a></li>
-      </ul>
-  </div>
+      </a>
+      </li>
+      <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory<p class="material-icons">list</p></a></li>
+      <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE<p class="material-icons">list</p></a></li>
+  </ul>
+</div>
       <div><h2 class="container-fluid text-center" style="color: white;">Lista rejestratorów</h2></div>
       <div sec:authorize="hasAuthority('ADMIN')" class="container-fluid text-center">
           <a class="h4" th:href="@{/recorders/new}" style="color: white;">

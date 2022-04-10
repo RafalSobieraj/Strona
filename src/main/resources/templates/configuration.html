@@ -11,6 +11,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -31,10 +34,16 @@
     </div>
     <div>
         <ul class="header">       
-            <li><a class="configurationButton" th:href="@{/configuration}">Konfiguracja</a></li>
-            <li><span class="material-icons">list</span><a th:href="@{/cameras}" style="font-size: 34px">Kamery</a></li>
-            <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory</a></li>
-            <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE</a></li>
+            <li><a class="configurationButton" th:href="@{/configuration}">Konfiguracja<p class="material-icons">
+                build
+            </p></a></li>
+            <li><a>
+                <a th:href="@{/cameras}" style="font-size: 34px">Kamery  <p class="material-icons">list</p>
+                </a>
+            </a>
+            </li>
+            <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory<p class="material-icons">list</p></a></li>
+            <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE<p class="material-icons">list</p></a></li>
         </ul>
     </div>
 <div class="dropdown">
