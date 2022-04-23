@@ -49,7 +49,7 @@
 <div class="dropdown">
     <div>
     <form th:object="${recorder}" class="form-horizontal" th:action="@{/configuration/result}" method="post">
-    <div class="container-fluid" style="position: relative; padding-top: 90px;">
+    <div class="container-fluid" style="position: relative; padding-top: 90px; text-align: center;">
    <table>
         <tr>
             <td>
@@ -82,7 +82,8 @@
         </table>
         <div class="text-center" style="top: 50%;
         position: relative;
-        margin: 0 auto;">
+        margin: 0 auto;
+        padding: 30px;">
             <button type="submit" class="btn btn-primaty m-2" style="background-color: blue; color:red;">Konfiguracja</button>
             <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Powrót</button>
         </div>

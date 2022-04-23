@@ -9,11 +9,10 @@ body {
     
 }
 .header{
-    background-color: lightgrey;
-    
+    background-color: black;
 }
 .headerTop{
-    min-height: 200px;
+    min-height: 120px;
 }
 
 .test2 {
@@ -49,7 +48,7 @@ ul{
     padding-right: 10px;
     overflow: hidden;
     font-size: 25px;
-    text-align: right;
+    text-align: center;
     
 }
 li{
@@ -60,29 +59,26 @@ li{
 }
 li a{
     display: block;
-    color: rgb(104, 104, 15);
+    color: rgb(255, 207, 87);
     text-align: center;
     text-decoration: none;
     transition: 0.5s;
 }
 li a:hover{
-    background-color: rgb(15, 94, 139);
     transform: translate(-10px);
     color: white;
 }
 .logo {
     position: absolute;
     max-width: 15%;
-    min-height: 200px;
+    min-height: 120px;
     object-fit: contain;
     flex: 1; 
     margin-left: 15%;
-    top: 2px;
     display: block;
     justify-content: center;
     align-items: center;
-    
-    
+     
 }
 .logo:hover{
     box-shadow: 0 0 2px 1px grey;
@@ -100,27 +96,22 @@ li a:hover{
     font-size: 25px;
 }
 .dropdown select{
+    min-width: 100px;
     width: 400px;
     padding: 20px;
     background-color: #4b4ba0;
     color: white;
+    text-align: center;
     object-fit: contain;
     flex: 1;  
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .dropdown table{
-    background-color: blue;
-    top: 50%;
-    height: 50%;
-    position: relative;
-    margin: 0 auto;
-    object-fit: contain;
-    flex: 1;  
-    display: flex;
-    justify-content: center;
+    flex: 1;
     align-items: center;
 }
 
@@ -156,6 +147,8 @@ h2{
   }
 
 .dropdown{
+    min-width: 420px;
+    max-width: 650px;
     background-color: grey;
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
@@ -171,6 +164,7 @@ h2{
     flex: 1; 
     align-items: center; 
     object-fit: contain;
+    
 }
 .recorderTable{
     position: relative;
@@ -194,7 +188,7 @@ a:hover{
 
 .configurationButton{
     font-size: 34px;
-    color: blue;
+    color: lightblue;
 }
 
 
@@ -210,7 +204,7 @@ a:hover{
     align-items: center; 
     object-fit: contain;
     border: 4px solid red;
-    border-top: 4px solid red;
+    border-top: none;
 }
 .configResult img{
     position: relative;
@@ -222,4 +216,21 @@ a:hover{
     flex: 0; 
     align-items: center; 
     object-fit: contain;
+}
+.divHeading{
+    max-width: 30%;
+    background-color: white;
+    display: flex;
+    justify-content: center; 
+    margin-right: auto;
+    margin-left: auto; 
+    flex: 1; 
+    align-items: center; 
+    object-fit: contain;
+    border: 4px solid red;
+    border-bottom: none;
+}
+
+.table tbody tr td, .table thead tr th{
+    border: 2px solid black;
 }

@@ -61,7 +61,7 @@ public class ConfigurationController {
             return "configuration_error";
         }
         
-            List<Camera> resultCamera = cameraList.stream().filter(x -> Objects.equals(x.getCameraResolution(), 4))
+            List<Camera> resultCamera = cameraList.stream().filter(x -> Objects.equals(x.getCameraResolution(), 5))
             .collect(Collectors.toList());
 
             List<Recorder> resultRecorder = recorderList.stream().filter(x -> Objects.equals(x.getStorageLimit(), 6))
