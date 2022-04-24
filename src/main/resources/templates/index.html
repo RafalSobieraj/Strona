@@ -12,8 +12,8 @@
 <body>
     <div class="headerTop">
         <a target="_self" th:href="@{/}">
-        <img class="logo" th:src="@{pictures/logo.png}">
-    </a>
+            <img class="logo" th:src="@{pictures/logo.png}">
+        </a>
         <div class="adminLogout" sec:authorize="isAuthenticated()">
             <ul>
         Hello <b><span sec:authentication="name">Username</span></b>
