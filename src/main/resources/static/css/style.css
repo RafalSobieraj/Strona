@@ -1,5 +1,7 @@
 body{
-    
+    background-image: url('../pictures/Background-camera.png');
+    background-repeat: repeat-y;
+    background-size: 20%;
 }
 .mainText {
     font-size: 50px;
@@ -15,17 +17,6 @@ body{
     
 }
 .background{
-    position: absolute;
-    min-height: 100vh;
-
-    height: 80%;
-    width: 20%;
-    background-image: url('../pictures/Background-camera.png');
-    background-repeat: repeat-y;
-    background-size: 100%;
-    transform: scaleX(-1);
-    opacity: 0.5;
-
 }
 
 .test2 {
