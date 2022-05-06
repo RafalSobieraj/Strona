@@ -8,6 +8,11 @@ body{
     text-align: center;
     
 }
+.customBody{
+    text-align: center;
+    display: inline-block;
+}
+
 .header{
     background-color: black;
 }
@@ -100,7 +105,7 @@ li a:hover{
     color: white;
     text-align: center;
     object-fit: contain;
-    flex: 1;  
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,11 +162,11 @@ h2{
     justify-content: center;
     margin: 10px;
     margin-right: auto;
-    margin-left: auto; 
-    flex: 1; 
-    align-items: center; 
+    margin-left: auto;
+    flex: 1;
+    align-items: center;
     object-fit: contain;
-    margin-top: 10%;
+    margin-top: 5%;
     
 }
 .recorderTable{

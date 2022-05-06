@@ -34,7 +34,7 @@ public class ConfigurationController {
     List<SwitchPOE> switchList;
 
     @ModelAttribute
-    public void getObjects(Model model){
+    public void getObjects(){
         cameraList = (List<Camera>) cameraRepository.findAll();
         recorderList = (List<Recorder>) recorderRepository.findAll();
         switchList = (List<SwitchPOE>) switchPOERepository.findAll();
@@ -42,7 +42,7 @@ public class ConfigurationController {
 
 
     @GetMapping("/configuration")
-    public String getCameraArray(Model model, Camera camera) {
+    public String getCameraArray(Model model) {
         model.addAttribute("cameraList", cameraList);
         model.addAttribute("recorderList", recorderList);   
         model.addAttribute("switchList", switchList);
