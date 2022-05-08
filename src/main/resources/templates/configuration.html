@@ -46,7 +46,8 @@
             <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE<p class="material-icons">list</p></a></li>
         </ul>
     </div>
-    
+
+<div class="backgroundCircle">
 <div class="dropdown">
     <div>
     <form th:object="${recorder}" class="form-horizontal" th:action="@{/configuration/result}" method="post">
@@ -92,6 +93,8 @@
     </form>
     </div>
 </div>
+</div>
+
 <div class="background"></div>
 </body>
 </html>

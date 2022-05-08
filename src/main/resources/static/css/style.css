@@ -21,8 +21,6 @@ body{
     min-height: 120px;
     
 }
-.background{
-}
 
 .test2 {
     position: center;
@@ -60,6 +58,32 @@ ul{
     text-align: center;
     
 }
+.itemHover{
+    color: red;
+}
+.itemHover:hover{
+    color: rgb(73, 1, 1)
+}
+.backgroundCircle{
+    width: 1200px;
+    height: 1100px;
+    background-image: url('../pictures/circleBackground.jpg');
+    background-size: 80%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    flex: 1;
+    margin-top: 2%;
+    align-items: center;
+    object-fit: contain;
+    
+}
+
 li{
     text-align: center;
     display: inline-block;
@@ -151,7 +175,7 @@ h2{
 .dropdown{
     min-width: 420px;
     max-width: 650px;
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.884);
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     height: 70%;
