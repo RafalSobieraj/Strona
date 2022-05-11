@@ -1,16 +1,53 @@
 body{
-    background-image: url('../pictures/Background-camera.png');
-    background-repeat: repeat-y;
-    background-size: 20%;
+
 }
 .mainText {
-    font-size: 50px;
-    text-align: center;
-    
+    margin-top: 5%;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-content: center;
+    background-image: url('../pictures/kamera.png');
+    background-position: center;
+    background-size: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+    min-height: 200px;
+    max-width: 90%;
+    background-blend-mode: overlay;
+    background-color: rgba(255, 255, 255, 0.549);  
 }
-.customBody{
-    text-align: center;
-    display: inline-block;
+
+.mainText2 {
+    margin-top: 5%;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-content: center;
+    background-image: url('../pictures/kamera2.avif');
+    background-position: center;
+    background-size: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+    min-height: 200px;
+    max-width: 90%;
+    background-blend-mode: overlay;
+    background-color: rgba(255, 255, 255, 0.549);  
+}
+
+
+h1{
+    padding-top: 5%;
+    font-size: 20px;
+    color:black;
+}
+.imageBodyLeft{
+    position: absolute;
+    border: 2px solid gray;
+    height: 100%;
+    width: 20%;
 }
 
 .header{
@@ -21,7 +58,11 @@ body{
     min-height: 120px;
     
 }
-
+.background{
+    background-image: url('../pictures/sideImage.jpg');
+    background-repeat: repeat-y;
+    background-size: 20%;
+}
 .test2 {
     position: center;
     right: 100px;
@@ -65,14 +106,12 @@ ul{
     color: rgb(73, 1, 1)
 }
 .backgroundCircle{
-    width: 1200px;
-    height: 1100px;
+    max-width: 55%;
+    min-height: 800px;
     background-image: url('../pictures/circleBackground.jpg');
-    background-size: 80%;
+    background-size: 90%;
+    background-position: center;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     display: flex;
     justify-content: center;
     margin-right: auto;
@@ -174,23 +213,21 @@ h2{
 
 .dropdown{
     min-width: 420px;
-    max-width: 650px;
-    background-color: rgba(128, 128, 128, 0.884);
+    max-width: 550px;
+    background-color: rgba(128, 128, 128, 0.815);
     text-align: center;
     font-family: 'Times New Roman', Times, serif;
     height: 70%;
     width: 40%;
     padding-bottom: 10px;
-    border: 5px solid black;
+    border: 5px solid rgba(0, 0, 0, 0.653);
     display: flex;
     justify-content: center;
-    margin: 10px;
     margin-right: auto;
     margin-left: auto;
     flex: 1;
     align-items: center;
     object-fit: contain;
-    margin-top: 5%;
     
 }
 .recorderTable{
