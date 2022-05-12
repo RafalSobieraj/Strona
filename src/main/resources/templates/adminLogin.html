@@ -23,7 +23,7 @@
         </div>
 </div>
 <div>
-    <ul class="header">       
+    <ul class="mainHeader">       
         <li><a class="configurationButton" th:href="@{/configuration}">Konfiguracja<p class="material-icons">
             build
         </p></a></li>
@@ -36,7 +36,7 @@
         <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE<p class="material-icons">list</p></a></li>
     </ul>
 </div>
-    <form th:action="@{/doLogin}" method="post" style="max-width: 400px; margin: 40px auto; color: white;">
+    <form th:action="@{/doLogin}" method="post" style="max-width: 400px; margin: 40px auto;">
         <h1>Admin Settings Login</h1>
         <p>
             Username: <input type="text" name="username" required>

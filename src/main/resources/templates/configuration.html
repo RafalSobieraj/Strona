@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Konfiguratior Kamer</title>
 </head>
 <body>
     <div class="headerTop">
@@ -33,7 +33,7 @@
             </div>
     </div>
     <div>
-        <ul class="header">       
+        <ul class="mainHeader">       
             <li><a class="configurationButton" th:href="@{/configuration}">Konfiguracja<p class="material-icons">
                 build
             </p></a></li>
@@ -56,7 +56,7 @@
         <tr>
             <td>
             <select name="cameraDropdown" id="cameraDropdown" class="form-control">
-                <option value="0">Select camera:</option>
+                <option value="0">Wybierz kamerę:</option>
                 <option th:each="cameras : ${cameraList}" th:value="${cameras.id}" th:text="${cameras}">Option</option>
             </select>
             </td>
@@ -66,7 +66,7 @@
                 <tr>
                     <td>
                         <select name="recorderDropdown" id="recorderDropdown" class="form-control">
-                            <option value="0">Select recorder:</option>
+                            <option value="0">Wybierz rejestrator:</option>
                             <option th:each="recorder : ${recorderList}" th:value="${recorder.id}" th:text="${recorder}">Option</option>
                         </select>
                     </td>
@@ -76,7 +76,7 @@
             <tr>
                 <td>
                     <select name="switchDropdown" id="switchDropdown" class="form-control">
-                        <option value="0">Select switch POE:</option>
+                        <option value="0">Wybierz switch POE:</option>
                         <option th:each="switches : ${switchList}" th:value="${switches.id}" th:text="${switches}">Option</option>
                     </select>
                 </td>
