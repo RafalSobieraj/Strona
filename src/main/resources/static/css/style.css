@@ -145,8 +145,22 @@ ul{
     text-align: center;
     
 }
+
+.theadStyle{
+    text-align: center; 
+    vertical-align: middle; 
+    background-color: rgb(196, 199, 0);
+}
+.tableInTable{
+    max-width: 65%; 
+    margin: 0 auto; 
+    background-color: red;
+    padding: 1vw;
+    border: 4px solid black;
+}
+
 .itemHover{
-    color: red;
+    color: rgb(132, 134, 1);
 }
 .itemHover:hover{
     color: rgb(73, 1, 1)

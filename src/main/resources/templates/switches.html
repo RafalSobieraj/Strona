@@ -55,9 +55,10 @@
           [[${message}]]
         </h3>
       </div>
+    <div class="tableInTable">
     <div style="max-width: 65%; margin: 0 auto; background-color: white;">
         <table class="table table-bordered">
-            <thead style="text-align: center; vertical-align: middle; background-color: red;">
+            <thead class="theadStyle">
                 <tr>
                     <th>ID</th>
                     <th>Zdjęcie</th>
@@ -71,7 +72,7 @@
             <tbody class="description">
                 <th:block th:each="switchPOE : ${switchPOEList}">
                     <tr>
-                        <td style="background-color: yellow;">[[${switchPOE.id}]]</td>
+                        <td style="background-color: rgb(122, 227, 253);">[[${switchPOE.id}]]</td>
                         <td>
                           <img th:src="@{${switchPOE.imagePath}}" alt="Switch POE image" style="width: 100px;"/>
                         </td>
@@ -90,6 +91,7 @@
             </tbody>
         </table>
     </div>
+  </div>
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
