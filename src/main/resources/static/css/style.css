@@ -149,22 +149,49 @@ ul{
 .theadStyle{
     text-align: center; 
     vertical-align: middle; 
-    background-color: rgb(196, 199, 0);
+    background-color: rgb(255, 207, 87);
+    min-width: 50%;
 }
+
 .tableInTable{
-    max-width: 65%; 
+    background-image: url('../pictures/circleBackground.jpg');
+    background-size: 80%;
+    background-position: center;
+    background-blend-mode: overlay;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    max-width: 50%; 
     margin: 0 auto; 
-    background-color: red;
+    background-color: rgba(255, 207, 87, 0.788);
     padding: 1vw;
     border: 4px solid black;
+    }
+@media  only screen and (max-width: 2000px){
+    .tableInTable{
+        background-image: url('../pictures/circleBackground.jpg');
+        background-size: 80%;
+        background-position: center;
+        background-blend-mode: overlay;
+        display: block;
+        flex: 1;
+        justify-content: center;
+        max-width: 50%; 
+        margin: 0 auto; 
+        background-color: rgba(255, 207, 87, 0.788);
+        padding: 1vw;
+        border: 4px solid black;
+        }
 }
 
 .itemHover{
     color: rgb(132, 134, 1);
 }
+
 .itemHover:hover{
     color: rgb(73, 1, 1)
 }
+@media only screen and (max-device-width: 1080px){
 .backgroundCircle{
     max-width: 55%;
     min-height: 800px;
@@ -180,8 +207,25 @@ ul{
     margin-top: 2%;
     align-items: center;
     object-fit: contain;
-    
+    }
 }
+
+.backgroundCircle{
+    max-width: 40%;
+    min-height: 950px;
+    background-image: url('../pictures/circleBackground.jpg');
+    background-size: 90%;
+    background-position: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    flex: 1;
+    margin-top: 2%;
+    align-items: center;
+    object-fit: contain;
+    }
 
 li{
     text-align: center;
@@ -207,18 +251,15 @@ li a:hover{
 .logo:hover{
     box-shadow: 0 0 2px 1px grey;
 }
+
 .description td{
+    background-color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
     vertical-align: middle;
     font-size: 30px;
 }
-.decriptionRecorder td{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 25px;
-}
+
 .dropdown select{
     min-width: 100px;
     width: 400px;
@@ -329,14 +370,13 @@ a:hover{
     object-fit: contain;
     border: 4px solid red;
     border-top: none;
+    vertical-align: middle;
 }
 .configResult img{
     position: relative;
     max-width: 250px;
     display: flex;
-    justify-content: center; 
-    margin-right: auto;
-    margin-left: auto; 
+    justify-content: center;
     flex: 0; 
     align-items: center; 
     object-fit: contain;

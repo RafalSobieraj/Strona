@@ -56,7 +56,6 @@
         </h3>
       </div>
     <div class="tableInTable">
-    <div style="max-width: 65%; margin: 0 auto; background-color: white;">
         <table class="table table-bordered">
             <thead class="theadStyle">
                 <tr>
@@ -71,7 +70,7 @@
             <tbody class="description">
                 <th:block th:each="camera : ${cameraList}">
                     <tr>
-                        <td style="background-color: rgb(122, 227, 253);">[[${camera.id}]]</td>
+                        <td style="background-color: lightblue">[[${camera.id}]]</td>
                         <td>
                           <img th:src="@{${camera.imagePath}}" alt="Camera image" style="width: 100px;"/>
                         </td>
@@ -88,7 +87,6 @@
                 </th:block>
             </tbody>
         </table>
-    </div>
   </div>
       
     <!-- Optional JavaScript -->

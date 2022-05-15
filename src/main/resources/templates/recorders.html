@@ -55,7 +55,7 @@
           [[${message}]]
         </h3>
       </div>
-    <div style="max-width: 65%; margin: 0 auto; background-color: white">
+      <div class="tableInTable">
         <table class="table table-bordered">
             <thead class="theadStyle">
                 <tr>
@@ -70,10 +70,10 @@
                     <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
                 </tr>
             </thead>
-            <tbody class="decriptionRecorder">
+            <tbody class="description">
                 <th:block th:each="recorder : ${recorderList}">
                     <tr>
-                        <td style="background-color: yellow;">[[${recorder.id}]]</td>
+                        <td style="background-color: lightblue;">[[${recorder.id}]]</td>
                         <td>
                           <img th:src="@{${recorder.imagePath}}" style="width: 120px;"/>
                         </td>

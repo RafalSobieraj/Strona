@@ -72,7 +72,6 @@ public class ConfigurationController {
 
             model.addAttribute("option2", camera);
             model.addAttribute("option3", switchPOE);
-
             model.addAttribute("option1", recorder);
             
 
