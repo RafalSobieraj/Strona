@@ -61,13 +61,13 @@ public class ConfigurationController {
             return "configuration_error";
         }
         
-            List<Camera> resultCamera = cameraList.stream().filter(x -> Objects.equals(x.getCameraResolution(), 5))
+            List<Camera> resultCamera = cameraList.stream().filter(x -> (x.getCameraResolution()) >= camera.getCameraResolution())
             .collect(Collectors.toList());
 
-            List<Recorder> resultRecorder = recorderList.stream().filter(x -> Objects.equals(x.getStorageLimit(), 6))
+            List<Recorder> resultRecorder = recorderList.stream().filter(x -> (x.getStorageLimit() >= 6))
             .collect(Collectors.toList());
 
-            List<SwitchPOE> resultSwitch = switchList.stream().filter(x -> Objects.equals(x.getPortSpeed(), 100))
+            List<SwitchPOE> resultSwitch = switchList.stream().filter(x -> (x.getPortSpeed()) >= 100)
             .collect(Collectors.toList());
 
             model.addAttribute("option2", camera);
@@ -88,10 +88,10 @@ public class ConfigurationController {
                 model.addAttribute("conclusion", "Wybrana kamera bardzo dobrze łączy się z danym rejestratorem i switchem.");
             
             if(camera.getCameraResolution() >= 4)
-                model.addAttribute("cameraConclusion", "Kamera z daną rodzielczością idealnie pasuje do użytku firmowego w celu monitorowania wielu dużych obszarów np. obiektów publicznych. Wyższa rozdzielczość pozwoli na zarejestrowanie większej ilości szczegółów, w przypadku kamery monitorującej na przykład teren przed budynkiem uda nam się odczytać numer" +
+                model.addAttribute("cameraConclusion", "Kamera z daną rodzielczością idealnie pasuje do użytku firmowego w celu monitorowania wielu dużych obszarów np. obiektów publicznych. Wyższa rozdzielczość pozwoli na zarejestrowanie większej ilości szczegółów, w przypadku kamery monitorującej na przykład teren przed budynkiem uda nam się odczytać numer " +
                 "tablicy rejestracyjnej auta stojącego przed bramą lub uzyskać lepszy obraz twarzy osoby, która pojawi się w zasięgu.");
             else
-                model.addAttribute("cameraConclusion", "Kamera z daną rozdzielczością jest bardzo dobra do zastosowań domowych. Nie obciąży to za bardzo pamięci rejestratora oraz jakoś podglądu online będzie większa niż w przypadku kamery o wysokiej rozdzielczości.");
+                model.addAttribute("cameraConclusion", "Kamera z daną rozdzielczością jest bardzo dobra do zastosowań domowych. Nie obciąży to za bardzo pamięci rejestratora oraz jakość podglądu online będzie większa niż w przypadku kamery o wysokiej rozdzielczości.");
 
             model.addAttribute("listRecorder", resultRecorder);
             model.addAttribute("listCamera", resultCamera);

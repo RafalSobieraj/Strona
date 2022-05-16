@@ -16,7 +16,7 @@
         <script type="text/javascript">
         </script>
     </head>
-    <body>
+    <body class="configResBody">
     
         <div class="headerTop">
             <a target="_self" th:href="@{/}">
@@ -48,9 +48,8 @@
         </ul>
     </div>
 
-    <span>
-      
-    <h3 style="text-align: center; object-fit: fill; font-size: 40px;">WYBRANO NASTĘPUJĄCE ELEMENTY:</h3>
+    <span>   
+    <h2 style="text-align: center; object-fit: fill; font-size: 40px;">WYBRANO NASTĘPUJĄCE ELEMENTY:</h2>
     <div class="divHeading">
         <h3 style= "padding: 4px; margin: 0; vertical-align: middle; font-size: 40px;">REJESTRATOR</h3>
     </div>
@@ -71,10 +70,13 @@
         <div class="configResult">
             <img th:src="@{${option3.imagePath}}" alt="Switch image"/>
             <h4 style="text-align: center; font-size: 30px;" th:text="${option3}"></h4> 
-        </div>    
-
-    <h4 th:text="${conclusion}" style="font-size: 50px; font-family:fantasy; text-align: center; letter-spacing: -2px; -webkit-text-stroke: 2px red;"></h4>
-    <h4 th:text="${cameraConclusion}" style="font-size: 50px; font-family:fantasy; text-align: center; letter-spacing: -2px; -webkit-text-stroke: 2px red;"></h4>
+        </div>  
+    </span>  
+    <div class="conclusion">
+        <h6>REZULTAT</h6>
+        <h5 th:text="${conclusion}"></h5>
+        <h5 th:text="${cameraConclusion}"></h5>
+    </div>
     <div class="tableInTable" style="min-width: 90%; max-width: 90%;">
         <table class="table table-bordered" style="margin-left: 5px; margin-right: 5px;">
             <thead class="theadStyle">
@@ -180,6 +182,5 @@
     </tbody>
 </table>
 </div>
-</span>
 </body>
 </html>

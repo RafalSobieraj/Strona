@@ -1,4 +1,4 @@
-@media only screen and (max-device-width: 1080px){
+
 body h2{
     text-align: center;
     font-size: 50px;
@@ -10,8 +10,8 @@ body h2{
     margin-left: auto;
     margin-right: auto;  
     }
-}
 
+@media only screen and (max-device-width: 1080px){
 body h2{
     text-align: center;
     font-size: 80px;
@@ -23,7 +23,7 @@ body h2{
     margin-left: auto;
     margin-right: auto;  
     }
-
+}
 .shopLink{
     position: absolute;
     display: flex;
@@ -72,6 +72,32 @@ body h2{
 
 .mainText2 {
     background-image: url('../pictures/kamera2.avif');  
+}
+
+.conclusion{
+    max-width: 60%;
+    background-color: rgba(255, 207, 87, 0.801);
+    background-image: url('../pictures/kamera.png');  
+    background-position: center;
+    background-blend-mode: overlay;
+    background-size: 100%;
+    margin: 10px auto 10px auto;
+    border: 10px solid darkblue;
+    border-radius: 30px;
+    padding: 2vw;
+    padding-top: 0;
+}
+
+.conclusion h5{
+    color: red;
+}
+
+.conclusion h6{
+    font-size: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 0;
 }
 
 @media only screen and (max-device-width: 1080px){
@@ -161,7 +187,7 @@ ul{
     display: flex;
     flex: 1;
     justify-content: center;
-    max-width: 50%; 
+    max-width: 70%; 
     margin: 0 auto; 
     background-color: rgba(255, 207, 87, 0.788);
     padding: 1vw;
@@ -176,7 +202,7 @@ ul{
         display: block;
         flex: 1;
         justify-content: center;
-        max-width: 50%; 
+        max-width: 70%; 
         margin: 0 auto; 
         background-color: rgba(255, 207, 87, 0.788);
         padding: 1vw;
@@ -191,9 +217,9 @@ ul{
 .itemHover:hover{
     color: rgb(73, 1, 1)
 }
-@media only screen and (max-device-width: 1080px){
+
 .backgroundCircle{
-    max-width: 55%;
+    max-width: 60%;
     min-height: 800px;
     background-image: url('../pictures/circleBackground.jpg');
     background-size: 90%;
@@ -208,8 +234,8 @@ ul{
     align-items: center;
     object-fit: contain;
     }
-}
 
+@media only screen and (max-device-width: 1080px){
 .backgroundCircle{
     max-width: 40%;
     min-height: 950px;
@@ -226,6 +252,7 @@ ul{
     align-items: center;
     object-fit: contain;
     }
+}
 
 li{
     text-align: center;
@@ -357,9 +384,10 @@ a:hover{
 
 
 .configResult, .divHeading{
-    margin-bottom: 20px;
-    min-width: 50%;
-    max-width: 550px;
+
+    min-width: 30%;
+    max-width: 80%;
+    overflow: auto;
     background-color: white;
     display: flex;
     justify-content: center; 
@@ -386,9 +414,17 @@ a:hover{
     border-bottom: none;
     border-top: 4px solid red;
     margin-bottom: 0;
+    margin-top: 20px;
 }
 
 
 .table tbody tr td, .table thead tr th{
     border: 2px solid black;
+}
+
+.configResBody h5{
+    font-size: 30px; 
+
+    text-align: center; 
+    letter-spacing: -2px;
 }
