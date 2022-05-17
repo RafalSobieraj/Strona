@@ -17,7 +17,7 @@ $(document).ready(function(){
     }
 
     function cancelForm(){
-        window.location = "[[@{/}]]"
+        window.location = "/"
     }
 
     function showThumbnail(input){

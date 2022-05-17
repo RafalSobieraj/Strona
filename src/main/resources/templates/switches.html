@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
-    <title>Lista kamer</title>
+    <title>Lista switchy</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,7 +46,7 @@
 </div>
       <div><h2 class="container-fluid text-center" style="color: white;">Lista switchy POE</h2></div>
       <div sec:authorize="hasAuthority('ADMIN')" class="container-fluid text-center">
-          <a class="h4" th:href="@{/switches/new}" style="color: white;">
+          <a class="h4" th:href="@{/switches/new}">
             Dodaj nowy switch POE
           </a>
       </div>

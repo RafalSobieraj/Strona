@@ -50,26 +50,23 @@
 
     <span>   
     <h2 style="text-align: center; object-fit: fill; font-size: 40px;">WYBRANO NASTĘPUJĄCE ELEMENTY:</h2>
-    <div class="divHeading">
-        <h3 style= "padding: 4px; margin: 0; vertical-align: middle; font-size: 40px;">REJESTRATOR</h3>
-    </div>
         <div class="configResult">
+            <h3>REJESTRATOR</h3>
             <img th:src="@{${option1.imagePath}}" alt="Recorder image" />
-            <h4 style="text-align: center; font-size: 30px;" th:text="${option1}"></h4>
-        </div>
-        <div class="divHeading">
-            <h3 style= "padding: 4px; margin: 0; vertical-align: middle; font-size: 40px;">KAMERA</h3>
+            <h4 th:text="${option1.recorderModel}" style="font-size: 50px; color:rgb(198, 148, 21);"></h4>
+            <h4 style="font-size: 30px;" th:text="${option1}"></h4>
         </div>
         <div class="configResult">
+            <h3>KAMERA</h3>
             <img th:src="@{${option2.imagePath}}" alt="Camera image"/>
-            <h4 style="text-align: center; font-size: 30px;" th:text="${option2}"></h4>
-        </div>
-        <div class="divHeading">
-            <h3 style= "padding: 4px; margin: 0; vertical-align: middle; font-size: 40px;">SWITCH</h3>
+            <h4 th:text="${option2.cameraModel}" style="font-size: 50px; color:rgb(198, 148, 21);"></h4>
+            <h4 style="font-size: 30px;" th:text="${option2}"></h4>
         </div>
         <div class="configResult">
+            <h3>SWITCH</h3>
             <img th:src="@{${option3.imagePath}}" alt="Switch image"/>
-            <h4 style="text-align: center; font-size: 30px;" th:text="${option3}"></h4> 
+            <h4 th:text="${option3.switchModel}" style="font-size: 50px; color:rgb(198, 148, 21);"></h4>
+            <h4 style="font-size: 30px;" th:text="${option3}"></h4> 
         </div>  
     </span>  
     <div class="conclusion">

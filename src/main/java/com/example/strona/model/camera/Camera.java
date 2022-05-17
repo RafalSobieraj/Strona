@@ -100,6 +100,7 @@ public class Camera {
 
     @Override
     public String toString() {
-        return CameraModel + ", ROZDZIELCZOŚĆ = " + CameraResolution + " MPx" + ", TYP = " + CameraType;
+        return " ROZDZIELCZOŚĆ = " + CameraResolution + " MPx" + ", TYP = " + CameraType;
     }
+
 }
