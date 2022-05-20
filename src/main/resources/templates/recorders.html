@@ -21,7 +21,7 @@
   </a>
       <div class="adminLogout" sec:authorize="isAuthenticated()">
           <ul>
-      Hello <b><span sec:authentication="name">Username</span></b>
+      Zalogowano jako: <b><span sec:authentication="name">Username</span></b>
       &nbsp;
       <span sec:authentication="principal.authorities">Roles</span>
       <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
