@@ -63,6 +63,23 @@ public class SwitchPOEController {
         }
         else uploadPath.toFile().delete();
 
+        if(!switchPOE.getImage().equals(null)){
+            Files.list(uploadPath).forEach(file -> {
+                if(!Files.isDirectory(file)) {
+                    {
+                        try {
+                                Path imagePath = Paths.get(switchPOE.getImage());
+                                int value = imagePath.compareTo(file.getFileName());
+                                if(value > 0)
+                                    Files.delete(file);
+                        } catch (IOException e) {
+                            re.addFlashAttribute("message", "There was no files in directory.");
+                        }
+                    }
+                }
+            });
+        }
+
         try (InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);

@@ -62,6 +62,23 @@ public class RecorderController {
         }
         else uploadPath.toFile().delete();
 
+        if(!recorder.getImage().equals(null)){
+            Files.list(uploadPath).forEach(file -> {
+                if(!Files.isDirectory(file)) {
+                    {
+                        try {
+                                Path imagePath = Paths.get(recorder.getImage());
+                                int value = imagePath.compareTo(file.getFileName());
+                                if(value > 0)
+                                    Files.delete(file);
+                        } catch (IOException e) {
+                            re.addFlashAttribute("message", "There was no files in directory.");
+                        }
+                    }
+                }
+            });
+        }
+
         try (InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);

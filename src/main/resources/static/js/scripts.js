@@ -1,9 +1,3 @@
-$(document).ready(function(){
-    $('#fileImage').change(function(){
-     showThumbnail(this);
-   });
-});
-
     function cancelFormCameras(){
         window.location = "/cameras"
     }

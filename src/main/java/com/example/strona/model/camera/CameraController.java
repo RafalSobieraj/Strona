@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javassist.NotFoundException;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +19,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import com.example.strona.model.Utils.DirectoryDeleteUtil;
 
@@ -50,6 +53,7 @@ public class CameraController {
     throws IOException{
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        System.out.println(fileName);
         camera.setImage(fileName);
 
         Camera savedImage = cameraService.save(camera);
@@ -57,30 +61,52 @@ public class CameraController {
         String uploadDir = "./images/" + "cameras/" + savedImage.getId();
         String relativeCamera = new File("").toURI().relativize(new File(uploadDir).toURI()).getPath();
 
-        System.out.println(relativeCamera);
+        
         Path uploadPath = Paths.get(relativeCamera);
+        System.out.println(uploadPath);
 
         if(!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
         }
         else uploadPath.toFile().delete();
 
+        if(!camera.getImage().equals(null)){
+            Files.list(uploadPath).forEach(file -> {
+                if(!Files.isDirectory(file)) {
+                    {
+                        try {
+                                Path imagePath = Paths.get(camera.getImage());
+                                int value = imagePath.compareTo(file.getFileName());
+                                if(value > 0)
+                                    Files.delete(file);
+                        } catch (IOException e) {
+                            re.addFlashAttribute("message", "There was no files in directory.");
+                        }
+                    }
+                }
+            });
+        }
+        
         try (InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         }catch (IOException e){
-            throw new IOException("Could not save file: " + fileName);
+            re.addFlashAttribute("message", "There was an error adding a image. Please try again.");
+            return "redirect:/cameras";
         }
-
+    
         re.addFlashAttribute("message", "Camera was added succesfully.");
         return "redirect:/cameras";
-    }
+    
+}
 
     @GetMapping("/cameras/edit/{id}")
         public String editCamera(@PathVariable("id") Integer id, Model model, RedirectAttributes re){
             try{
                 Camera camera = cameraService.get(id);
+                String cameraImage = camera.getImagePath();
                 model.addAttribute("camera", camera);
+                model.addAttribute("cameraImage", cameraImage);
                 model.addAttribute("title", "Edit camera (ID: " + id + ")");
                 return "camera_form";
             } catch(NotFoundException e){
@@ -100,6 +126,38 @@ public class CameraController {
             re.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/cameras";
-        } 
+        }
+
+        @GetMapping("/cameras/image")
+        public String addImageCamera(@PathVariable("id") Integer id, Model model, MultipartFile multipartFile, RedirectAttributes re)
+        {
+            try{
+                Camera camera = cameraService.get(id);
+                String cameraImage = camera.getImage();
+                model.addAttribute("camera", cameraImage);
+                model.addAttribute("title", "Add image for camera (ID: " + id + ")");
+                return "addImageCamera";
+            } catch(NotFoundException e){
+                re.addFlashAttribute("message", e.getMessage());
+            }
+            return "redirect:/cameras";
+            
+        }
     
-}
+        @PostMapping("/cameras/image")
+        public String addImageCamera(@PathVariable("id") Integer id, Model model, MultipartFile multipartFile, RedirectAttributes re,
+        @ModelAttribute(name = "camera") Camera camera)
+        {
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            if(camera.getId() != null){
+                camera.setImage(fileName);
+                cameraService.save(camera);
+                re.addFlashAttribute("message", "Image added successfully.");
+                return "redirect:/cameras";
+            }
+            else
+                re.addFlashAttribute("message", "An error occured.");
+            return "redirect:/switches";
+        }
+    }
+    
