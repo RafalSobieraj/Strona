@@ -43,7 +43,7 @@ public class CameraRepositoryTests {
 
     @Test
     public void testUpdate(){
-        Integer cameraId = 5;
+        Integer cameraId = 1085;
         Optional<Camera> optionalCamera = repository.findById(cameraId);
         Camera camera = optionalCamera.get();
         camera.setCameraResolution(2);
