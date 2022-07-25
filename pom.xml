@@ -98,6 +98,8 @@
                 <configuration>
                     <source>11</source>
                     <target>11</target>
+                    <fork>true</fork>
+                    <executable>/usr/bin/java</executable>
                 </configuration>
             </plugin>
         </plugins>
