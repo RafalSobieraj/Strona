@@ -59,7 +59,7 @@ public class CameraController {
 
         Camera savedImage = cameraService.save(camera);
     
-        String uploadDir = "./images/" + "cameras/" + savedImage.getId();
+        String uploadDir = "../static/images/" + "cameras/" + savedImage.getId();
         String relativeCamera = new File("").toURI().relativize(new File(uploadDir).toURI()).getPath();
 
         
@@ -106,6 +106,10 @@ public class CameraController {
             try{
                 Camera camera = cameraService.get(id);
                 String cameraImage = camera.getImagePath();
+                String cameraImg = camera.getImage();
+                System.out.println(cameraImg);
+                System.out.println(cameraImg.toString());
+                System.out.println(cameraImage);
                 model.addAttribute("camera", camera);
                 model.addAttribute("cameraImage", cameraImage);
                 model.addAttribute("title", "Edit camera (ID: " + id + ")");
