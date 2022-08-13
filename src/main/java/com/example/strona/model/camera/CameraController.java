@@ -7,10 +7,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Base64;
 import java.util.List;
 
 import com.example.strona.model.Utils.DirectoryDeleteUtil;
+import com.example.strona.model.Utils.ImageUploadUtil;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,13 +62,10 @@ public class CameraController {
 
         Camera savedImage = cameraService.save(camera);
     
-        String uploadDir = "../static/images/" + "cameras/" + savedImage.getId();
-        String relativeCamera = new File("").toURI().relativize(new File(uploadDir).toURI()).getPath();
+        String uploadDir = "images/" + "cameras/" + savedImage.getId();
 
-        
-        Path uploadPath = Paths.get(relativeCamera);
-        System.out.println(uploadPath);
-
+        ImageUploadUtil.saveImg(uploadDir, fileName, multipartFile);
+/* 
         if(!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
         }
@@ -95,7 +95,7 @@ public class CameraController {
             re.addFlashAttribute("message", "There was an error adding a image. Please try again.");
             return "redirect:/cameras";
         }
-    
+    */
         re.addFlashAttribute("message", "Camera was added succesfully.");
         return "redirect:/cameras";
     
