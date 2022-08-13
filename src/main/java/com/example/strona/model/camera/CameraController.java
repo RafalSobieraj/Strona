@@ -148,21 +148,5 @@ public class CameraController {
             return "redirect:/cameras";
             
         }
-    
-        @PostMapping("/cameras/image")
-        public String addImageCamera(@PathVariable("id") Integer id, Model model, MultipartFile multipartFile, RedirectAttributes re,
-        @ModelAttribute(name = "camera") Camera camera)
-        {
-            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-            if(camera.getId() != null){
-                camera.setImage(fileName);
-                cameraService.save(camera);
-                re.addFlashAttribute("message", "Image added successfully.");
-                return "redirect:/cameras";
-            }
-            else
-                re.addFlashAttribute("message", "An error occured.");
-            return "redirect:/switches";
-        }
-    }
+}
     
