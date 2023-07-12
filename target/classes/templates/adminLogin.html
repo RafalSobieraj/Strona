@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <title>Admin Settings Login Page</title>
+</head>
+<body>
+    <div class="headerTop">
+        <a target="_self" th:href="@{/}">
+        <img class="logo" th:src="@{pictures/logo.png}">
+    </a>
+        <div class="adminLogout" sec:authorize="isAuthenticated()">
+            <ul>
+        Zalogowano jako: <b><span sec:authentication="name">Username</span></b>
+        &nbsp;
+        <span sec:authentication="principal.authorities">Roles</span>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <input class="logoutButton" type="submit" value="Logout"/>
+        </form>
+    </ul>
+        </div>
+</div>
+<div>
+    <ul class="mainHeader">       
+        <li><a class="configurationButton" th:href="@{/configuration}">Konfiguracja<p class="material-icons">
+            build
+        </p></a></li>
+        <li><a>
+            <a th:href="@{/cameras}" style="font-size: 34px">Kamery  <p class="material-icons">list</p>
+            </a>
+        </a>
+        </li>
+        <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory<p class="material-icons">list</p></a></li>
+        <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE<p class="material-icons">list</p></a></li>
+    </ul>
+</div>
+    <form th:action="@{/doLogin}" method="post" style="max-width: 400px; margin: 40px auto;">
+        <h1>Admin Settings Login</h1>
+        <p>
+            Username: <input type="text" name="username" required>
+        </p>
+        <p>
+            Password: <input type="password" name="password" required>
+        </p>
+        <p>
+            <input type="submit" value="Log in" />
+        </p>
+    </form>
+</body>
+</html>
