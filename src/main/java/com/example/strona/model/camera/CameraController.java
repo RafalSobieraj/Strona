@@ -1,41 +1,35 @@
 package com.example.strona.model.camera;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.Base64;
-import java.util.List;
-
 import com.example.strona.model.Utils.DirectoryDeleteUtil;
 import com.example.strona.model.Utils.ImageUploadUtil;
-
-import org.apache.commons.io.FileUtils;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javassist.NotFoundException;
-
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class CameraController {
 
-   @Autowired private CameraService cameraService;
-   @Autowired private DirectoryDeleteUtil directoryDeleteUtil;
+    private final CameraService cameraService;
+    private final DirectoryDeleteUtil directoryDeleteUtil;
 
-   @GetMapping("/cameras")
+    @Autowired
+    public CameraController(CameraService cameraService, DirectoryDeleteUtil directoryDeleteUtil) {
+        this.cameraService = cameraService;
+        this.directoryDeleteUtil = directoryDeleteUtil;
+    }
+
+    @GetMapping("/cameras")
    public String getCameraList(Model model){
        List<Camera> cameraList = cameraService.listCameras();
        model.addAttribute("cameraList", cameraList);
@@ -56,8 +50,7 @@ public class CameraController {
     @RequestParam("fileImage") MultipartFile multipartFile)
     throws IOException{
 
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        System.out.println(fileName);
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
         camera.setImage(fileName);
 
         Camera savedImage = cameraService.save(camera);
@@ -65,37 +58,7 @@ public class CameraController {
         String uploadDir = "images/" + "cameras/" + savedImage.getId();
 
         ImageUploadUtil.saveImg(uploadDir, fileName, multipartFile);
-/* 
-        if(!Files.exists(uploadPath)){
-            Files.createDirectories(uploadPath);
-        }
-        else uploadPath.toFile().delete();
 
-        if(!camera.getImage().equals(null)){
-            Files.list(uploadPath).forEach(file -> {
-                if(!Files.isDirectory(file)) {
-                    {
-                        try {
-                                Path imagePath = Paths.get(camera.getImage());
-                                int value = imagePath.compareTo(file.getFileName());
-                                if(value > 0)
-                                    Files.delete(file);
-                        } catch (IOException e) {
-                            re.addFlashAttribute("message", "There was no files in directory.");
-                        }
-                    }
-                }
-            });
-        }
-        
-        try (InputStream inputStream = multipartFile.getInputStream()){
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        }catch (IOException e){
-            re.addFlashAttribute("message", "There was an error adding a image. Please try again.");
-            return "redirect:/cameras";
-        }
-    */
         re.addFlashAttribute("message", "Camera was added succesfully.");
         return "redirect:/cameras";
     
@@ -106,10 +69,6 @@ public class CameraController {
             try{
                 Camera camera = cameraService.get(id);
                 String cameraImage = camera.getImagePath();
-                String cameraImg = camera.getImage();
-                System.out.println(cameraImg);
-                System.out.println(cameraImg.toString());
-                System.out.println(cameraImage);
                 model.addAttribute("camera", camera);
                 model.addAttribute("cameraImage", cameraImage);
                 model.addAttribute("title", "Edit camera (ID: " + id + ")");

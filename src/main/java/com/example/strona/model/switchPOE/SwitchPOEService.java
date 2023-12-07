@@ -3,7 +3,6 @@ package com.example.strona.model.switchPOE;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javassist.NotFoundException;
@@ -11,7 +10,11 @@ import javassist.NotFoundException;
 @Service
 public class SwitchPOEService {
     
-    @Autowired private SwitchPOERepository repository;
+    private final SwitchPOERepository repository;
+
+    public SwitchPOEService(SwitchPOERepository repository) {
+        this.repository = repository;
+    }
 
     public List<SwitchPOE> listSwitches(){
         return (List<SwitchPOE>) repository.findAll();

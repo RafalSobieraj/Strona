@@ -1,106 +1,66 @@
 package com.example.strona.model.camera;
 
+import lombok.*;
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name = "cameras")
+
 public class Camera {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false, name = "camera_model")
-    private  String CameraModel;
+    private  String cameraModel;
 
     @Column(nullable = false, name = "camera_type")
-    private String CameraType;
+    private String cameraType;
 
     @Column(nullable = false, name = "resolution")
-    private int CameraResolution;
+    private int cameraResolution;
 
-    @Column(nullable = true)
-    private String Image;
+    @Column()
+    private String image;
 
-    @Column(nullable = true, name = "url")
-    private String Link;
+    @Column(name = "url")
+    private String link;
 
+    @Column(name = "price", nullable = false, columnDefinition = "DOUBLE DEFAULT 0.0")
+    private Double price;
 
-    public Camera(Integer id,
-                  String cameraModel,
-                  String cameraType,
-                  int cameraResolution, String link) {
-        super();
-        this.id = id;
-        this.CameraModel = cameraModel;
-        this.CameraResolution = cameraResolution;
-        this.CameraType = cameraType;
-        this.Link = link;
-    }
+    @Column(name = "availability")
+    private String availability;
 
-    public Camera() {
-        super();
-    }
+    @Column(name = "installation")
+    private String installation;
 
-    public String getLink() {
-        return Link;
-    }
-
-
-    public void setLink(String link) {
-        Link = link;
-    }
-
-    public String getCameraModel() {
-        return CameraModel;
-    }
-
-    public String getCameraType() {
-        return CameraType;
-    }
-
-    public int getCameraResolution() {
-        return CameraResolution;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
-    public void setCameraModel(String cameraModel) {
-        CameraModel = cameraModel;
-    }
-
-    public void setCameraType(String cameraType) {
-        CameraType = cameraType;
-    }
-
-    public void setCameraResolution(int cameraResolution) {
-        CameraResolution = cameraResolution;
-    }
-
-    public String getImage() {
-        return Image;
-    }
-
-    public void setImage(String image) {
-        Image = image;
-    }
 
     @Transient
     public String getImagePath(){
-        if(Image == null || id == null) return null;
+        if(image == null || id == null) return null;
 
-        return "/images/" + "cameras/" + id + "/" + Image;
+        return "/images/" + "cameras/" + id + "/" + image;
     }
 
     @Override
-    public String toString() {
-        return " ROZDZIELCZOŚĆ = " + CameraResolution + " MPx" + ", TYP = " + CameraType;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Camera camera = (Camera) o;
+        return id != null && Objects.equals(id, camera.id);
     }
 
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

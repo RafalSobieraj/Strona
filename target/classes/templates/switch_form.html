@@ -35,25 +35,25 @@
     <input type="hidden" th:field="*{id}">
     <div class="border border-secondary rounded p-3">
       <div class="form-group row">
-        <label class="col-sm-4 col-form-label" style="text-align: center">Switch POE Model:</label>
+        <label class="col-sm-4 col-form-label" style="text-align: center">Model:</label>
         <div class="col-sm-8">
           <input type="text" th:field="*{switchModel}" class="form-control" required minlength="2"/>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-4 col-form-label" style="text-align: center">Switch POE Interface:</label>
+        <label class="col-sm-4 col-form-label" style="text-align: center">Interfejs:</label>
         <div class="col-sm-8">
           <input type="text" th:field="*{switchInterface}" class="form-control" required minlength="2"/>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-4 col-form-label" style="text-align: center">Switch POE Port Speed:</label>
+        <label class="col-sm-4 col-form-label" style="text-align: center">Szybkość portu:</label>
         <div class="col-sm-8">
           <input type="number" th:field="*{portSpeed}" class="form-control"/>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-4 col-form-label" style="text-align: center">Switch POE Band:</label>
+        <label class="col-sm-4 col-form-label" style="text-align: center">Pasmo:</label>
         <div class="col-sm-8">
           <input type="number" th:field="*{switchBand}" class="form-control"/>
         </div>
@@ -71,6 +71,23 @@
           <input type="text" th:field="*{link}" class="form-control"/>
         </div>
       </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label" style="text-align: center">Cena:</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{price}" class="form-control"/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label" style="text-align: center">Dostępność:</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{availability}" class="form-control"/>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label" style="text-align: center">Montaż:</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{installation}" class="form-control"/>
+        </div>
       <div class="text-center">
         <button type="submit" class="btn btn-primaty m-2" style="background-color: blue; color:red;">Save</button>
         <button type="button" class="btn btn-secondary m-2" onclick="cancelFormSwitches()">Cancel</button>

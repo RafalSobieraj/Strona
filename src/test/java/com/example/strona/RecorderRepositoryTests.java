@@ -34,11 +34,8 @@ public class RecorderRepositoryTests {
     @Test
     public void testFindAll(){
         Iterable<Recorder> recorders = repository.findAll();
-        Assertions.assertThat(recorders).hasSizeGreaterThan(0);
 
-        for (Recorder recorder : recorders){
-            System.out.println(recorder);
-        }
+        Assertions.assertThat(recorders).hasSizeGreaterThan(0);
 
     }
 
@@ -46,9 +43,11 @@ public class RecorderRepositoryTests {
     public void testUpdate(){
         Integer recorderId = 155;
         Optional<Recorder> optionalRecorder = repository.findById(recorderId);
-        Recorder recorder = optionalRecorder.get();
-        recorder.setCanalNumbers(2);
-        repository.save(recorder);
+        if (optionalRecorder.isPresent()) {
+            Recorder recorder = optionalRecorder.get();
+            recorder.setCanalNumbers(2);
+            repository.save(recorder);
+        }
 
         Recorder updatedRecorder = repository.findById(recorderId).get();
         Assertions.assertThat(updatedRecorder.getCanalNumbers()).isEqualTo(2);

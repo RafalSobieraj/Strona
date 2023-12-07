@@ -1,16 +1,8 @@
 package com.example.strona.model.switchPOE;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.List;
-
 import com.example.strona.model.Utils.DirectoryDeleteUtil;
-
+import com.example.strona.model.Utils.ImageUploadUtil;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javassist.NotFoundException;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class SwitchPOEController {
 
-    @Autowired private SwitchPOEService switchPOEService;
-    @Autowired private DirectoryDeleteUtil directoryDeleteUtil;
+    private final SwitchPOEService switchPOEService;
+    private final DirectoryDeleteUtil directoryDeleteUtil;
+
+    @Autowired
+    public SwitchPOEController(SwitchPOEService switchPOEService, DirectoryDeleteUtil directoryDeleteUtil) {
+        this.switchPOEService = switchPOEService;
+        this.directoryDeleteUtil = directoryDeleteUtil;
+    }
 
    @GetMapping("/switches")
    public String getSwitchPOEList(Model model){
@@ -48,44 +50,14 @@ public class SwitchPOEController {
     @RequestParam("fileImage") MultipartFile multipartFile)
     throws IOException{
 
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
         switchPOE.setImage(fileName);
 
         SwitchPOE savedImage = switchPOEService.save(switchPOE);
 
         String uploadDir = "./images/" + "switches/" + savedImage.getId();
-        String relativeSwitchPOE = new File("").toURI().relativize(new File(uploadDir).toURI()).getPath();
 
-        Path uploadPath = Paths.get(relativeSwitchPOE);
-
-        if(!Files.exists(uploadPath)){
-            Files.createDirectories(uploadPath);
-        }
-        else uploadPath.toFile().delete();
-
-        if(!switchPOE.getImage().equals(null)){
-            Files.list(uploadPath).forEach(file -> {
-                if(!Files.isDirectory(file)) {
-                    {
-                        try {
-                                Path imagePath = Paths.get(switchPOE.getImage());
-                                int value = imagePath.compareTo(file.getFileName());
-                                if(value > 0)
-                                    Files.delete(file);
-                        } catch (IOException e) {
-                            re.addFlashAttribute("message", "There was no files in directory.");
-                        }
-                    }
-                }
-            });
-        }
-
-        try (InputStream inputStream = multipartFile.getInputStream()){
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        }catch (IOException e){
-            throw new IOException("Could not save file: " + fileName);
-        }
+        ImageUploadUtil.saveImg(uploadDir, fileName, multipartFile);
 
         re.addFlashAttribute("message", "Switch POE was added succesfully.");
         return "redirect:/switches";

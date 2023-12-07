@@ -17,36 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
     <title>Konfiguratior Kamer</title>
 </head>
+<th:block th:include="fragments/header :: header"></th:block>
 <body>
-    <div class="headerTop">
-            <a target="_self" th:href="@{/}">
-            <img class="logo" th:src="@{pictures/logo.png}">
-        </a>
-            <div class="adminLogout" sec:authorize="isAuthenticated()">
-                <ul>
-            Zalogowano jako: <b><span sec:authentication="name">Username</span></b>
-            &nbsp;
-            <span sec:authentication="principal.authorities">Roles</span>
-            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                <input class="logoutButton" type="submit" value="Logout"/>
-            </form>
-        </ul>
-            </div>
-    </div>
-    <div>
-        <ul class="mainHeader">       
-            <li><a class="configurationButton" th:href="@{/configuration}">Konfiguracja<p class="material-icons">
-                build
-            </p></a></li>
-            <li><a>
-                <a th:href="@{/cameras}" style="font-size: 34px">Kamery  <p class="material-icons">list</p>
-                </a>
-            </a>
-            </li>
-            <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory<p class="material-icons">list</p></a></li>
-            <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE<p class="material-icons">list</p></a></li>
-        </ul>
-    </div>
 
 <div class="backgroundCircle">
 <div class="dropdown">

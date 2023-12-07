@@ -1,15 +1,18 @@
 package com.example.strona.model.switchPOE;
 
-import java.beans.Transient;
+import lombok.*;
+import org.hibernate.Hibernate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.beans.Transient;
+import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Table(name = "switches")
 public class SwitchPOE{
 
@@ -18,105 +21,50 @@ public class SwitchPOE{
     private Integer id;
 
     @Column(nullable = false, name = "switch_model")
-    private  String SwitchModel;
+    private  String switchModel;
 
     @Column(nullable = false, name = "switch_interface")
-    private String SwitchInterface;
+    private String switchInterface;
 
     @Column(nullable = false, name = "port_speed")
-    private int PortSpeed;
+    private int portSpeed;
 
     @Column(nullable = false, name = "switch_band")
-    private int SwitchBand;
+    private int switchBand;
 
-    @Column(nullable = true)
-    private String Image;
+    @Column()
+    private String image;
 
-    @Column(nullable = true, name = "url")
-    private String Link;
+    @Column(name = "url")
+    private String link;
 
-    public SwitchPOE(Integer id, String switchModel, String switchInterface, int portSpeed, int switchBand,
-            String image, String link) {
-        super();
-        this.id = id;
-        SwitchModel = switchModel;
-        SwitchInterface = switchInterface;
-        PortSpeed = portSpeed;
-        SwitchBand = switchBand;
-        Image = image;
-        Link = link;
-    }
+    @Column(name = "price", nullable = false, columnDefinition = "DOUBLE DEFAULT 0.0")
+    private Double price;
 
-    public SwitchPOE() {
-        super();
-    }
+    @Column(name = "availability")
+    private String availability;
 
-    public String getLink() {
-        return Link;
-    }
+    @Column(name = "installation")
+    private String installation;
 
-    public void setLink(String link) {
-        Link = link;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getSwitchModel() {
-        return SwitchModel;
-    }
-
-    public void setSwitchModel(String switchModel) {
-        SwitchModel = switchModel;
-    }
-
-    public String getSwitchInterface() {
-        return SwitchInterface;
-    }
-
-    public void setSwitchInterface(String switchInterface) {
-        SwitchInterface = switchInterface;
-    }
-
-    public int getPortSpeed() {
-        return PortSpeed;
-    }
-
-    public void setPortSpeed(int portSpeed) {
-        PortSpeed = portSpeed;
-    }
-
-    public int getSwitchBand() {
-        return SwitchBand;
-    }
-
-    public void setSwitchBand(int switchBand) {
-        SwitchBand = switchBand;
-    }
-
-    public String getImage() {
-        return Image;
-    }
-
-    public void setImage(String image) {
-        Image = image;
-    }
 
     @Transient
     public String getImagePath(){
-        if(Image == null || id == null) return null;
+        if(image == null || id == null) return null;
 
-        return "/images/" + "switches/" + id + "/" + Image;
+        return "/images/" + "switches/" + id + "/" + image;
     }
 
     @Override
-    public String toString() {
-        return " INTERFEJS = " + SwitchInterface + ", SZYBKOŚĆ = " + PortSpeed + "Mb/s" + ", PASMO = " + SwitchBand + "Gb/s";
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        SwitchPOE switchPOE = (SwitchPOE) o;
+        return id != null && Objects.equals(id, switchPOE.id);
     }
-    
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

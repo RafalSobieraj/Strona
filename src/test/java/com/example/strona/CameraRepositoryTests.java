@@ -33,11 +33,8 @@ public class CameraRepositoryTests {
     @Test
     public void testFindAll(){
         Iterable<Camera> cameras = repository.findAll();
-        Assertions.assertThat(cameras).hasSizeGreaterThan(0);
 
-        for (Camera camera : cameras){
-            System.out.println(camera);
-        }
+        Assertions.assertThat(cameras).hasSizeGreaterThan(0);
 
     }
 
@@ -45,9 +42,11 @@ public class CameraRepositoryTests {
     public void testUpdate(){
         Integer cameraId = 1085;
         Optional<Camera> optionalCamera = repository.findById(cameraId);
-        Camera camera = optionalCamera.get();
-        camera.setCameraResolution(2);
-        repository.save(camera);
+        if(optionalCamera.isPresent()) {
+            Camera camera = optionalCamera.get();
+            camera.setCameraResolution(2);
+            repository.save(camera);
+        }
 
         Camera updatedCamera = repository.findById(cameraId).get();
         Assertions.assertThat(updatedCamera.getCameraResolution()).isEqualTo(2);

@@ -1,6 +1,5 @@
 package com.example.strona.model.Recorder;
 import javassist.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +8,12 @@ import java.util.Optional;
 @Service
 public class RecorderService {
 
-    @Autowired private RecorderRepository repository;
+    private final RecorderRepository repository;
+
+    public RecorderService(RecorderRepository repository) {
+        this.repository = repository;
+    }
+
 
     public List<Recorder> listRecorders(){
         return (List<Recorder>) repository.findAll();
