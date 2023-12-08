@@ -2,6 +2,8 @@ package com.example.strona.model.camera;
 import org.springframework.stereotype.Service;
 
 import javassist.NotFoundException;
+
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +22,13 @@ public class CameraService {
 
     public Camera save(Camera camera) {
         return repository.save(camera);
+    }
+
+    public List<Camera> getByNameOrId(String query){
+        List<Camera> result = repository.findByNameOrId(query);
+        if (result.size() != 0)
+            return result;
+        return Collections.emptyList();
     }
 
     public Camera get(Integer id) throws NotFoundException{

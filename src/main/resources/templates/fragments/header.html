@@ -14,6 +14,10 @@
             </ul>
         </div>
     </div>
+    <form method="get" action="/search">
+        <input type="text" name="query" placeholder="Wyszukaj nazwę lub ID kamery">
+        <button type="submit">Szukaj</button>
+    </form>
     <div>
         <ul class="mainHeader">
             <li><a class="configurationButton" th:href="@{/configuration}">Konfiguracja<p class="material-icons">

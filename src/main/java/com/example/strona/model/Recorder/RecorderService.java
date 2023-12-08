@@ -2,6 +2,7 @@ package com.example.strona.model.Recorder;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,13 @@ public class RecorderService {
 
     public Recorder save(Recorder recorder) {
         return repository.save(recorder);
+    }
+
+    public List<Recorder> getByNameOrId(String query){
+        List<Recorder> result = repository.findByNameOrId(query);
+        if (result.size() != 0)
+            return result;
+        return Collections.emptyList();
     }
 
     public Recorder get(Integer id) throws NotFoundException {
