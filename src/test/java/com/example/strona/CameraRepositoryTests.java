@@ -4,18 +4,31 @@ import com.example.strona.model.camera.Camera;
 import com.example.strona.model.camera.CameraRepository;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@RunWith(SpringRunner.class)
 public class CameraRepositoryTests {
 
     @Autowired private CameraRepository repository;
+
+    @Before
+    public void setUp(){
+        Camera camera = new Camera();
+        camera.setCameraModel("test");
+        camera.setCameraResolution(123);
+        camera.setCameraType("Test Type");
+        camera.setPrice(100.0);
+        repository.save(camera);
+    }
 
     @Test
     public void addNewCamera(){
@@ -23,6 +36,7 @@ public class CameraRepositoryTests {
         camera.setCameraModel("Test Camera2");
         camera.setCameraType("Hybryd");
         camera.setCameraResolution(3);
+        camera.setPrice(100.0);
 
         Camera savedCamera = repository.save(camera);
 
@@ -32,6 +46,7 @@ public class CameraRepositoryTests {
 
     @Test
     public void testFindAll(){
+
         Iterable<Camera> cameras = repository.findAll();
 
         Assertions.assertThat(cameras).hasSizeGreaterThan(0);
@@ -40,15 +55,16 @@ public class CameraRepositoryTests {
 
     @Test
     public void testUpdate(){
-        Integer cameraId = 1085;
-        Optional<Camera> optionalCamera = repository.findById(cameraId);
+        List<Camera> cameras = (List<Camera>) repository.findAll();
+        Optional<Camera> optionalCamera = Optional.ofNullable(cameras.get(0));
+        Camera camera = new Camera();
         if(optionalCamera.isPresent()) {
-            Camera camera = optionalCamera.get();
+            camera = optionalCamera.get();
             camera.setCameraResolution(2);
             repository.save(camera);
         }
 
-        Camera updatedCamera = repository.findById(cameraId).get();
+        Camera updatedCamera = repository.findById(camera.getId()).get();
         Assertions.assertThat(updatedCamera.getCameraResolution()).isEqualTo(2);
 
     }
