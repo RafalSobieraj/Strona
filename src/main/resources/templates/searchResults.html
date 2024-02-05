@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Strona główna</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+</head>
+<th:block th:include="fragments/header :: header"></th:block>
+<body>
+<div class="tableInTable">
+    <table class="table table-bordered">
+        <th:block th:each="result : ${searchResults}">
+            <div class="tableInTable" th:if="${result.__class__.simpleName == 'SwitchPOE'}">
+                <thead class="theadStyle">
+                <tr>
+                    <th>ID</th>
+                    <th>Zdjęcie</th>
+                    <th>Switch POE</th>
+                    <th>Interfejs</th>
+                    <th>Szybkość portu</th>
+                    <th>Pasmo</th>
+                    <th>Cena</th>
+                    <th>Dostępność</th>
+                    <th>Montaż</th>
+                </tr>
+                </thead>
+                <tbody class="description">
+
+                <tr>
+                    <td style="background-color: lightblue;">[[${result.id}]]</td>
+                    <td>
+                        <img th:src="@{${result.imagePath}}" alt="Image" style="width: 100px;"/>
+                    </td>
+                    <td>
+                        <a class="itemHover" target="_blank" th:href="@{${result.link}}">[[${result.switchModel}]]</a>
+                    </td>
+                    <td>[[${result.switchInterface}]]</td>
+                    <td>[[${result.portSpeed}]] Mb/s</td>
+                    <td>[[${result.switchBand}]] Gb/s</td>
+                    <td>[[${result.price}]]</td>
+                    <td>[[${result.availability}]]</td>
+                    <td>[[${result.installation}]]</td>
+                </tr>
+                </tbody>
+            </div>
+            <div class="tableInTable" th:if="${result.__class__.simpleName == 'Camera'}">
+                <thead class="theadStyle">
+                <tr>
+                    <th>ID</th>
+                    <th>Zdjęcie</th>
+                    <th>Kamera</th>
+                    <th>Typ Kamery + Rozdzielczość</th>
+                    <th>Cena</th>
+                    <th>Dostępność</th>
+                    <th>Montaż</th>
+                </tr>
+                </thead>
+                <tbody class="description">
+                <tr>
+                    <td style="background-color: lightblue">[[${result.id}]]</td>
+                    <td>
+                        <img th:src="@{${result.imagePath}}" alt="Camera image" style="width: 100px;"/>
+                    </td>
+                    <td>
+                        <a class="itemHover" target="_blank" th:href="@{${result.link}}">[[${result.cameraModel}]]</a>
+                    </td>
+                    <td>[[${result.cameraType}]] [[${result.cameraResolution}]] MPx</td>
+                    <td>[[${result.price}]]</td>
+                    <td>[[${result.availability}]]</td>
+                    <td>[[${result.installation}]]</td>
+                </tr>
+                </tbody>
+            </div>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

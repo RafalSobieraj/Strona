@@ -1,4 +1,4 @@
-package com.example.strona;
+package com.example.strona.controllers;
 
 import java.util.List;
 import java.util.stream.Collectors;

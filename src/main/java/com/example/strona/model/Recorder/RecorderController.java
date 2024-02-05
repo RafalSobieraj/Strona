@@ -4,6 +4,7 @@ import com.example.strona.model.Utils.DirectoryDeleteUtil;
 import com.example.strona.model.Utils.ImageUploadUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -22,6 +23,9 @@ public class RecorderController {
 
     private final RecorderService recorderService;
     private final DirectoryDeleteUtil directoryDeleteUtil;
+
+    @Value("${images.directory}")
+    private String uploadDirectory;
 
     @Autowired
     public RecorderController(RecorderService recorderService, DirectoryDeleteUtil directoryDeleteUtil) {
@@ -50,12 +54,13 @@ public class RecorderController {
     @RequestParam("fileImage") MultipartFile multipartFile)
     throws IOException{
 
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile
+                .getOriginalFilename())).toLowerCase();
         recorder.setImage(fileName);
 
         Recorder savedRecorder = recorderService.save(recorder);
 
-        String uploadDir = "./images/" + "recorders/" + savedRecorder.getId();
+        String uploadDir = uploadDirectory + "/recorders/" + savedRecorder.getId();
 
         ImageUploadUtil.saveImg(uploadDir, fileName, multipartFile);
 

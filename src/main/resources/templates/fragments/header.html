@@ -3,6 +3,10 @@
         <a target="_self" th:href="@{/}">
             <img class="logo" th:src="@{pictures/logo.png}">
         </a>
+        <form method="get" action="/search">
+            <input type="text" name="query" placeholder="Wyszukaj nazwę lub ID">
+            <button type="submit">Szukaj</button>
+        </form>
         <div class="adminLogout" sec:authorize="isAuthenticated()">
             <ul>
                 Zalogowano jako: <b><span sec:authentication="name">Username</span></b>
@@ -27,4 +31,5 @@
             <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory<p class="material-icons">list</p></a></li>
             <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE<p class="material-icons">list</p></a></li>
         </ul>
+
 </th:block>

@@ -1,82 +1,90 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-  <head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
     <title>Lista rejestratorów</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.2/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
 </head>
-  <th:block th:include="fragments/header :: header"></th:block>
-  <body>
-      <div><h2 class="container-fluid text-center" style="color: white;">Lista rejestratorów</h2></div>
-      <div sec:authorize="hasAuthority('ADMIN')" class="container-fluid text-center">
-          <a class="h4" th:href="@{/recorders/new}">
-            Dodaj nowy rejestrator
-          </a>
-      </div>
-      <div sec:authorize="hasAuthority('ADMIN')" th:if="@{message}">
+<th:block th:include="fragments/header :: header"></th:block>
+<body>
+<div><h2 class="container-fluid text-center" style="color: white;">Lista rejestratorów</h2></div>
+<div sec:authorize="hasAuthority('ADMIN')" class="container-fluid text-center">
+    <div sec:authorize="hasAuthority('ADMIN')" th:if="@{message}">
         <h3 class="alert alert-success text-center">
-          [[${message}]]
+            <a class="h4" th:href="@{/recorders/new}">
+                Dodaj nowy rejestrator
+            </a>
+            [[${message}]]
         </h3>
-      </div>
-      <div class="tableInTable">
-        <table class="table table-bordered">
-            <thead class="theadStyle">
-                <tr>
-                    <th>ID</th>
-                    <th>Zdjęcie</th>
-                    <th>Rejestrator</th>
-                    <th>Typ Rejestratora</th>
-                    <th>Ilość dysków twardych</th>
-                    <th>Limit pojemności</th>
-                    <th>Liczba kanałów</th>
-                    <th>Przepustowość łącza</th>
-                    <th>Cena</th>
-                    <th>Dostępność</th>
-                    <th>Montaż</th>
-                    <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="description">
-                <th:block th:each="recorder : ${recorderList}">
-                    <tr>
-                        <td style="background-color: lightblue;">[[${recorder.id}]]</td>
-                        <td>
-                          <img th:src="@{${recorder.imagePath}}" style="width: 120px;"/>
-                        </td>
-                        <td>
-                          <a class="itemHover" target="_blank" th:href="@{${recorder.link}}">[[${recorder.recorderModel}]]</a>
-                        </td>
-                        <td>[[${recorder.recorderType}]]</td>
-                        <td>[[${recorder.diskCount}]] HDD</td>
-                        <td>[[${recorder.storageLimit}]] TB</td>
-                        <td>[[${recorder.canalNumbers}]]</td>
-                        <td>[[${recorder.bandwidth}]] Mbit</td>
-                        <td>[[${recorder.price}]]</td>
-                        <td>[[${recorder.availability}]]</td>
-                        <td>[[${recorder.installation}]]</td>
-                        <td sec:authorize="hasAuthority('ADMIN')">
-                            <a class="h4 mr-3" th:href="@{'/recorders/edit/' + ${recorder.id}}">Edit</a>
-                            <a class="h4" th:href="@{'/recorders/delete/' + ${recorder.id}}">Delete</a>
-                        </td>
-                    </tr>
-                </th:block>
-            </tbody>
-        </table>
     </div>
-      
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+</div>
+<div class="tableInTable">
+    <table class="table table-bordered">
+        <thead class="theadStyle">
+        <tr>
+            <th>ID</th>
+            <th>Zdjęcie</th>
+            <th>Rejestrator</th>
+            <th>Typ Rejestratora</th>
+            <th>Ilość dysków twardych</th>
+            <th>Limit pojemności</th>
+            <th>Liczba kanałów</th>
+            <th>Przepustowość łącza</th>
+            <th>Cena</th>
+            <th>Dostępność</th>
+            <th>Montaż</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="description">
+        <th:block th:each="recorder : ${recorderList}">
+            <tr>
+                <td style="background-color: lightblue;">[[${recorder.id}]]</td>
+                <td>
+                    <img th:src="@{${recorder.imagePath}}" style="width: 120px;"/>
+                </td>
+                <td>
+                    <a class="itemHover" target="_blank" th:href="@{${recorder.link}}">[[${recorder.recorderModel}]]</a>
+                </td>
+                <td>[[${recorder.recorderType}]]</td>
+                <td>[[${recorder.diskCount}]] HDD</td>
+                <td>[[${recorder.storageLimit}]] TB</td>
+                <td>[[${recorder.canalNumbers}]]</td>
+                <td>[[${recorder.bandwidth}]] Mbit</td>
+                <td>[[${recorder.price}]]</td>
+                <td>[[${recorder.availability}]]</td>
+                <td>[[${recorder.installation}]]</td>
+                <td sec:authorize="hasAuthority('ADMIN')">
+                    <a class="h4 mr-3" th:href="@{'/recorders/edit/' + ${recorder.id}}">Edit</a>
+                    <a class="h4" th:href="@{'/recorders/delete/' + ${recorder.id}}">Delete</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
 </html>

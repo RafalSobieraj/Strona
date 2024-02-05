@@ -4,6 +4,7 @@ import com.example.strona.model.Utils.DirectoryDeleteUtil;
 import com.example.strona.model.Utils.ImageUploadUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -22,6 +23,9 @@ public class CameraController {
 
     private final CameraService cameraService;
     private final DirectoryDeleteUtil directoryDeleteUtil;
+
+    @Value("${images.directory}")
+    private String uploadDirectory;
 
     @Autowired
     public CameraController(CameraService cameraService, DirectoryDeleteUtil directoryDeleteUtil) {
@@ -50,14 +54,14 @@ public class CameraController {
     @RequestParam("fileImage") MultipartFile multipartFile)
     throws IOException{
 
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile
+                .getOriginalFilename())).toLowerCase();
         camera.setImage(fileName);
-
-        Camera savedImage = cameraService.save(camera);
     
-        String uploadDir = "images/" + "cameras/" + savedImage.getId();
+        String uploadDir =  uploadDirectory + "/cameras/";
 
         ImageUploadUtil.saveImg(uploadDir, fileName, multipartFile);
+        cameraService.save(camera);
 
         re.addFlashAttribute("message", "Camera was added succesfully.");
         return "redirect:/cameras";
@@ -83,7 +87,7 @@ public class CameraController {
     public String deleteCamera(@PathVariable("id") Integer id, RedirectAttributes re, Camera camera) throws IOException{
         try{
             cameraService.delete(id);
-            Path imageUploadDir = Paths.get("./images/" + "cameras/" + camera.getId() + "/");
+            Path imageUploadDir = Paths.get("./images/" + "cameras/" + camera.getImage());
             directoryDeleteUtil.cleanDirectory(imageUploadDir);
             re.addFlashAttribute("message", "Camera was deleted successfully.");
         } catch(NotFoundException e){

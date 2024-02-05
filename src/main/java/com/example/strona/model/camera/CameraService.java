@@ -2,6 +2,8 @@ package com.example.strona.model.camera;
 import org.springframework.stereotype.Service;
 
 import javassist.NotFoundException;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +30,10 @@ public class CameraService {
             return result.get();
         }
         throw new NotFoundException("Could not find any cameras with ID " + id);
+    }
+
+    public List<Camera> searchByIdOrName(String query) {
+        return new ArrayList<>(repository.searchByIdOrName(query));
     }
 
     public void delete(Integer id) throws NotFoundException{

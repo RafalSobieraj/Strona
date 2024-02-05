@@ -1,4 +1,4 @@
-package com.example.strona;
+package com.example.strona.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +10,10 @@ public class MainController {
     public String homePage(){
         return "index";
     }
-    @GetMapping("/403")
-    public String error403(){
-        return "403";
-    }
-    @GetMapping("/adminLogin")
+
+    @GetMapping("/login")
     public String adminLoginPage(){
-        return "adminLogin";
+        return "login";
     }
 
 }

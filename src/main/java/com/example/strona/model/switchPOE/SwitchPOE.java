@@ -48,13 +48,6 @@ public class SwitchPOE{
     private String installation;
 
 
-    @Transient
-    public String getImagePath(){
-        if(image == null || id == null) return null;
-
-        return "/images/" + "switches/" + id + "/" + image;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

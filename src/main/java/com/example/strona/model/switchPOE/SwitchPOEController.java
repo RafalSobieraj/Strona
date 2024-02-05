@@ -4,6 +4,7 @@ import com.example.strona.model.Utils.DirectoryDeleteUtil;
 import com.example.strona.model.Utils.ImageUploadUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -22,6 +23,9 @@ public class SwitchPOEController {
 
     private final SwitchPOEService switchPOEService;
     private final DirectoryDeleteUtil directoryDeleteUtil;
+
+    @Value("${images.directory}")
+    private String uploadDirectory;
 
     @Autowired
     public SwitchPOEController(SwitchPOEService switchPOEService, DirectoryDeleteUtil directoryDeleteUtil) {
@@ -50,12 +54,13 @@ public class SwitchPOEController {
     @RequestParam("fileImage") MultipartFile multipartFile)
     throws IOException{
 
-        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile
+                .getOriginalFilename())).toLowerCase();
         switchPOE.setImage(fileName);
 
         SwitchPOE savedImage = switchPOEService.save(switchPOE);
 
-        String uploadDir = "./images/" + "switches/" + savedImage.getId();
+        String uploadDir = uploadDirectory + "/switches/" + savedImage.getId();
 
         ImageUploadUtil.saveImg(uploadDir, fileName, multipartFile);
 

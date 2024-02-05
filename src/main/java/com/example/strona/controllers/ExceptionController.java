@@ -1,4 +1,4 @@
-package com.example.strona;
+package com.example.strona.controllers;
 
 import com.example.strona.model.Error;
 import org.springframework.http.HttpStatus;

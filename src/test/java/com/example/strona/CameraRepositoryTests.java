@@ -52,5 +52,4 @@ public class CameraRepositoryTests {
         Assertions.assertThat(updatedCamera.getCameraResolution()).isEqualTo(2);
 
     }
-
 }
