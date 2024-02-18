@@ -33,65 +33,65 @@ public class SwitchPOEController {
         this.directoryDeleteUtil = directoryDeleteUtil;
     }
 
-   @GetMapping("/switches")
-   public String getSwitchPOEList(Model model){
-       List<SwitchPOE> switchPOEList = switchPOEService.listSwitches();
-       model.addAttribute("switchPOEList", switchPOEList);
+    @GetMapping("/switches")
+    public String getSwitchPOEList(Model model) {
+        List<SwitchPOE> switchPOEList = switchPOEService.listSwitches();
+        model.addAttribute("switchPOEList", switchPOEList);
 
-       return "switches";
-   }
+        return "switches";
+    }
 
-   @GetMapping("/switches/new")
-    public String switchPOEForm(Model model){
+    @GetMapping("/switches/new")
+    public String switchPOEForm(Model model) {
         model.addAttribute("switchPOE", new SwitchPOE());
         model.addAttribute("title", "Add new switch POE");
         return "switch_form";
     }
 
     @PostMapping("/switches/save")
-    public String saveSwitchPOE(@ModelAttribute(name = "switchPOE") SwitchPOE switchPOE, 
-    RedirectAttributes re,
-    @RequestParam("fileImage") MultipartFile multipartFile)
-    throws IOException{
+    public String saveSwitchPOE(@ModelAttribute(name = "switchPOE") SwitchPOE switchPOE,
+                                RedirectAttributes re,
+                                @RequestParam("fileImage") MultipartFile multipartFile)
+            throws IOException {
 
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile
                 .getOriginalFilename())).toLowerCase();
         switchPOE.setImage(fileName);
 
-        SwitchPOE savedImage = switchPOEService.save(switchPOE);
-
-        String uploadDir = uploadDirectory + "/switches/" + savedImage.getId();
+        String uploadDir = uploadDirectory + "/switches/";
 
         ImageUploadUtil.saveImg(uploadDir, fileName, multipartFile);
+        switchPOEService.save(switchPOE);
 
         re.addFlashAttribute("message", "Switch POE was added succesfully.");
         return "redirect:/switches";
     }
 
     @GetMapping("/switches/edit/{id}")
-        public String editSwitchPOE(@PathVariable("id") Integer id, Model model, RedirectAttributes re){
-            try{
-                SwitchPOE switchPOE = switchPOEService.get(id);
-                model.addAttribute("switchPOE", switchPOE);
-                model.addAttribute("title", "Edit switch POE (ID: " + id + ")");
-                return "switch_form";
-            } catch(NotFoundException e){
-                re.addFlashAttribute("message", e.getMessage());
-                return "redirect:/switches";
-            }
+    public String editSwitchPOE(@PathVariable("id") Integer id, Model model, RedirectAttributes re) {
+        try {
+            SwitchPOE switchPOE = switchPOEService.get(id);
+            model.addAttribute("switchPOE", switchPOE);
+            model.addAttribute("title", "Edit switch POE (ID: " + id + ")");
+            return "switch_form";
+        } catch (NotFoundException e) {
+            re.addFlashAttribute("message", e.getMessage());
+            return "redirect:/switches";
         }
+    }
 
     @GetMapping("/switches/delete/{id}")
-    public String deleteSwitchPOE(@PathVariable("id") Integer id, RedirectAttributes re, SwitchPOE switchPOE) throws IOException{
-        try{
+    public String deleteSwitchPOE(@PathVariable("id") Integer id, RedirectAttributes re, SwitchPOE switchPOE)
+            throws IOException {
+        try {
             switchPOEService.delete(id);
             Path imageUploadDir = Paths.get("./images/" + "switches/" + switchPOE.getId() + "/");
             directoryDeleteUtil.cleanDirectory(imageUploadDir);
             re.addFlashAttribute("message", "Switch POE was deleted successfully.");
-        } catch(NotFoundException e){
+        } catch (NotFoundException e) {
             re.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/switches";
-        } 
-    
+    }
+
 }

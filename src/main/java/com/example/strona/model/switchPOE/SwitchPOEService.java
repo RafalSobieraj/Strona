@@ -36,9 +36,6 @@ public class SwitchPOEService {
     }
 
     public List<SwitchPOE> searchByIdOrName(String query) {
-        int intQuery;
-            //intQuery = Integer.parseInt(query);
-        //allObjects.addAll(repository.searchByName(query));
         return new ArrayList<>(repository.searchByIdOrName(query));
     }
 

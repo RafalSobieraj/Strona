@@ -1,4 +1,7 @@
 <th:block th:fragment="header">
+    <head>
+
+    </head>
     <div class="headerTop">
         <a target="_self" th:href="@{/}">
             <img class="logo" th:src="@{pictures/logo.png}">
@@ -18,18 +21,69 @@
             </ul>
         </div>
     </div>
-    <div>
-        <ul class="mainHeader">
-            <li><a class="configurationButton" th:href="@{/configuration}">Konfiguracja<p class="material-icons">
-                build
-            </p></a></li>
-            <li><a>
-                <a th:href="@{/cameras}" style="font-size: 34px">Kamery  <p class="material-icons">list</p>
-                </a>
-            </a>
-            </li>
-            <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory<p class="material-icons">list</p></a></li>
-            <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE<p class="material-icons">list</p></a></li>
-        </ul>
+    <ul class="mainHeader">
+        <li class="collapsible">
+            <a type="button" th:href="@{/cameras}"  style="font-size: 34px">KAMERY</a>
+            <ul class="submenu-list">
+                <li><a th:href="@{/cameras/iptubes}">IP TUBOWE</a></li>
+                <li><a th:href="@{/cameras/ipdomes}">IP KOPUŁKOWE</a></li>
+                <li><a th:href="@{/cameras/analogtubes}">ANALOG TUBOWE</a></li>
+                <li><a th:href="@{/cameras/analogdomes}">ANALOG KOPUŁKOWE</a></li>
+            </ul>
+        </li>
+        <li class="collapsible">
+            <a type="button" th:href="@{/recorders}"  style="font-size: 34px">REJESTRATORY</a>
+            <ul class="submenu-list">
+                <li><a href="#">REJESTRATORY IP</a></li>
+                <li><a href="#">REJESTRATORY HYBRYDOWE</a></li>
+            </ul>
+        </li>
+        <li class="collapsible">
+            <a type="button" th:href="@{/switches}"  style="font-size: 34px">SWITCHE POE</a>
+            <ul class="submenu-list">
+                <li><a href="#">SWITCHE 4-12 PORTÓW</a></li>
+                <li><a href="#">SWITCHE 16-22 PORTÓW</a></li>
+                <li><a href="#">SWITCHE 24-52 PORTÓW</a></li>
+            </ul>
+        </li>
+        <li class="collapsible">
+            <a type="button" style="font-size: 34px">DYSKI</a>
+        </li>
+        <li class="collapsible">
+            <a type="button" style="font-size: 34px">AKCESORIA</a>
+        </li>
+        <li><a class="configurationButton" th:href="@{/configuration}">KONFIGURATOR<p class="material-icons">build</p>
+        </a></li>
+        <li class="collapsible">
+            <a type="button" style="font-size: 34px">KONTAKT</a>
+        </li>
+        <li class="collapsible">
+            <a type="button" style="font-size: 34px">WSPÓŁPRACA</a>
+        </li>
+        <li class="collapsible">
+            <a type="button" style="font-size: 34px">GALERIA</a>
+        </li>
+    </ul>
+    <script>
+    var collapsibles = document.querySelectorAll('.collapsible');
 
+    collapsibles.forEach(function(collapsible) {
+      collapsible.addEventListener('mouseover', function() {
+        var submenu = this.querySelector('.submenu-list');
+        if (submenu) {
+          submenu.style.display = 'block';
+        }
+      });
+
+      collapsible.addEventListener('mouseout', function() {
+        var submenu = this.querySelector('.submenu-list');
+        if (submenu) {
+          submenu.style.display = 'none';
+        }
+      });
+    });
+
+
+
+    </script>
 </th:block>

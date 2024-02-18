@@ -11,10 +11,14 @@
 </head>
 <th:block th:include="fragments/header :: header"></th:block>
 <body>
-<div class="tableInTable">
-    <table class="table table-bordered">
-        <th:block th:each="result : ${searchResults}">
-            <div class="tableInTable" th:if="${result.__class__.simpleName == 'SwitchPOE'}">
+<h2 th:if="${not #lists.isEmpty(searchResults)}"
+    class="container-fluid text-center" style="color: white;">Lista znalezionych urządzeń</h2>
+<h2 th:unless="${not #lists.isEmpty(searchResults)}"
+    class="container-fluid text-center">Nie znaleziono urządzeń</h2>
+<div th:if="${not #lists.isEmpty(searchResults)}" class="tableInTable">
+    <th:block th:each="result : ${searchResults}">
+        <div th:if="${result.__class__.simpleName == 'SwitchPOE'}">
+            <table class="table table-bordered">
                 <thead class="theadStyle">
                 <tr>
                     <th>ID</th>
@@ -46,8 +50,10 @@
                     <td>[[${result.installation}]]</td>
                 </tr>
                 </tbody>
-            </div>
-            <div class="tableInTable" th:if="${result.__class__.simpleName == 'Camera'}">
+            </table>
+        </div>
+        <div th:if="${result.__class__.simpleName == 'Camera'}">
+            <table class="table table-bordered">
                 <thead class="theadStyle">
                 <tr>
                     <th>ID</th>
@@ -74,9 +80,47 @@
                     <td>[[${result.installation}]]</td>
                 </tr>
                 </tbody>
-            </div>
-        </th:block>
-    </table>
+            </table>
+        </div>
+        <div th:if="${result.__class__.simpleName == 'Recorder'}">
+            <table class="table table-bordered">
+                <thead class="theadStyle">
+                <tr>
+                    <th>ID</th>
+                    <th>Zdjęcie</th>
+                    <th>Rejestrator</th>
+                    <th>Typ Rejestratora</th>
+                    <th>Ilość dysków twardych</th>
+                    <th>Limit pojemności</th>
+                    <th>Liczba kanałów</th>
+                    <th>Przepustowość łącza</th>
+                    <th>Cena</th>
+                    <th>Dostępność</th>
+                    <th>Montaż</th>
+                </tr>
+                </thead>
+                <tbody class="description">
+                <tr>
+                    <td style="background-color: lightblue;">[[${result.id}]]</td>
+                    <td>
+                        <img th:src="@{${result.imagePath}}" style="width: 120px;"/>
+                    </td>
+                    <td>
+                        <a class="itemHover" target="_blank" th:href="@{${result.link}}">[[${result.recorderModel}]]</a>
+                    </td>
+                    <td>[[${result.recorderType}]]</td>
+                    <td>[[${result.diskCount}]] HDD</td>
+                    <td>[[${result.storageLimit}]] TB</td>
+                    <td>[[${result.canalNumbers}]]</td>
+                    <td>[[${result.bandwidth}]] Mbit</td>
+                    <td>[[${result.price}]]</td>
+                    <td>[[${result.availability}]]</td>
+                    <td>[[${result.installation}]]</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </th:block>
 </div>
 </body>
 </html>

@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Controller
+@RequestMapping("/cameras")
 public class CameraController {
 
     private final CameraService cameraService;
@@ -33,83 +34,64 @@ public class CameraController {
         this.directoryDeleteUtil = directoryDeleteUtil;
     }
 
-    @GetMapping("/cameras")
-   public String getCameraList(Model model){
-       List<Camera> cameraList = cameraService.listCameras();
-       model.addAttribute("cameraList", cameraList);
+    @GetMapping("")
+    public String getCameraList(Model model) {
+        List<Camera> cameraList = cameraService.listCameras();
+        model.addAttribute("cameraList", cameraList);
 
-       return "cameras";
-   }
+        return "cameras";
+    }
 
-   @GetMapping("/cameras/new")
-    public String cameraForm(Model model){
+    @GetMapping("/new")
+    public String cameraForm(Model model) {
         model.addAttribute("camera", new Camera());
         model.addAttribute("title", "Add new camera");
         return "camera_form";
     }
 
-    @PostMapping("/cameras/save")
-    public String saveCamera(@ModelAttribute(name = "camera") Camera camera, 
-    RedirectAttributes re,
-    @RequestParam("fileImage") MultipartFile multipartFile)
-    throws IOException{
+    @PostMapping("/save")
+    public String saveCamera(@ModelAttribute(name = "camera") Camera camera,
+                             RedirectAttributes re,
+                             @RequestParam("fileImage") MultipartFile multipartFile)
+            throws IOException {
 
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile
                 .getOriginalFilename())).toLowerCase();
         camera.setImage(fileName);
-    
-        String uploadDir =  uploadDirectory + "/cameras/";
+
+        String uploadDir = uploadDirectory + "/cameras/";
 
         ImageUploadUtil.saveImg(uploadDir, fileName, multipartFile);
         cameraService.save(camera);
 
         re.addFlashAttribute("message", "Camera was added succesfully.");
         return "redirect:/cameras";
-    
-}
+    }
 
-    @GetMapping("/cameras/edit/{id}")
-        public String editCamera(@PathVariable("id") Integer id, Model model, RedirectAttributes re){
-            try{
-                Camera camera = cameraService.get(id);
-                String cameraImage = camera.getImagePath();
-                model.addAttribute("camera", camera);
-                model.addAttribute("cameraImage", cameraImage);
-                model.addAttribute("title", "Edit camera (ID: " + id + ")");
-                return "camera_form";
-            } catch(NotFoundException e){
-                re.addFlashAttribute("message", e.getMessage());
-                return "redirect:/cameras";
-            }
+    @GetMapping("/edit/{id}")
+    public String editCamera(@PathVariable("id") Integer id, Model model, RedirectAttributes re) {
+        try {
+            Camera camera = cameraService.get(id);
+            model.addAttribute("camera", camera);
+            model.addAttribute("title", "Edit camera (ID: " + id + ")");
+            return "camera_form";
+        } catch (NotFoundException e) {
+            re.addFlashAttribute("message", e.getMessage());
+            return "redirect:/cameras";
         }
+    }
 
-    @GetMapping("/cameras/delete/{id}")
-    public String deleteCamera(@PathVariable("id") Integer id, RedirectAttributes re, Camera camera) throws IOException{
-        try{
+    @GetMapping("/delete/{id}")
+    public String deleteCamera(@PathVariable("id") Integer id, RedirectAttributes re, Camera camera) throws IOException {
+        try {
             cameraService.delete(id);
-            Path imageUploadDir = Paths.get("./images/" + "cameras/" + camera.getImage());
+            Path imageUploadDir = Paths.get(camera.getImagePath());
             directoryDeleteUtil.cleanDirectory(imageUploadDir);
             re.addFlashAttribute("message", "Camera was deleted successfully.");
-        } catch(NotFoundException e){
+        } catch (NotFoundException e) {
             re.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/cameras";
-        }
-
-        @GetMapping("/cameras/image")
-        public String addImageCamera(@PathVariable("id") Integer id, Model model, MultipartFile multipartFile, RedirectAttributes re)
-        {
-            try{
-                Camera camera = cameraService.get(id);
-                String cameraImage = camera.getImage();
-                model.addAttribute("camera", cameraImage);
-                model.addAttribute("title", "Add image for camera (ID: " + id + ")");
-                return "addImageCamera";
-            } catch(NotFoundException e){
-                re.addFlashAttribute("message", e.getMessage());
-            }
-            return "redirect:/cameras";
-            
-        }
+    }
 }
     

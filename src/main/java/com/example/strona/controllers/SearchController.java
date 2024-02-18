@@ -1,5 +1,6 @@
 package com.example.strona.controllers;
 
+import com.example.strona.model.Recorder.RecorderService;
 import com.example.strona.model.camera.CameraService;
 import com.example.strona.model.switchPOE.SwitchPOEService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,14 @@ public class SearchController {
 
     private final CameraService cameraService;
     private final SwitchPOEService switchPOEService;
+    private final RecorderService recorderService;
 
     @Autowired
-    public SearchController(CameraService cameraService, SwitchPOEService switchPOEService) {
+    public SearchController(CameraService cameraService, SwitchPOEService switchPOEService,
+                            RecorderService recorderService) {
         this.cameraService = cameraService;
         this.switchPOEService = switchPOEService;
+        this.recorderService = recorderService;
     }
 
     @GetMapping("/search")
@@ -31,6 +35,7 @@ public class SearchController {
         if (query != null && !query.isEmpty()) {
             searchResults.addAll(switchPOEService.searchByIdOrName(query));
             searchResults.addAll(cameraService.searchByIdOrName(query));
+            searchResults.addAll(recorderService.searchByIdOrName(query));
         } else {
             searchResults = Collections.emptyList();
         }

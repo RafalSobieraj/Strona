@@ -1,50 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"></html>
 <html lang="en">
-    <head>
-        <title>Konfigurator Kamer</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.2/css/bootstrap.min.css}"/>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
-        <script type="text/javascript">
-        </script>
-    </head>
-    <body>
-        <div class="headerTop">
-            <a target="_self" th:href="@{/}">
-            <img class="logo" th:src="@{/pictures/logo.png}">
-        </a>
-            <div class="adminLogout" sec:authorize="isAuthenticated()">
-                <ul>
-            Zalogowano jako: <b><span sec:authentication="name">Username</span></b>
-            &nbsp;
-            <span sec:authentication="principal.authorities">Roles</span>
-            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-                <input class="logoutButton" type="submit" value="Logout"/>
-            </form>
-        </ul>
-            </div>
-    </div>
-    <div>
-        <ul class="mainHeader">       
-            <li><a class="configurationButton" th:href="@{/configuration}">Konfiguracja<p class="material-icons">
-                build
-            </p></a></li>
-            <li><a>
-                <a th:href="@{/cameras}" style="font-size: 34px">Kamery  <p class="material-icons">list</p>
-                </a>
-            </a>
-            </li>
-            <li><a th:href="@{/recorders}"style="font-size: 34px">Rejestratory<p class="material-icons">list</p></a></li>
-            <li><a th:href="@{/switches}" style="font-size: 34px">Switche POE<p class="material-icons">list</p></a></li>
-        </ul>
-    </div>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.1.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    </script>
+</head>
+<th:block th:include="fragments/header :: header"></th:block>
+<body>
 
-    <h1 th:text="${error}" style="color: red; font-size: 70px;"></h1>
-    
+<h1 th:text="${error}" style="color: red; font-size: 70px;"></h1>
+
 </body>
 </html>

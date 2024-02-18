@@ -47,6 +47,12 @@ public class SwitchPOE{
     @Column(name = "installation")
     private String installation;
 
+    public String getImagePath(){
+        if(image == null || id == null) return null;
+
+        return "images/switches/" + image;
+    }
+
 
     @Override
     public boolean equals(Object o) {

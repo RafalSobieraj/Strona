@@ -43,7 +43,6 @@ public class Camera {
     @Column(name = "installation")
     private String installation;
 
-
     @Transient
     public String getImagePath(){
         if(image == null || id == null) return null;

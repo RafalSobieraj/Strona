@@ -34,64 +34,64 @@ public class RecorderController {
     }
 
     @GetMapping("/recorders")
-   public String getRecorderList(Model model){
-       List<Recorder> recorderList = recorderService.listRecorders();
-       model.addAttribute("recorderList", recorderList);
+    public String getRecorderList(Model model) {
+        List<Recorder> recorderList = recorderService.listRecorders();
+        model.addAttribute("recorderList", recorderList);
 
-       return "recorders";
-   }
+        return "recorders";
+    }
 
-   @GetMapping("/recorders/new")
-    public String recorderForm(Model model){
+    @GetMapping("/recorders/new")
+    public String recorderForm(Model model) {
         model.addAttribute("recorder", new Recorder());
         model.addAttribute("title", "Add new recorder");
         return "recorder_form";
     }
 
     @PostMapping("/recorders/save")
-    public String saveRecorder(@ModelAttribute(name = "recorder") Recorder recorder, 
-    RedirectAttributes re,
-    @RequestParam("fileImage") MultipartFile multipartFile)
-    throws IOException{
+    public String saveRecorder(@ModelAttribute(name = "recorder") Recorder recorder,
+                               RedirectAttributes re,
+                               @RequestParam("fileImage") MultipartFile multipartFile)
+            throws IOException {
 
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile
                 .getOriginalFilename())).toLowerCase();
         recorder.setImage(fileName);
 
-        Recorder savedRecorder = recorderService.save(recorder);
-
-        String uploadDir = uploadDirectory + "/recorders/" + savedRecorder.getId();
+        String uploadDir = uploadDirectory + "/recorders/";
 
         ImageUploadUtil.saveImg(uploadDir, fileName, multipartFile);
+        recorderService.save(recorder);
 
         re.addFlashAttribute("message", "Recorder was added succesfully.");
         return "redirect:/recorders";
     }
 
     @GetMapping("/recorders/edit/{id}")
-        public String editRecorder(@PathVariable("id") Integer id, Model model, RedirectAttributes re){
-            try{
-                Recorder recorder = recorderService.get(id);
-                model.addAttribute("recorder", recorder);
-                model.addAttribute("title", "Edit recorder (ID: " + id + ")");
-                return "recorder_form";
-            } catch(NotFoundException e){
-                re.addFlashAttribute("message", e.getMessage());
-                return "redirect:/recorders";
-            }
+    public String editRecorder(@PathVariable("id") Integer id, Model model, RedirectAttributes re) {
+        try {
+            Recorder recorder = recorderService.get(id);
+            model.addAttribute("recorder", recorder);
+            model.addAttribute("title", "Edit recorder (ID: " + id + ")");
+            return "recorder_form";
+        } catch (NotFoundException e) {
+            re.addFlashAttribute("message", e.getMessage());
+            return "redirect:/recorders";
         }
+    }
 
     @GetMapping("/recorders/delete/{id}")
-    public String deleteRecorder(@PathVariable("id") Integer id, RedirectAttributes re, Recorder recorder) throws IOException{
-        try{
+    public String deleteRecorder(@PathVariable("id") Integer id, RedirectAttributes re, Recorder recorder)
+            throws IOException {
+        try {
             recorderService.delete(id);
-            Path imageUploadDir = Paths.get("./images/" + "recorders/" + recorder.getId() + "/");
+            Path imageUploadDir = Paths.get(recorder.getImagePath());
             directoryDeleteUtil.cleanDirectory(imageUploadDir);
             re.addFlashAttribute("message", "Recorder was deleted successfully.");
-        } catch(NotFoundException e){
+        } catch (NotFoundException e) {
             re.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/recorders";
-        } 
-    
+    }
+
 }

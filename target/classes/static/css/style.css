@@ -126,13 +126,24 @@ h1{
     width: 20%;
 }
 
-.mainHeader{
+
+.mainHeader {
     background-color: black;
+    padding:0;
+    margin:0;
 }
+
+.mainHeader .configurationButton{
+    font-size: 34px;
+    margin-right: 15px;
+    margin-left: 15px;
+    color: lightblue;
+}
+
 .headerTop{
     text-align: center;
     min-height: 120px;
-    
+
 }
 .background{
     background-image: url('../pictures/sideImage.jpg');
@@ -159,27 +170,18 @@ input[type=checkbox]{
     font-size: 20px;
     right: 0;
     top: 0;
-    position: absolute; 
+    position: absolute;
 }
 .logoutbutton{
-    right: 0; 
-    top: 0; 
+    right: 0;
+    top: 0;
     position: absolute;
     font-size: 20px
 }
-ul{
-    list-style-type: none;
-    margin: 0;
-    padding-right: 10px;
-    overflow: hidden;
-    font-size: 25px;
-    text-align: center;
-    
-}
 
 .theadStyle{
-    text-align: center; 
-    vertical-align: middle; 
+    text-align: center;
+    vertical-align: middle;
     background-color: rgb(255, 207, 87);
     min-width: 50%;
 }
@@ -194,11 +196,12 @@ ul{
     flex: 1;
     justify-content: center;
     overflow: auto;
-    max-width: 70%; 
-    margin: 0 auto; 
+    max-width: 70%;
+    margin: 0 auto;
     background-color: rgba(255, 207, 87, 0.788);
     padding: 1vw;
     border: 4px solid black;
+    flex-direction: column;
     }
 @media  only screen and (max-width: 2000px){
     .tableInTable{
@@ -211,11 +214,12 @@ ul{
         flex: 1;
         overflow: auto;
         justify-content: center;
-        max-width: 70%; 
-        margin: 0 auto; 
+        max-width: 70%;
+        margin: 0 auto;
         background-color: rgba(255, 207, 87, 0.788);
         padding: 1vw;
         border: 4px solid black;
+        flex-direction: column;
         }
 }
 
@@ -225,7 +229,7 @@ ul{
 
 .itemHover:hover{
     color: rgb(73, 1, 1)
-    
+
 }
 
 .backgroundCircle{
@@ -266,23 +270,47 @@ ul{
     }
 }
 
-li{
-    text-align: center;
+.submenu-list {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    background-color: black;
+    align-items:center;
+    text-align:center;
+    padding:0;
+    margin:0;
+    min-width: 200px;
+    z-index: 1;
+}
+
+.mainHeader li{
     display: inline-block;
-    padding-right: 20px;
+    position: relative;
+    cursor: pointer;
     font-family: 'Acme', sans-serif;
 }
-li a{
+
+.mainHeader .collapsible a{
     display: block;
     color: rgb(255, 207, 87);
     text-align: center;
+    margin-right:15px;
+    margin-left:15px;
     text-decoration: none;
     transition: 0.5s;
 }
-li a:hover{
-    transform: translate(-10px);
-    color: white;
+
+.mainHeader .collapsible a:hover, .submenu-list li a:hover{
+    transform: translate(-5px);
+    color:white;
 }
+
+.submenu-list li a{
+    margin:5px;
+    text-decoration: none;
+    display: block;
+}
+
 .logo {
     max-width: 25%;
     min-height: 120px;
@@ -389,10 +417,6 @@ a:hover{
     text-decoration: none;
 }
 
-.configurationButton{
-    font-size: 34px;
-    color: lightblue;
-}
 
 
 .configResult{
@@ -410,6 +434,7 @@ a:hover{
     background-color: rgba(173, 216, 230, 0.615);
 
 }
+
 .configResult img{
     position: relative;
     max-width: 250px;

@@ -11,8 +11,4 @@ public interface SwitchPOERepository extends CrudRepository<SwitchPOE, Integer>{
     @Query("SELECT s FROM SwitchPOE s WHERE CAST(s.id AS string) LIKE CONCAT('%',:query,'%') OR s.switchModel LIKE CONCAT('%',:query,'%')")
     List<SwitchPOE> searchByIdOrName(String query);
 
-    //@Query("SELECT s FROM SwitchPOE s WHERE s.switchModel LIKE %:query%")
-    //List<SwitchPOE> searchByName(String query);
-
-
 }

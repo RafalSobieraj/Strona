@@ -2,6 +2,7 @@ package com.example.strona.model.Recorder;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,10 @@ public class RecorderService {
             return result.get();
         }
         throw new NotFoundException("Could not find any recorders with ID " + id);
+    }
+
+    public List<Recorder> searchByIdOrName(String query) {
+        return new ArrayList<>(repository.searchByIdOrName(query));
     }
 
     public void delete(Integer id) throws NotFoundException{
