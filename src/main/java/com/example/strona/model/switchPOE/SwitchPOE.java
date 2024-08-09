@@ -50,7 +50,7 @@ public class SwitchPOE{
     public String getImagePath(){
         if(image == null || id == null) return null;
 
-        return "images/switches/" + image;
+        return "/images/switches/" + image;
     }
 
 

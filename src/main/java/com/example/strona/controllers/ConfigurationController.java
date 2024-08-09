@@ -74,7 +74,8 @@ public class ConfigurationController {
             model.addAttribute("option1", recorder);
             
 
-            if((recorder.getRecorderType().equals("Analog") && camera.getCameraType().equals("IP")) || (recorder.getRecorderType().equals("IP") && camera.getCameraType().equals("Analog"))){
+            if((recorder.getRecorderType().equals("Analog") && camera.getCameraType().equals("IP")) ||
+                    (recorder.getRecorderType().equals("IP") && camera.getCameraType().equals("Analog"))){
                 model.addAttribute("conclusion", "Wybrana konfiguracja nie jest prawidłowa, ponieważ typ kamery nie jest taki sam jak" +
                 " typ rejestratora.  Proszę wybrać poprawny typ urządzeń lub wybrać inną opcję z listy poniżej.");
                 model.addAttribute("listRecorder", resultRecorder);
@@ -87,10 +88,16 @@ public class ConfigurationController {
                 model.addAttribute("conclusion", "Wybrana kamera bardzo dobrze łączy się z danym rejestratorem i switchem.");
             
             if(camera.getCameraResolution() >= 4)
-                model.addAttribute("cameraConclusion", "Kamera z daną rodzielczością idealnie pasuje do użytku firmowego w celu monitorowania wielu dużych obszarów np. obiektów publicznych. Wyższa rozdzielczość pozwoli na zarejestrowanie większej ilości szczegółów, w przypadku kamery monitorującej na przykład teren przed budynkiem uda nam się odczytać numer " +
-                "tablicy rejestracyjnej auta stojącego przed bramą lub uzyskać lepszy obraz twarzy osoby, która pojawi się w zasięgu.");
+                model.addAttribute("cameraConclusion", "Kamera z daną rodzielczością idealnie pasuje do użytku " +
+                        "firmowego w celu monitorowania wielu dużych obszarów np. obiektów publicznych. " +
+                        "Wyższa rozdzielczość pozwoli na zarejestrowanie większej ilości szczegółów, w przypadku " +
+                        "kamery monitorującej na przykład teren przed budynkiem uda nam się odczytać numer " +
+                "tablicy rejestracyjnej auta stojącego przed bramą lub uzyskać lepszy obraz twarzy osoby, " +
+                        "która pojawi się w zasięgu.");
             else
-                model.addAttribute("cameraConclusion", "Kamera z daną rozdzielczością jest bardzo dobra do zastosowań domowych. Nie obciąży to za bardzo pamięci rejestratora oraz jakość podglądu online będzie większa niż w przypadku kamery o wysokiej rozdzielczości.");
+                model.addAttribute("cameraConclusion", "Kamera z daną rozdzielczością jest bardzo dobra do " +
+                        "zastosowań domowych. Nie obciąży to za bardzo pamięci rejestratora oraz jakość podglądu " +
+                        "online będzie większa niż w przypadku kamery o wysokiej rozdzielczości.");
 
             model.addAttribute("listRecorder", resultRecorder);
             model.addAttribute("listCamera", resultCamera);

@@ -47,7 +47,7 @@ public class Camera {
     public String getImagePath(){
         if(image == null || id == null) return null;
 
-        return "images/cameras/" + image;
+        return "/images/cameras/" + image;
     }
 
     @Override
