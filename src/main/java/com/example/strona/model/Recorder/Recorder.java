@@ -56,7 +56,7 @@ public class Recorder {
     public String getImagePath(){
         if(image == null || id == null) return null;
 
-        return "images/recorders/" + image;
+        return "/images/recorders/" + image;
     }
 
     @Override
